@@ -5,13 +5,14 @@ import ButtonTool from './ButtonTool';
 
 import brushSVG from '../../../public/icons/tool_brush.svg';
 import squareSVG from '../../../public/icons/tool_square.svg';
+import circleSVG from '../../../public/icons/tool_circle.svg';
 
 export enum Brushes {
 	brush = '/public/icons/tool_brush-icon.svg',
 }
 
 const BrushesCard = () => {
-	const toolsArray: string[] = [brushSVG, squareSVG];
+	const toolsArray: string[] = [brushSVG, squareSVG, circleSVG];
 	const [choosenIndex, setChoosenIndex] = useState<number>(0);
 
 	return (
