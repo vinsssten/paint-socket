@@ -1,9 +1,10 @@
-import React from 'react'
+import { useSelector } from 'react-redux'
 import styled from 'styled-components'
+import { InitialState } from '../../lib/models/reducerStates/InitialState'
 import ToolboxDrawing from '../ToolboxDrawing/ToolboxDrawing'
 // import './SingleDrawingPage.css'
 
-const PageContainer = styled.div`
+const PageContainer = styled.div<{theme: Theme}>`
     width: 100vw;
     height: 100vh;
     display: grid; 
@@ -17,8 +18,10 @@ const PageContainer = styled.div`
 `
 
 function SingleDrawingPage() {
+    const theme = useSelector<InitialState>(state => state.app.theme)
+
     return (
-        <PageContainer className='singleDrawing_mainContainer'>
+        <PageContainer theme={theme}>
             <ToolboxDrawing />
         </PageContainer>
     )
