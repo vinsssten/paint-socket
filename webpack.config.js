@@ -35,11 +35,28 @@ module.exports = (argv) => {
                     }
                 },
                 {
-                    test: /\.css$/,
+                    test: /\.scss$/,
                     use: [
-                        "style-loader", "css-loader"
-                    ]
-                    },
+                      {
+                        loader: MiniCssExtractPlugin.loader,
+                        options: {
+                          publicPath: '',
+                        },
+                      },
+                      {
+                        loader: 'css-loader',
+                        options: {
+                          importLoaders: 1,
+                          modules: {
+                            localIdentName: devMode
+                              ? '[path][name]__[local]--[hash:base64:5]'
+                              : '[hash:base64]',
+                          },
+                        },
+                      },
+                      'sass-loader',
+                    ],
+                  },
                 {
                     test: /\.(png|jpg|svg|otf|ttf|ico)$/,
                     use: 'file-loader'

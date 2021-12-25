@@ -1,0 +1,12 @@
+.page {
+    width: 100vw;
+    height: 100vh;
+    display: grid; 
+    grid-auto-columns: 1fr; 
+    grid-template-columns: 1fr; 
+    grid-template-rows: 0.1fr 1fr; 
+    gap: 0px 0px; 
+    grid-template-areas: 
+      "toolbox"
+      "canvasContainer"; 
+}
