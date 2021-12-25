@@ -1,11 +1,19 @@
 import React from 'react'
-import './ToolboxDrawing.css'
+import styled from 'styled-components'
+
+const ToolboxContainer = styled.div`
+    grid-area: toolbox;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    background-color: red;
+`
 
 function ToolboxDrawing() {
     return (
-        <div className='toolbox_container'>
+        <ToolboxContainer className='toolbox_container'>
             
-        </div>
+        </ToolboxContainer>
     )
 }
 
