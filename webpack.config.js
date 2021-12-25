@@ -57,10 +57,10 @@ module.exports = (argv) => {
                       'sass-loader',
                     ],
                   },
-                {
-                    test: /\.(png|jpg|svg|otf|ttf|ico)$/,
-                    use: 'file-loader'
-                }
+                // {
+                //     test: /\.(png|jpg|svg|otf|ttf|ico)$/,
+                //     use: 'file-loader'
+                // }
             ]
         },
         resolve: {

@@ -1,7 +1,28 @@
-.container {
+@import '/src/index.scss';
+
+.maincont {
+    @include flexCenter;
     grid-area: toolbox;
+    padding: 5px;
+    box-sizing: border-box;
+}
+
+.cont {
     display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
     width: 100%;
     height: 100%;
-    background-color: red;
+    background-color: $backgroundColor_secondary-light;
+}
+
+.toolcont {
+    @include flexCenter;
+    flex-direction: column;
+}
+
+.toolcontHeader {
+    @include fontBold-light
+    
 }

@@ -1,4 +1,49 @@
+@font-face {
+    font-family: 'Cabin';
+    src: url('/public/fonts/Cabin-Regular.ttf');
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: 'Cabin';
+    src: url('/public/fonts/Cabin-SemiBold.ttf');
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: 'Cabin';
+    src: url('/public/fonts/Cabin-Bold.ttf');
+    font-weight: 600;
+}
+
+$backgroundColor_primary-light: #d3cccc;
+$backgroundColor_secondary-light: #f3f3f3e1; 
+
+@mixin flexCenter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@mixin fontRegular-light {
+    font-family: 'Cabin';
+    font-weight: 400;
+    color: black;
+}
+
+@mixin fontBold-light {
+    font-family: 'Cabin';
+    font-weight: 600;
+    color: black;
+}
+
 body {
+    margin: 0;
+    padding: 0;
+    background-color: $backgroundColor_primary-light;
+}
+
+h1, h2, h3, h4, h5 {
     margin: 0;
     padding: 0;
 }

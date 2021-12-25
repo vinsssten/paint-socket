@@ -1,9 +1,12 @@
+import BrushesCard from './BrushesCard'
 import stl from './ToolboxDrawing.scss'
 
-function ToolboxDrawing() {
+function ToolboxDrawing () {
     return (
-        <div className={stl.container}>
-            
+        <div className={stl.maincont}>
+            <div className={stl.cont}>
+                <BrushesCard />
+            </div>
         </div>
     )
 }
