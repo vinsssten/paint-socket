@@ -24,5 +24,29 @@
 
 .toolcontHeader {
     @include fontBold-light
-    
+}
+
+.brushesCont {
+    @include flexCenter;
+    margin-top: 7px
+}
+
+.button {
+    @include flexCenter;
+    width: 50px;
+    height: 50px;
+    padding: 5px;
+    margin-right: 5px;
+    box-sizing: border-box;
+    background-color: $backgroundColor_button-light;
+    border: 1px solid #646464;
+    border-radius: 7px;
+    box-shadow: 0px 0px 5px 3px #80808033;
+    cursor: pointer;
+    transition: 150ms ease-out;
+}
+
+.active {
+    box-shadow: 0px 0px 5px 3px #ad9494b9 inset;
+    background-color: #c3a1a1b9;
 }
