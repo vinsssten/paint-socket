@@ -1,15 +1,15 @@
 @import 'src/index.scss';
 
 .page {
-    width: 100vw;
-    height: 100vh;
-    display: grid; 
-    grid-auto-columns: 1fr; 
-    grid-template-columns: 1fr; 
-    grid-template-rows: 0.15fr 1fr; 
-    gap: 0px 0px; 
-    grid-template-areas: 
-      "toolbox"
-      "canvasContainer"; 
-    background-color: $backgroundColor_primary-light;
+	width: 100vw;
+	height: 100vh;
+	display: grid;
+	grid-auto-columns: 1fr;
+	grid-template-columns: 1fr;
+	grid-template-rows: 0.15fr 1fr;
+	gap: 0px 0px;
+	grid-template-areas:
+		'toolbox'
+		'canvasContainer';
+	background-color: $backgroundColor_primary-light;
 }

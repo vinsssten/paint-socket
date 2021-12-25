@@ -1,5 +1,5 @@
-import AppState from "./AppState";
+import AppState from './AppState';
 
 export interface InitialState {
-    app: AppState
+	app: AppState;
 }

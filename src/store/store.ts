@@ -1,13 +1,13 @@
-import { createStore, combineReducers} from 'redux';
-import {composeWithDevTools} from 'redux-devtools-extension'
+import { createStore, combineReducers } from 'redux';
+import { composeWithDevTools } from 'redux-devtools-extension';
 import app from './reducers/app';
 
 const rootReducer = combineReducers({
-    app: app
-})
+	app: app,
+});
 
-const store = createStore(rootReducer, composeWithDevTools())
+const store = createStore(rootReducer, composeWithDevTools());
 
 export type RootState = ReturnType<typeof store.getState>;
 
-export default store
+export default store;
