@@ -1,0 +1,19 @@
+{
+    "compilerOptions": {
+        "module": "CommonJS",
+        // "target":"ES6",
+        "moduleResolution": "Node",
+        "noImplicitAny": true,
+        "allowJs": true,
+        "removeComments": true,
+        "allowSyntheticDefaultImports": true,
+        "preserveConstEnums": true,
+        "sourceMap": true,
+        "pretty": true,
+        "outDir": "./dist",
+        "lib": [
+            "dom",
+            "es2017"
+        ],
+    },
+}

@@ -1,0 +1,4 @@
+.toolbox_container {
+    grid-area: toolbox;
+    display: flex;
+}
