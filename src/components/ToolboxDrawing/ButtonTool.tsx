@@ -7,7 +7,7 @@ import { switchBrushTool } from '../../store/actionCreators/drawingActionCreator
 
 interface Props {
 	image: string;
-	toolName: Brush;
+	toolName: BrushTool;
 }
 
 const ButtonTool: FC<Props> = ({ image, toolName }) => {

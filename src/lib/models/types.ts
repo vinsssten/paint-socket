@@ -1,2 +1,2 @@
 type Theme = 'dark' | 'light';
-type Brush = 'brush' | 'square' | 'square-empty' | 'circle' | 'eraser';
+type BrushTool = 'brush' | 'square' | 'square-empty' | 'circle' | 'eraser';

@@ -10,7 +10,7 @@ import eraserSVG from '../../../public/icons/tool_eraser.svg';
 
 interface BrushTool {
 	image: string;
-	brushType: Brush;
+	brushType: BrushTool;
 }
 
 const toolsArray: BrushTool[] = [

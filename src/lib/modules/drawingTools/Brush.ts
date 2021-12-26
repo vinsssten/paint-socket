@@ -50,7 +50,6 @@ class Brush extends Tool {
     draw(coord: { x: number; y: number }) {
         this.context?.lineTo(coord.x, coord.y);
         this.context?.stroke();
-        console.log('draw')
     }
 }
 

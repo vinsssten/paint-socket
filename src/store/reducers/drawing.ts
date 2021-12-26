@@ -2,7 +2,7 @@ import { PayloadAction } from '@reduxjs/toolkit';
 import { Reducer } from 'redux';
 
 export interface DrawingState {
-	brush: Brush;
+	brush: BrushTool;
 	size: number;
 	color: string;
 	history: string[];

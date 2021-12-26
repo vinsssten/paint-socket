@@ -1,16 +1,16 @@
 import React, { useEffect, useRef, useState } from 'react'
-import Brush from '../../lib/modules/drawingTools/Brush';
-import Tool from '../../lib/modules/drawingTools/Tool';
+import useDrawing from '../../lib/hooks/useDrawing';
 import stl from './Canvas.scss'
 
 const DrawingField = () => {
-    const canvasRef = useRef(null);
-    const [tool, setTool] = useState<Tool | null>(null);
-
+    const canvasRef: React.MutableRefObject<HTMLCanvasElement | null> = useRef(null);
+    useDrawing(canvasRef);
+    
     return (
         <canvas 
             className={stl.canvas} 
-            ref={canvasRef}/>
+            ref={canvasRef}
+        />
     )
 }
 
