@@ -32,7 +32,7 @@ const BrushesCard = () => {
 
 	return (
 		<ToolContainer title="Brushes">
-			<div className={stl.brushesCont}>
+			<>
 				{toolsArray.map((value, index) => (
 					<ButtonTool
 						image={value.image}
@@ -40,7 +40,7 @@ const BrushesCard = () => {
 						key={index}
 					/>
 				))}
-			</div>
+			</>	
 		</ToolContainer>
 	);
 };

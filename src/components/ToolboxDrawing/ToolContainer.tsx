@@ -10,7 +10,7 @@ const ToolContainer: FC<Props> = ({ children, title }) => {
 	return (
 		<div className={stl.toolcont}>
 			<h1 className={stl.toolcontHeader}>{title}</h1>
-			{children}
+			<div className={stl.toolcontCont}>{children}</div>
 		</div>
 	);
 };
