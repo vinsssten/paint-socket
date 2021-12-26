@@ -1,0 +1,7 @@
+export const sizeChange = (size: number) => {
+	return { type: 'CHANGE_SIZE', payload: { size: size } };
+};
+
+export const switchBrushTool = (toolName: Brush) => {
+	return { type: "SWITCH_BRUSH", payload: { brush: toolName } };
+};
