@@ -1,5 +1,5 @@
 const switchBrushTool = (toolName: Brush) => {
-	return { payload: { brush: toolName }, type: '' };
+	return { type: "SWITCH_BRUSH", payload: { brush: toolName } };
 };
 
 export default switchBrushTool;

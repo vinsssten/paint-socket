@@ -33,7 +33,6 @@ const toolsArray: BrushTool[] = [
 ];
 
 const BrushesCard = () => {
-	const [choosenIndex, setChoosenIndex] = useState<number>(0);
 
 	return (
 		<ToolContainer title="Brushes">
