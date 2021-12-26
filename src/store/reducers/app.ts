@@ -1,6 +1,4 @@
 import { PayloadAction } from '@reduxjs/toolkit';
-import { Reducer } from 'react';
-import { Action } from 'redux';
 import AppState from '../../lib/models/reducerStates/AppState';
 
 const initialState: AppState = {
