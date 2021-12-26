@@ -1,4 +1,5 @@
 import BrushesCard from './BrushesCard';
+import ColorPicker from './ColorPicker';
 import SizeSelector from './SizeSelector';
 import stl from './ToolboxDrawing.scss';
 
@@ -8,6 +9,7 @@ function ToolboxDrawing() {
 			<div className={stl.cont}>
 				<BrushesCard />
 				<SizeSelector />
+				<ColorPicker />
 			</div>
 		</div>
 	);

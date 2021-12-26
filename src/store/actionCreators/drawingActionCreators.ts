@@ -5,3 +5,7 @@ export const sizeChange = (size: number) => {
 export const switchBrushTool = (toolName: Brush) => {
 	return { type: "SWITCH_BRUSH", payload: { brush: toolName } };
 };
+
+export const changeColor = (color: string) => {
+    return { type: 'CHANGE_COLOR', payload: {color: color} }
+}
