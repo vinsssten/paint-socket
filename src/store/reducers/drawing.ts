@@ -10,7 +10,7 @@ export interface DrawingState {
 
 const initialState: DrawingState = {
 	brush: 'brush',
-	color: '#ffffff',
+	color: '#000000',
 	size: 5,
 	history: [],
 };
