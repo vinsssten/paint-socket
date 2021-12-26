@@ -28,8 +28,6 @@ class Tool {
     }
 
     private setDefaultSettings () {
-        this.canvas.width = this.canvas.clientWidth * this.scale;
-        this.canvas.height = this.canvas.clientHeight * this.scale;
         this.context!.lineCap = 'round';
         this.context!.lineJoin = 'round';
     }

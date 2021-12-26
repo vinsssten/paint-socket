@@ -5,6 +5,13 @@ import stl from './Canvas.scss'
 const DrawingField = () => {
     const canvasRef: React.MutableRefObject<HTMLCanvasElement | null> = useRef(null);
     useDrawing(canvasRef);
+
+    useEffect(() => {
+        if (canvasRef.current) {
+            canvasRef.current.width = canvasRef.current.clientWidth;
+            canvasRef.current.height = canvasRef.current.clientHeight;
+        }
+    }, [canvasRef])
     
     return (
         <canvas 
