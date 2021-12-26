@@ -1,7 +1,7 @@
-import { AppDispatch } from "../store"
+import { AppDispatch } from '../store';
 
 const sizeChange = (size: number) => {
-    return {type: "CHANGE_SIZE", payload: {size: size}}
-}
+	return { type: 'CHANGE_SIZE', payload: { size: size } };
+};
 
-export default sizeChange
+export default sizeChange;

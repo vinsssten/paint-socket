@@ -8,7 +8,10 @@ const initialState: AppState = {
 	theme: 'light',
 };
 
-const app: Reducer<AppState, PayloadAction<AppState>> = (state = initialState, action) => {
+const app: Reducer<AppState, PayloadAction<AppState>> = (
+	state = initialState,
+	action,
+) => {
 	switch (action.type) {
 		case 'THEME_TOGGLE':
 			return { theme: state.theme === 'light' ? 'dark' : 'light' };

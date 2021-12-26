@@ -7,15 +7,15 @@ import { useAppSelector } from '../..';
 
 interface Props {
 	image: string;
-	toolName: Brush
+	toolName: Brush;
 }
 
 const ButtonTool: FC<Props> = ({ image, toolName }) => {
 	const currentBrush = useAppSelector(state => state.drawing.brush);
-	const dispatch = useDispatch()
+	const dispatch = useDispatch();
 
-	function handleClick () {
-		dispatch(switchBrushTool(toolName))
+	function handleClick() {
+		dispatch(switchBrushTool(toolName));
 	}
 
 	return (

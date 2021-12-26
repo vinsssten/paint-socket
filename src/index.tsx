@@ -7,8 +7,8 @@ import { AppDispatch, RootState } from './store/store';
 
 window.React = React;
 
-export const useAppSelector = useSelector as TypedUseSelectorHook<RootState>
-export const useAppDispatch = () => useDispatch<AppDispatch>()
+export const useAppSelector = useSelector as TypedUseSelectorHook<RootState>;
+export const useAppDispatch = () => useDispatch<AppDispatch>();
 
 ReactDom.render(
 	<React.StrictMode>
