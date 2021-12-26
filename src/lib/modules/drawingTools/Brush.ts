@@ -1,3 +1,4 @@
+import { randomInt } from 'crypto';
 import Tool from './Tool';
 
 class Brush extends Tool {
@@ -47,7 +48,7 @@ class Brush extends Tool {
         }
     }
 
-    draw(coord: { x: number; y: number }) {
+    draw(coord: { x: number; y: number }) { 
         this.context?.lineTo(coord.x, coord.y);
         this.context?.stroke();
     }

@@ -74,9 +74,9 @@ class Square extends Tool {
                     this.canvas.height,
                 );
                 this.context?.beginPath();
-                this.context?.arc(startX, startY, width, 0, 2 * Math.PI);
+                this.context?.arc(startX, startY, Math.abs(width), 0, 2 * Math.PI);
                 this.context?.fill();
-                this.context?.stroke();
+                // this.context?.stroke();
             };
         }
     }

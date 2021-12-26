@@ -15,6 +15,7 @@ const DrawingField = () => {
     
     return (
         <canvas 
+            id='canvas'
             className={stl.canvas} 
             ref={canvasRef}
         />

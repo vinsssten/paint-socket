@@ -7,8 +7,8 @@ class Tool {
         this.canvas = canvas;
         this.context = canvas.getContext('2d');
         this.scale = 1;
-        this.setDefaultSettings();
         this.destroyEvents();
+        this.setDefaultSettings();
     }
 
     set setSize(size: number) {
@@ -27,12 +27,13 @@ class Tool {
         }
     }
 
-    private setDefaultSettings () {
+    setDefaultSettings () {
         this.context!.lineCap = 'round';
         this.context!.lineJoin = 'round';
+        console.log('set default settings')
     }
 
-    destroyEvents() {
+    protected destroyEvents() {
         this.canvas.onmousedown = null;
         this.canvas.onmouseup = null;
         this.canvas.onmousemove = null;
