@@ -1,12 +1,14 @@
-import { ActionCreatorWithPayload, PayloadAction, Reducer } from '@reduxjs/toolkit';
-import { Action } from 'history';
-import AppState from '../../lib/models/reducerStates/AppState';
+import { PayloadAction, Reducer } from '@reduxjs/toolkit';
+
+export interface AppState {
+	theme: Theme;
+}
 
 const initialState: AppState = {
 	theme: 'light',
 };
 
-const app = (state: AppState, action: PayloadAction<AppState>) => {
+const app: Reducer<AppState, PayloadAction<AppState>> = (state = initialState, action) => {
 	switch (action.type) {
 		case 'THEME_TOGGLE':
 			return { theme: state.theme === 'light' ? 'dark' : 'light' };

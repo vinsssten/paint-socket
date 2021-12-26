@@ -1,12 +1,12 @@
 import React from 'react'
 import ToolContainer from './ToolContainer'
 import stl from './ToolboxDrawing.scss'
-import { InitialState } from '../../lib/models/reducerStates/InitialState'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import sizeChange from '../../store/actionCreators/sizeChange'
+import { useAppSelector } from '../..'
 
 const SizeSelector = () => {
-    const size: number = useSelector<InitialState>(store => store.drawing.size)
+    const size: number = useAppSelector(store => store.drawing.size)
     const dispatch = useDispatch();
 
     function onSizeChange (event: React.ChangeEvent<HTMLInputElement>) {

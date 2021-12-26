@@ -2,8 +2,8 @@ import React, { Dispatch, FC, SetStateAction } from 'react';
 import stl from './ToolboxDrawing.scss';
 import classNames from 'classnames';
 import { useDispatch, useSelector } from 'react-redux';
-import { InitialState } from '../../lib/models/reducerStates/InitialState';
 import switchBrushTool from '../../store/actionCreators/switchBrushTool';
+import { useAppSelector } from '../..';
 
 interface Props {
 	image: string;
@@ -11,7 +11,7 @@ interface Props {
 }
 
 const ButtonTool: FC<Props> = ({ image, toolName }) => {
-	const currentBrush = useSelector<InitialState>(state => state.drawing.brush);
+	const currentBrush = useAppSelector(state => state.drawing.brush);
 	const dispatch = useDispatch()
 
 	function handleClick () {
