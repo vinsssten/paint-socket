@@ -1,4 +1,3 @@
-import { randomInt } from 'crypto';
 import Tool from './Tool';
 
 class Brush extends Tool {

@@ -13,3 +13,7 @@ export const changeColor = (color: string) => {
 export const setCurCanvas = (canvas: HTMLCanvasElement | null) => {
 	return { type: 'SET_CANVAS', payload: { canvas: canvas } };
 };
+
+export const saveDataInHistory = (data: string) => {
+	return { type: 'HISTORY_ADD', payload: { data: data } }
+}

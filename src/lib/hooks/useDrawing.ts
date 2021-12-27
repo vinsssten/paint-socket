@@ -12,7 +12,7 @@ import Tool from '../modules/drawingTools/Tool';
 
 const useDrawing = (canvasRef: React.MutableRefObject<HTMLCanvasElement | null>) => {
 	const [tool, setTool] = useState<Tool | null>(null);
-	const { brush, color, size } = useAppSelector(store => store.drawing);
+	const { brush, color, size, history } = useAppSelector(store => store.drawing);
 	const dispatch = useDispatch();
 
 	useEffect(() => {
@@ -34,6 +34,10 @@ const useDrawing = (canvasRef: React.MutableRefObject<HTMLCanvasElement | null>)
 			tool!.setDefaultSettings();
 		}
 	}, [brush, tool]);
+
+	useEffect(() => {
+		console.log('history update')
+	}, [history])
 
 	function toolSetter(brush: BrushTool) {
 		if (canvasRef.current) {

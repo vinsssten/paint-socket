@@ -1,5 +1,4 @@
 import React from 'react';
-import stl from '../ToolboxDrawing.scss';
 import { useAppSelector } from '../../..';
 
 import ButtonToolbox from './ButtonToolbox';

@@ -1,3 +1,6 @@
+import { saveDataInHistory } from "../../../store/actionCreators/drawingActionCreators";
+import store from "../../../store/store";
+
 class Tool {
 	public canvas: HTMLCanvasElement;
 	protected context: CanvasRenderingContext2D | null;
@@ -7,8 +10,9 @@ class Tool {
 		this.canvas = canvas;
 		this.context = canvas.getContext('2d');
 		this.scale = 1;
-		this.destroyEvents();
+        this.handleDefaultEvents();
 		this.setDefaultSettings();
+		this.destroyEvents();
 	}
 
 	set setSize(size: number) {
@@ -26,20 +30,29 @@ class Tool {
 			this.context!.strokeStyle = brushColor;
 		}
 	}
+    
+    setDefaultSettings() {
+        this.context!.lineCap = 'round';
+        this.context!.lineJoin = 'round';
+    }
 
-	setDefaultSettings() {
-		this.context!.lineCap = 'round';
-		this.context!.lineJoin = 'round';
-		console.log('set default settings');
-	}
-
+    handleDefaultEvents () {
+		this.canvas.addEventListener('mouseup', this.saveContextInHistory.bind(this))
+    }
+    
 	protected destroyEvents() {
-		this.canvas.onmousedown = null;
+        this.canvas.onmousedown = null;
 		this.canvas.onmouseup = null;
 		this.canvas.onmousemove = null;
 		this.canvas.onmouseleave = null;
 		this.canvas.onmouseenter = null;
 	}
+    
+	saveContextInHistory () {
+        const dataUrl = this.canvas.toDataURL();
+		console.log('save context')
+        store.dispatch(saveDataInHistory(dataUrl));
+    }
 
 	protected getCurCoord(event: MouseEvent): { x: number; y: number } {
 		const canvasRect: DOMRect = this.canvas.getBoundingClientRect();
