@@ -58,13 +58,12 @@
 
 	&:hover {
 		transition: 50ms;
-		border-radius: 0
+		border-radius: 0;
 	}
 	&:active {
 		transition: 50ms;
-		transform: scale(0.95)
+		transform: scale(0.95);
 	}
-	
 }
 
 .sizeselectorContainer {

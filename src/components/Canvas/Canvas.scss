@@ -1,23 +1,23 @@
 @import '../../index.scss';
 
 .mainCont {
-    @include flexCenter;
-    grid-area: canvasContainer;
-    width: 100%;
-    height: 100%;
-    padding: 5px;
-    box-sizing: border-box;
-    overflow: scroll;
+	@include flexCenter;
+	grid-area: canvasContainer;
+	width: 100%;
+	height: 100%;
+	padding: 5px;
+	box-sizing: border-box;
+	overflow: scroll;
 }
 
 .cont {
-    width: 100%;
-    height: 100%;
+	width: 100%;
+	height: 100%;
 }
 
 .canvas {
-    width: 1900px;
-    height: 800px;
-    background-color: white;
-    cursor: crosshair;
+	width: 1900px;
+	height: 800px;
+	background-color: white;
+	cursor: crosshair;
 }

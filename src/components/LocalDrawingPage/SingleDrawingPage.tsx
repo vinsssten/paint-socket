@@ -4,7 +4,6 @@ import ToolboxDrawing from '../ToolboxDrawing/ToolboxDrawing';
 import Canvas from '../Canvas/Canvas';
 
 function SingleDrawingPage() {
-
 	return (
 		<div className={stl.page}>
 			<ToolboxDrawing />

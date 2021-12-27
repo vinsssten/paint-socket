@@ -1,75 +1,75 @@
 import Tool from './Tool';
 
 class Eraser extends Tool {
-    isMouseDown: boolean;
+	isMouseDown: boolean;
 
-    constructor(canvas: HTMLCanvasElement) {
-        super(canvas);
-        this.handleEvents();
-        this.isMouseDown = false;
-        this.setDefaultSettings();
-    }
+	constructor(canvas: HTMLCanvasElement) {
+		super(canvas);
+		this.handleEvents();
+		this.isMouseDown = false;
+		this.setDefaultSettings();
+	}
 
-    set setSize(size: number) {
-        if (size) {
-            if (size > 72) {
-                this.context!.lineWidth = 72;
-            } else {
-                this.context!.lineWidth = size;
-            }
-        }
-    }
+	set setSize(size: number) {
+		if (size) {
+			if (size > 72) {
+				this.context!.lineWidth = 72;
+			} else {
+				this.context!.lineWidth = size;
+			}
+		}
+	}
 
-    set setColor(brushColor: string) {
-        return
-    }
+	set setColor(brushColor: string) {
+		return;
+	}
 
-    handleEvents() {
-        this.canvas.onmousedown = this.onMouseDown.bind(this);
-        this.canvas.onmouseup = this.onMouseUp.bind(this);
-        this.canvas.onmousemove = this.onMouseMove.bind(this);
-        this.canvas.onmouseleave = this.onMouseLeave.bind(this);
-        this.canvas.onmouseenter = this.onMouseEnter.bind(this);
-    }
+	handleEvents() {
+		this.canvas.onmousedown = this.onMouseDown.bind(this);
+		this.canvas.onmouseup = this.onMouseUp.bind(this);
+		this.canvas.onmousemove = this.onMouseMove.bind(this);
+		this.canvas.onmouseleave = this.onMouseLeave.bind(this);
+		this.canvas.onmouseenter = this.onMouseEnter.bind(this);
+	}
 
-     setDefaultSettings () {
-        this.context!.strokeStyle = '#ffffff';
-    }
+	setDefaultSettings() {
+		this.context!.strokeStyle = '#ffffff';
+	}
 
-    onMouseDown(event: MouseEvent) {
-        this.isMouseDown = true;
-        this.context?.beginPath();
-        const curCoord = this.getCurCoord(event);
-        this.context?.moveTo(curCoord.x, curCoord.y);
-    }
+	onMouseDown(event: MouseEvent) {
+		this.isMouseDown = true;
+		this.context?.beginPath();
+		const curCoord = this.getCurCoord(event);
+		this.context?.moveTo(curCoord.x, curCoord.y);
+	}
 
-    onMouseUp() {
-        this.isMouseDown = false;
-    }
+	onMouseUp() {
+		this.isMouseDown = false;
+	}
 
-    onMouseMove(event: MouseEvent) {
-        if (this.isMouseDown) {
-            const curCoord = this.getCurCoord(event);
-            this.draw(curCoord);
-        }
-    }
+	onMouseMove(event: MouseEvent) {
+		if (this.isMouseDown) {
+			const curCoord = this.getCurCoord(event);
+			this.draw(curCoord);
+		}
+	}
 
-    onMouseLeave() {
-        this.isMouseDown = false;
-    }
+	onMouseLeave() {
+		this.isMouseDown = false;
+	}
 
-    onMouseEnter(event: MouseEvent) {
-        if (event.buttons === 1) {
-            this.isMouseDown = true;
-            const curCoord = this.getCurCoord(event);
-            this.context?.moveTo(curCoord.x, curCoord.y);
-        }
-    }
+	onMouseEnter(event: MouseEvent) {
+		if (event.buttons === 1) {
+			this.isMouseDown = true;
+			const curCoord = this.getCurCoord(event);
+			this.context?.moveTo(curCoord.x, curCoord.y);
+		}
+	}
 
-    draw(coord: { x: number; y: number }) { 
-        this.context?.lineTo(coord.x, coord.y);
-        this.context?.stroke();
-    }
+	draw(coord: { x: number; y: number }) {
+		this.context?.lineTo(coord.x, coord.y);
+		this.context?.stroke();
+	}
 }
 
 export default Eraser;
