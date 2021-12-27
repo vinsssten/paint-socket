@@ -1,9 +1,9 @@
 import React, { Dispatch, FC, SetStateAction } from 'react';
-import stl from './ToolboxDrawing.scss';
+import stl from '../ToolboxDrawing.scss'
 import classNames from 'classnames';
 import { useDispatch } from 'react-redux';
-import { useAppSelector } from '../..';
-import { switchBrushTool } from '../../store/actionCreators/drawingActionCreators';
+import { useAppSelector } from '../../..';
+import { switchBrushTool } from '../../../store/actionCreators/drawingActionCreators';
 
 interface Props {
 	image: string;

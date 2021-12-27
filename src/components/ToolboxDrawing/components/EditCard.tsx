@@ -1,8 +1,8 @@
 import React from 'react'
-import stl from './ToolboxDrawing.scss'
-import ToolContainer from './ToolContainer'
+import stl from '../ToolboxDrawing.scss'
 
-import clearSVG from '../../../public/icons/Tools/edit_clear.svg'
+import clearSVG from '../../../../public/icons/Tools/edit_clear.svg'
+import ToolContainer from '../ToolContainer'
 
 const EditCard = () => {
     return (

@@ -1,12 +1,12 @@
-import stl from './ToolboxDrawing.scss';
 import React, { MouseEvent, useState } from 'react';
-import ToolContainer from './ToolContainer';
+import ToolContainer from '../ToolContainer';
 import ButtonTool from './ButtonTool';
+import stl from '../ToolboxDrawing.scss'
 
-import brushSVG from '../../../public/icons/Tools/tool_brush.svg';
-import squareSVG from '../../../public/icons/Tools/tool_square.svg';
-import circleSVG from '../../../public/icons/Tools/tool_circle.svg';
-import eraserSVG from '../../../public/icons/Tools/tool_eraser.svg';
+import brushSVG from '../../../../public/icons/Tools/tool_brush.svg'
+import squareSVG from '../../../../public/icons/Tools/tool_square.svg';
+import circleSVG from '../../../../public/icons/Tools/tool_circle.svg';
+import eraserSVG from '../../../../public/icons/Tools/tool_eraser.svg';
 
 interface BrushToolImage {
 	image: string;

@@ -1,9 +1,10 @@
 import React from 'react';
-import ToolContainer from './ToolContainer';
-import stl from './ToolboxDrawing.scss';
+import stl from '../ToolboxDrawing.scss'
 import { useDispatch } from 'react-redux';
-import { useAppSelector } from '../..';
-import { sizeChange } from '../../store/actionCreators/drawingActionCreators';
+import { useAppSelector } from '../../..';
+import { sizeChange } from '../../../store/actionCreators/drawingActionCreators';
+import ToolContainer from '../ToolContainer';
+
 
 const SizeSelector = () => {
 	const size: number = useAppSelector(store => store.drawing.size);
