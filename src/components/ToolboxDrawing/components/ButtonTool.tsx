@@ -1,30 +1,24 @@
-import React, { Dispatch, FC, SetStateAction } from 'react';
-import stl from '../ToolboxDrawing.scss'
-import classNames from 'classnames';
+import React, { FC } from 'react';
 import { useDispatch } from 'react-redux';
 import { useAppSelector } from '../../..';
 import { switchBrushTool } from '../../../store/actionCreators/drawingActionCreators';
+import ButtonToolbox from './ButtonToolbox';
 
 interface Props {
 	image: string;
 	toolName: BrushTool;
 }
 
-const ButtonTool: FC<Props> = ({ image, toolName }) => {
+const ButtonTool: FC<Props> = (props) => {
 	const currentBrush = useAppSelector(state => state.drawing.brush);
 	const dispatch = useDispatch();
 
 	function handleClick() {
-		dispatch(switchBrushTool(toolName));
+		dispatch(switchBrushTool(props.toolName));
 	}
 
 	return (
-		<div
-			className={classNames(stl.button, currentBrush === toolName ? stl.active : null)}
-			onClick={handleClick}
-		>
-			<img className={stl.image} src={image} width={35} height={35} />
-		</div>
+		<ButtonToolbox {...props} currentBrush={currentBrush} action={handleClick}/>
 	);
 };
 

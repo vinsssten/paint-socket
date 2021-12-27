@@ -1,11 +1,14 @@
 import React from 'react'
 import stl from '../ToolboxDrawing.scss'
-
-import ToolContainer from '../ToolContainer'
-import Tool from '../../../lib/modules/drawingTools/Tool'
 import { useAppSelector } from '../../..'
 
+import ButtonToolbox from './ButtonToolbox'
+import ToolContainer from '../ToolContainer'
+
 import clearSVG from '../../../../public/icons/Tools/edit_clear.svg'
+import undoSVG from '../../../../public/icons/Tools/edit_undo.svg'
+import redoSVG from '../../../../public/icons/Tools/edit_redo.svg'
+import saveSVG from '../../../../public/icons/Tools/edit_save.svg'
 
 const EditCard = () => {
     const canvas = useAppSelector(store => store.drawing.canvas);
@@ -20,14 +23,22 @@ const EditCard = () => {
         }
     }
 
+    function undoHistory () {
+
+    }
+
+    function redoHistory () {
+        
+    }
+
     return (
         <ToolContainer title='Edit'>
-            <div 
-                className={stl.button}
-                onClick={canvasClear}
-                >
-                <img className={stl.image} src={clearSVG} width={35} height={35} />
-            </div>
+            <>
+                <ButtonToolbox action={canvasClear} image={clearSVG} toolName='clear'/>
+                <ButtonToolbox action={undoHistory} image={undoSVG} toolName='undo'/>
+                <ButtonToolbox action={redoHistory} image={redoSVG} toolName='redo'/>
+                <ButtonToolbox action={redoHistory} image={saveSVG} toolName='redo'/>
+            </>
         </ToolContainer>
     )
 }
