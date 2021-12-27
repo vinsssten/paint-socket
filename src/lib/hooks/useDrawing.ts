@@ -1,5 +1,7 @@
 import React, {  useEffect, useState } from "react"
+import { useDispatch } from "react-redux";
 import { useAppSelector } from "../..";
+import { setCurCanvas } from "../../store/actionCreators/drawingActionCreators";
 import Brush from "../modules/drawingTools/Brush";
 import Circle from "../modules/drawingTools/Circle";
 import Eraser from "../modules/drawingTools/Eraser";
@@ -10,11 +12,13 @@ import Tool from "../modules/drawingTools/Tool";
 
 const useDrawing = (canvasRef: React.MutableRefObject<HTMLCanvasElement | null>) => {
     const [tool, setTool] = useState<Tool | null>(null);
-    const {brush, color, size} = useAppSelector(store => store.drawing)
+    const {brush, color, size} = useAppSelector(store => store.drawing);
+    const dispatch = useDispatch();
 
     useEffect(() => {
         if (brush && canvasRef) {
-            toolSetter(brush)
+            toolSetter(brush);
+            dispatch(setCurCanvas(canvasRef.current))
         }
     }, [brush, canvasRef]);
 

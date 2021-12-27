@@ -9,3 +9,7 @@ export const switchBrushTool = (toolName: BrushTool) => {
 export const changeColor = (color: string) => {
     return { type: 'CHANGE_COLOR', payload: {color: color} }
 }
+
+export const setCurCanvas = (canvas: HTMLCanvasElement | null) => {
+	return { type: 'SET_CANVAS', payload: {canvas: canvas} }
+}

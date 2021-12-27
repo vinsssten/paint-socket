@@ -2,6 +2,7 @@ import { PayloadAction } from '@reduxjs/toolkit';
 import { Reducer } from 'redux';
 
 export interface DrawingState {
+	canvas?: HTMLCanvasElement | null;
 	brush: BrushTool;
 	size: number;
 	color: string;
@@ -27,6 +28,8 @@ const drawing: Reducer<DrawingState, PayloadAction<DrawingState>> = (
 			return { ...state, size: action.payload.size };
 		case 'CHANGE_COLOR':
 			return { ...state, color: action.payload.color };
+		case 'SET_CANVAS': 
+			return { ...state, canvas: action.payload.canvas }
 		case 'HISTORY_ADD':
 			return { ...state };
 		default:
