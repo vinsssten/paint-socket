@@ -48,6 +48,10 @@ class Tool {
             y: (event.pageY - canvasRect.y) * this.scale,
         };
     }
+
+    static clearCanvas () {
+        
+    }
 }
 
 export default Tool;

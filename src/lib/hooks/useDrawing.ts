@@ -2,6 +2,7 @@ import React, {  useEffect, useState } from "react"
 import { useAppSelector } from "../..";
 import Brush from "../modules/drawingTools/Brush";
 import Circle from "../modules/drawingTools/Circle";
+import Eraser from "../modules/drawingTools/Eraser";
 import Square from "../modules/drawingTools/Square";
 import Tool from "../modules/drawingTools/Tool";
 
@@ -19,12 +20,8 @@ const useDrawing = (canvasRef: React.MutableRefObject<HTMLCanvasElement | null>)
 
     useEffect(() => {
         if (tool) {
-            if (brush === 'brush') {
-                tool!.setColor = color;
-                tool!.setSize = size;
-            } else {
-                tool!.setColor = color;
-            }
+            tool.setColor = color;
+            tool.setSize = size; 
         }
     }, [tool, color, size])
 
@@ -46,6 +43,8 @@ const useDrawing = (canvasRef: React.MutableRefObject<HTMLCanvasElement | null>)
                 case 'circle':
                     setTool(new Circle(canvasRef.current));
                     break;
+                case 'eraser':
+                    setTool(new Eraser(canvasRef.current));
             }
         } else return
     }
