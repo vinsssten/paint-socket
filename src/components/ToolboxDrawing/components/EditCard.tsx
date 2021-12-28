@@ -1,5 +1,7 @@
 import React from 'react';
 import { useAppSelector } from '../../..';
+import { useDispatch } from 'react-redux';
+import { redoHistoryAction, undoHistoryAction } from '../../../store/actionCreators/drawingActionCreators';
 
 import ButtonToolbox from './ButtonToolbox';
 import ToolContainer from '../ToolContainer';
@@ -10,7 +12,8 @@ import redoSVG from '../../../../public/icons/Tools/edit_redo.svg';
 import saveSVG from '../../../../public/icons/Tools/edit_save.svg';
 
 const EditCard = () => {
-	const canvas = useAppSelector(store => store.drawing.canvas);
+	const {canvas, curHistoryIndex, history} = useAppSelector(store => store.drawing);
+	const dispatch = useDispatch();
 
 	function canvasClear() {
 		const msg = 'Are you sure you want to clear the canvas, all changes will be lost?';
@@ -23,9 +26,17 @@ const EditCard = () => {
 		}
 	}
 
-	function undoHistory() {}
+	function undoHistory() {
+		if (curHistoryIndex > 0) {
+			dispatch(undoHistoryAction());
+		}
+	}
 
-	function redoHistory() {}
+	function redoHistory() {
+		if (curHistoryIndex < history.length - 1) {
+			dispatch(redoHistoryAction());
+		}
+	}
 
 	return (
 		<ToolContainer title="Edit">

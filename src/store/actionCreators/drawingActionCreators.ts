@@ -17,3 +17,11 @@ export const setCurCanvas = (canvas: HTMLCanvasElement | null) => {
 export const saveDataInHistory = (data: string) => {
 	return { type: 'HISTORY_ADD', payload: { data: data } }
 }
+
+export const undoHistoryAction = () => {
+	return {type: 'HISTORY_UNDO'}
+}
+
+export const redoHistoryAction = () => {
+	return {type: 'HISTORY_REDO'}
+}

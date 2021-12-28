@@ -10,9 +10,9 @@ class Tool {
 		this.canvas = canvas;
 		this.context = canvas.getContext('2d');
 		this.scale = 1;
+		this.destroyEvents();
         this.handleDefaultEvents();
 		this.setDefaultSettings();
-		this.destroyEvents();
 	}
 
 	set setSize(size: number) {
@@ -36,7 +36,7 @@ class Tool {
         this.context!.lineJoin = 'round';
     }
 
-    handleDefaultEvents () {
+    private handleDefaultEvents () {
 		this.canvas.addEventListener('mouseup', this.saveContextInHistory.bind(this))
     }
     
@@ -48,11 +48,20 @@ class Tool {
 		this.canvas.onmouseenter = null;
 	}
     
-	saveContextInHistory () {
+	private saveContextInHistory () {
         const dataUrl = this.canvas.toDataURL();
-		console.log('save context')
         store.dispatch(saveDataInHistory(dataUrl));
     }
+
+	setDataToContext (dataUrl: string) {
+		const image = new Image;
+		image.src = dataUrl;
+		image.onload = () => {
+			console.log('draw')
+			this.context?.clearRect(0, 0, this.canvas.width, this.canvas.height);
+			this.context?.drawImage(image, 0, 0);
+		}
+	}
 
 	protected getCurCoord(event: MouseEvent): { x: number; y: number } {
 		const canvasRect: DOMRect = this.canvas.getBoundingClientRect();
