@@ -1,7 +1,7 @@
 import React from 'react';
 import { useAppSelector } from '../../..';
 import { useDispatch } from 'react-redux';
-import { redoHistoryAction, undoHistoryAction } from '../../../store/actionCreators/drawingActionCreators';
+import { clearCanvas, redoHistoryAction, undoHistoryAction } from '../../../store/actionCreators/drawingActionCreators';
 
 import ButtonToolbox from './ButtonToolbox';
 import ToolContainer from '../ToolContainer';
@@ -19,9 +19,7 @@ const EditCard = () => {
 		const msg = 'Are you sure you want to clear the canvas, all changes will be lost?';
 		if (canvas) {
 			if (confirm(msg)) {
-				const context = canvas
-					.getContext('2d')
-					?.clearRect(0, 0, canvas.width, canvas.height);
+				dispatch(clearCanvas());
 			}
 		}
 	}

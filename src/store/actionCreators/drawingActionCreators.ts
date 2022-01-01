@@ -25,3 +25,7 @@ export const undoHistoryAction = () => {
 export const redoHistoryAction = () => {
 	return {type: 'HISTORY_REDO'}
 }
+
+export const clearCanvas = () => {
+	return {type: 'CLEAR_CANVAS'}
+}

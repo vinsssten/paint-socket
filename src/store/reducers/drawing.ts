@@ -35,7 +35,8 @@ const drawing: Reducer<DrawingState, PayloadAction<DrawingState>> = (
 			return { ...state, color: action.payload.color };
 		case 'SET_CANVAS':
 			return { ...state, canvas: action.payload.canvas };
-			
+		case 'CLEAR_CANVAS':
+			return {...state, history: [emptyImage], curHistoryIndex: 0}
 		//Элемент просто добавляется, если индекс текущего элемента равен длине
 		//массива, если элемент добавляется, когда было сделано несколько шагов
 		//назад, то все последущие элементы будут перезаписаны 
