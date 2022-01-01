@@ -1,6 +1,13 @@
 import { saveDataInHistory } from "../../../store/actionCreators/drawingActionCreators";
 import store from "../../../store/store";
 
+//TODO: Разобраться с типами
+function saveContextInHistory (event: MouseEvent) {
+	const dataUrl = event.currentTarget?.toDataURL();
+	store.dispatch(saveDataInHistory(dataUrl));
+	console.log('saveContext', event)
+}
+
 class Tool {
 	public canvas: HTMLCanvasElement;
 	protected context: CanvasRenderingContext2D | null;
@@ -10,8 +17,8 @@ class Tool {
 		this.canvas = canvas;
 		this.context = canvas.getContext('2d');
 		this.scale = 1;
-		this.destroyEvents();
         this.handleDefaultEvents();
+		this.destroyEvents();
 		this.setDefaultSettings();
 	}
 
@@ -37,7 +44,7 @@ class Tool {
     }
 
     private handleDefaultEvents () {
-		this.canvas.addEventListener('mouseup', this.saveContextInHistory.bind(this))
+		this.canvas.addEventListener('mouseup', saveContextInHistory)
     }
     
 	protected destroyEvents() {
@@ -48,10 +55,10 @@ class Tool {
 		this.canvas.onmouseenter = null;
 	}
     
-	private saveContextInHistory () {
-        const dataUrl = this.canvas.toDataURL();
-        store.dispatch(saveDataInHistory(dataUrl));
-    }
+	// private saveContextInHistory () {
+    //     const dataUrl = this.canvas.toDataURL();
+    //     store.dispatch(saveDataInHistory(dataUrl));
+    // }
 
 	setDataToContext (dataUrl: string) {
 		const image = new Image;
