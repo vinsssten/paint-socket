@@ -1,10 +1,13 @@
+import { MouseEvent } from "react";
 import { saveDataInHistory } from "../../../store/actionCreators/drawingActionCreators";
 import store from "../../../store/store";
 
 //TODO: Разобраться с типами
-function saveContextInHistory (event: MouseEvent) {
-	const dataUrl = event.currentTarget?.toDataURL();
+function saveContextInHistory (event: MouseEvent<HTMLCanvasElement>) {
+	const target: EventTarget = event.currentTarget;
+	const dataUrl: string = event.currentTarget?.toDataURL();
 	store.dispatch(saveDataInHistory(dataUrl));
+	// store.dispatch({ type: 'HISTORY_ADD', payload: {data: dataUrl} });
 	console.log('saveContext', event)
 }
 
@@ -44,7 +47,7 @@ class Tool {
     }
 
     private handleDefaultEvents () {
-		this.canvas.addEventListener('mouseup', saveContextInHistory)
+		// this.canvas.addEventListener('mouseup', saveContextInHistory)
     }
     
 	protected destroyEvents() {
@@ -60,13 +63,15 @@ class Tool {
     //     store.dispatch(saveDataInHistory(dataUrl));
     // }
 
-	setDataToContext (dataUrl: string) {
-		const image = new Image;
-		image.src = dataUrl;
-		image.onload = () => {
-			console.log('draw')
-			this.context?.clearRect(0, 0, this.canvas.width, this.canvas.height);
-			this.context?.drawImage(image, 0, 0);
+	setDataToContext (dataUrl: string| undefined) {
+		if (dataUrl) {
+			const image = new Image;
+			image.src = dataUrl;
+			image.onload = () => {
+				console.log('draw')
+				this.context?.clearRect(0, 0, this.canvas.width, this.canvas.height);
+				this.context?.drawImage(image, 0, 0);
+			}
 		}
 	}
 

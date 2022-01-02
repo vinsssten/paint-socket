@@ -3,11 +3,11 @@ import { Reducer } from 'redux';
 
 export interface DrawingState {
 	canvas?: HTMLCanvasElement | null;
-	data?: string | null;
+	data?: string;
 	brush: BrushTool;
 	size: number;
 	color: string;
-	history: string[];
+	history: (string | undefined)[];
 	curHistoryIndex: number;
 }
 
