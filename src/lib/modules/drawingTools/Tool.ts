@@ -68,7 +68,7 @@ class Tool {
 	//     store.dispatch(saveDataInHistory(dataUrl));
 	// }
 
-	static downloadImage (canvas: HTMLCanvasElement) {
+	static downloadImage(canvas: HTMLCanvasElement) {
 		const dataUrl = canvas.toDataURL();
 		const anchor = document.createElement('a');
 		anchor.href = dataUrl;

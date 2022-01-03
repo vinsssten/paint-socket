@@ -31,8 +31,8 @@ const EditCard = () => {
 
 		return () => {
 			document.onkeydown = null;
-		}
-	}, [curHistoryIndex])
+		};
+	}, [curHistoryIndex]);
 
 	function canvasClear() {
 		const msg = 'Are you sure you want to clear the canvas, all changes will be lost?';
