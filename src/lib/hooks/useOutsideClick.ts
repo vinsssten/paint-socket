@@ -11,7 +11,6 @@ function useOutsideClick(
 		function handleClickOutside(event: any) {
 			if (ref) {
 				if (ref.current && !ref.current.contains(event.target)) {
-					console.log('clickoutside');
 					outsideClickCallback();
 				}
 			}

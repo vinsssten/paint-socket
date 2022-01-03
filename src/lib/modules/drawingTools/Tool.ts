@@ -40,6 +40,12 @@ class Tool {
 		}
 	}
 
+	// fillCanvasWhite () {
+	// 	this.context?.rect(0, 0, this.canvas.width, this.canvas.height);
+	// 	this.context!.strokeStyle = '#000000';
+	// 	this.context?.stroke();
+	// }
+
 	setDefaultSettings() {
 		this.context!.lineCap = 'round';
 		this.context!.lineJoin = 'round';
@@ -61,6 +67,16 @@ class Tool {
 	//     const dataUrl = this.canvas.toDataURL();
 	//     store.dispatch(saveDataInHistory(dataUrl));
 	// }
+
+	static downloadImage (canvas: HTMLCanvasElement) {
+		const dataUrl = canvas.toDataURL();
+		const anchor = document.createElement('a');
+		anchor.href = dataUrl;
+		anchor.download = 'picture';
+		document.body.appendChild(anchor);
+		anchor.click();
+		document.body.removeChild(anchor);
+	}
 
 	setDataToContext(dataUrl: string | undefined) {
 		if (dataUrl) {

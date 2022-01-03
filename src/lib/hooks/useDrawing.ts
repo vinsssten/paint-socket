@@ -21,6 +21,7 @@ const useDrawing = (canvasRef: React.MutableRefObject<HTMLCanvasElement | null>)
 		if (brush && canvasRef) {
 			toolSetter(brush);
 			dispatch(setCurCanvas(canvasRef.current));
+			// tool?.fillCanvasWhite();
 		}
 	}, [brush, canvasRef]);
 
