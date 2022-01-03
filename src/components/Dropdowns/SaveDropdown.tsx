@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react'
+import React, { FC, MutableRefObject, useRef, useState } from 'react'
 import ButtonToolbox from '../ToolboxDrawing/components/ButtonToolbox'
 import cln from 'classnames'
 import stl from './Dropdowns.scss'
@@ -6,6 +6,7 @@ import MenuButton from './MenuButton'
 
 import localSVG from '../../../public/icons/Tools/edit-save_local.svg'
 import cloudSVG from '../../../public/icons/Tools/edit-save_cloud.svg'
+import useOutsideClick from '../../lib/hooks/useOutsideClick'
 
 interface Props {
     image: string
@@ -13,15 +14,26 @@ interface Props {
 
 const SaveDropdown: FC<Props> = ({image}) => {
     const [isVisible, setIsVisible] = useState<boolean>(false);
+    const menuRef: MutableRefObject<HTMLDivElement | null> = useRef(null);
+    useOutsideClick(menuRef, closeMenu)
 
-    function handleClick () {
+    function closeMenu () {
+        console.log('close');
+        setIsVisible(false)
+    }
+
+    function handleClick (event: any) {
+        const target = event.target;
         setIsVisible(!isVisible)
     }
+    
 
     return (
         <div className={stl.cont}
-            onClick={handleClick}>
-            <ButtonToolbox action={() => {}} image={image} toolName='save'/>
+            id='saveDropdown'
+            ref={menuRef}
+            >
+            <ButtonToolbox action={handleClick  } image={image} toolName='save' />
             <div 
                 className={cln(stl.menu, isVisible ? stl.visible : stl.hidden)}
                 >

@@ -18,6 +18,7 @@ $paddingValue: 5px;
     background-color: $backgroundColor_menu-light;
     box-shadow: 4px 4px 8px 0px #46464650;
     border-radius: 5px;
+    backdrop-filter: blur(3px);
     transition: 100ms ease-out;
 }
 
