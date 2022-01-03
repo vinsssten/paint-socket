@@ -1,7 +1,11 @@
 import React from 'react';
 import { useAppSelector } from '../../..';
 import { useDispatch } from 'react-redux';
-import { clearCanvas, redoHistoryAction, undoHistoryAction } from '../../../store/actionCreators/drawingActionCreators';
+import {
+	clearCanvas,
+	redoHistoryAction,
+	undoHistoryAction,
+} from '../../../store/actionCreators/drawingActionCreators';
 
 import ButtonToolbox from './ButtonToolbox';
 import ToolContainer from '../ToolContainer';
@@ -13,7 +17,7 @@ import saveSVG from '../../../../public/icons/Tools/edit_save.svg';
 import SaveDropdown from '../../Dropdowns/SaveDropdown';
 
 const EditCard = () => {
-	const {canvas, curHistoryIndex, history} = useAppSelector(store => store.drawing);
+	const { canvas, curHistoryIndex, history } = useAppSelector(store => store.drawing);
 	const dispatch = useDispatch();
 
 	function canvasClear() {
@@ -43,7 +47,7 @@ const EditCard = () => {
 				<ButtonToolbox action={canvasClear} image={clearSVG} toolName="clear" />
 				<ButtonToolbox action={undoHistory} image={undoSVG} toolName="undo" />
 				<ButtonToolbox action={redoHistory} image={redoSVG} toolName="redo" />
-				<SaveDropdown image={saveSVG}/>
+				<SaveDropdown image={saveSVG} />
 			</>
 		</ToolContainer>
 	);

@@ -1,13 +1,13 @@
-import { MouseEvent } from "react";
-import { saveDataInHistory } from "../../../store/actionCreators/drawingActionCreators";
-import store from "../../../store/store";
+import { MouseEvent } from 'react';
+import { saveDataInHistory } from '../../../store/actionCreators/drawingActionCreators';
+import store from '../../../store/store';
 
 //TODO: Разобраться с типами
-function saveContextInHistory (event: any) {
+function saveContextInHistory(event: any) {
 	const target: EventTarget = event.currentTarget;
 	const dataUrl: string = event.currentTarget?.toDataURL();
 	// store.dispatch(saveDataInHistory(dataUrl));
-	store.dispatch({ type: 'HISTORY_ADD', payload: {data: dataUrl} });
+	store.dispatch({ type: 'HISTORY_ADD', payload: { data: dataUrl } });
 }
 
 class Tool {
@@ -19,7 +19,7 @@ class Tool {
 		this.canvas = canvas;
 		this.context = canvas.getContext('2d');
 		this.scale = 1;
-        this.handleDefaultEvents();
+		this.handleDefaultEvents();
 		this.destroyEvents();
 		this.setDefaultSettings();
 	}
@@ -39,38 +39,38 @@ class Tool {
 			this.context!.strokeStyle = brushColor;
 		}
 	}
-    
-    setDefaultSettings() {
-        this.context!.lineCap = 'round';
-        this.context!.lineJoin = 'round';
-    }
 
-    private handleDefaultEvents () {
-		this.canvas.addEventListener('mouseup', saveContextInHistory)
-    }
-    
+	setDefaultSettings() {
+		this.context!.lineCap = 'round';
+		this.context!.lineJoin = 'round';
+	}
+
+	private handleDefaultEvents() {
+		this.canvas.addEventListener('mouseup', saveContextInHistory);
+	}
+
 	protected destroyEvents() {
-        this.canvas.onmousedown = null;
+		this.canvas.onmousedown = null;
 		this.canvas.onmouseup = null;
 		this.canvas.onmousemove = null;
 		this.canvas.onmouseleave = null;
 		this.canvas.onmouseenter = null;
 	}
-    
-	// private saveContextInHistory () {
-    //     const dataUrl = this.canvas.toDataURL();
-    //     store.dispatch(saveDataInHistory(dataUrl));
-    // }
 
-	setDataToContext (dataUrl: string| undefined) {
+	// private saveContextInHistory () {
+	//     const dataUrl = this.canvas.toDataURL();
+	//     store.dispatch(saveDataInHistory(dataUrl));
+	// }
+
+	setDataToContext(dataUrl: string | undefined) {
 		if (dataUrl) {
-			const image = new Image;
+			const image = new Image();
 			image.src = dataUrl;
 			image.onload = () => {
-				console.log('draw')
+				console.log('draw');
 				this.context?.clearRect(0, 0, this.canvas.width, this.canvas.height);
 				this.context?.drawImage(image, 0, 0);
-			}
+			};
 		}
 	}
 

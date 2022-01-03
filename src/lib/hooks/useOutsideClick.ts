@@ -1,25 +1,28 @@
-import { MutableRefObject, useEffect } from "react";
+import { MutableRefObject, useEffect } from 'react';
 
-function useOutsideClick(ref: MutableRefObject<HTMLDivElement | null>, outsideClickCallback: () => void) {
-    useEffect(() => {
-      /**
-       * Alert if clicked on outside of element
-       */
-      function handleClickOutside(event: any) {
-        if (ref) {
-          if (ref.current && !ref.current.contains(event.target)) {
-            console.log('clickoutside')
-            outsideClickCallback()
-          }
-        }
-      }
-      // Bind the event listener
-      document.addEventListener("mousedown", handleClickOutside);
-      return () => {
-        // Unbind the event listener on clean up
-        document.removeEventListener("mousedown", handleClickOutside);
-      };
-    }, [ref]);
-  }
+function useOutsideClick(
+	ref: MutableRefObject<HTMLDivElement | null>,
+	outsideClickCallback: () => void,
+) {
+	useEffect(() => {
+		/**
+		 * Alert if clicked on outside of element
+		 */
+		function handleClickOutside(event: any) {
+			if (ref) {
+				if (ref.current && !ref.current.contains(event.target)) {
+					console.log('clickoutside');
+					outsideClickCallback();
+				}
+			}
+		}
+		// Bind the event listener
+		document.addEventListener('mousedown', handleClickOutside);
+		return () => {
+			// Unbind the event listener on clean up
+			document.removeEventListener('mousedown', handleClickOutside);
+		};
+	}, [ref]);
+}
 
-export default useOutsideClick
+export default useOutsideClick;

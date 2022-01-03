@@ -1,5 +1,5 @@
-import { PayloadAction } from "@reduxjs/toolkit";
-import { DrawingState } from "../reducers/drawing";
+import { PayloadAction } from '@reduxjs/toolkit';
+import { DrawingState } from '../reducers/drawing';
 
 export const sizeChange = (size: number) => {
 	return { type: 'CHANGE_SIZE', payload: { size: size } };
@@ -18,17 +18,17 @@ export const setCurCanvas = (canvas: HTMLCanvasElement | null) => {
 };
 
 export const saveDataInHistory = (dataUrl: string) => {
-	return { type: 'HISTORY_ADD', payload: {data: dataUrl} }
-}
+	return { type: 'HISTORY_ADD', payload: { data: dataUrl } };
+};
 
 export const undoHistoryAction = () => {
-	return {type: 'HISTORY_UNDO'}
-}
+	return { type: 'HISTORY_UNDO' };
+};
 
 export const redoHistoryAction = () => {
-	return {type: 'HISTORY_REDO'}
-}
+	return { type: 'HISTORY_REDO' };
+};
 
 export const clearCanvas = () => {
-	return {type: 'CLEAR_CANVAS'}
-}
+	return { type: 'CLEAR_CANVAS' };
+};
