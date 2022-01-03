@@ -32,6 +32,7 @@ const SaveDropdown: FC<Props> = ({ image }) => {
     function localSaveContent () {
         if (canvas) {
             Tool.downloadImage(canvas);
+            closeMenu();
         }
     }
 

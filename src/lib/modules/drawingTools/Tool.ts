@@ -83,7 +83,6 @@ class Tool {
 			const image = new Image();
 			image.src = dataUrl;
 			image.onload = () => {
-				console.log('draw');
 				this.context?.clearRect(0, 0, this.canvas.width, this.canvas.height);
 				this.context?.drawImage(image, 0, 0);
 			};

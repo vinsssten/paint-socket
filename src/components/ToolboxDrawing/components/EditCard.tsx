@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useAppSelector } from '../../..';
 import { useDispatch } from 'react-redux';
 import {
@@ -19,6 +19,20 @@ import SaveDropdown from '../../Dropdowns/SaveDropdown';
 const EditCard = () => {
 	const { canvas, curHistoryIndex, history } = useAppSelector(store => store.drawing);
 	const dispatch = useDispatch();
+
+	useEffect(() => {
+		document.onkeydown = (event: any) => {
+			if (event.key === 'z' && event.ctrlKey) {
+				undoHistory();
+			} else if (event.key === 'y' && event.ctrlKey) {
+				redoHistory();
+			}
+		};
+
+		return () => {
+			document.onkeydown = null;
+		}
+	}, [curHistoryIndex])
 
 	function canvasClear() {
 		const msg = 'Are you sure you want to clear the canvas, all changes will be lost?';
