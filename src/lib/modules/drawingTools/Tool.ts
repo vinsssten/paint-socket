@@ -3,12 +3,11 @@ import { saveDataInHistory } from "../../../store/actionCreators/drawingActionCr
 import store from "../../../store/store";
 
 //TODO: Разобраться с типами
-function saveContextInHistory (event: MouseEvent<HTMLCanvasElement>) {
+function saveContextInHistory (event: any) {
 	const target: EventTarget = event.currentTarget;
 	const dataUrl: string = event.currentTarget?.toDataURL();
-	store.dispatch(saveDataInHistory(dataUrl));
-	// store.dispatch({ type: 'HISTORY_ADD', payload: {data: dataUrl} });
-	console.log('saveContext', event)
+	// store.dispatch(saveDataInHistory(dataUrl));
+	store.dispatch({ type: 'HISTORY_ADD', payload: {data: dataUrl} });
 }
 
 class Tool {
@@ -47,7 +46,7 @@ class Tool {
     }
 
     private handleDefaultEvents () {
-		// this.canvas.addEventListener('mouseup', saveContextInHistory)
+		this.canvas.addEventListener('mouseup', saveContextInHistory)
     }
     
 	protected destroyEvents() {

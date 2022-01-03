@@ -20,6 +20,8 @@ $backgroundColor_primary-light: #d3cccc;
 $backgroundColor_secondary-light: #f3f3f3e1;
 $backgroundColor_button-light: #ffffffd8;
 $backgroundColor_buttonHover-light: #ecececd8;
+$backgroundColor_menu-light: #ffffffc2;
+$backgroundColor_menuHover-light: #c8c8c8a1;
 
 @mixin flexCenter {
 	display: flex;
@@ -37,6 +39,18 @@ $backgroundColor_buttonHover-light: #ecececd8;
 	font-family: 'Cabin';
 	font-weight: 600;
 	color: black;
+}
+
+@mixin fontRegular-dark {
+	font-family: 'Cabin';
+	font-weight: 400;
+	color: white;
+}
+
+@mixin fontBold-dark {
+	font-family: 'Cabin';
+	font-weight: 600;
+	color: white;
 }
 
 body {

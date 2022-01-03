@@ -1,0 +1,57 @@
+@import '/src/index.scss';
+
+.cont {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    // justify-content: center;
+}
+
+$paddingValue: 5px;
+
+.menu {
+    position: absolute;
+    @include flexCenter;
+    flex-direction: column;
+    margin-top: 55px;
+    padding: 10px;
+    background-color: $backgroundColor_menu-light;
+    box-shadow: 4px 4px 8px 0px #46464650;
+    border-radius: 5px;
+    transition: 100ms ease-out;
+}
+
+.hidden {
+    visibility: hidden;
+    opacity: 0;
+}
+.visible {
+    opacity: 1;
+}
+
+.menuBtn {
+    @include flexCenter;
+    width: 120px;
+    border-radius: 10px;
+    padding: 5px 0;
+    backdrop-filter: blur(5px);
+    // box-shadow: 3px 3px 5px 0px #46464650;
+    transition: 100ms;
+    cursor: pointer;
+
+    p {
+        @include fontRegular-light;
+        font-size: 24px;
+        margin: 0 0 0 10px;
+    }
+
+    img {
+        height: 35px;
+        aspect-ratio: 1/1;
+    }
+    
+    &:hover {
+        background-color: $backgroundColor_menuHover-light;
+    }
+}
+
