@@ -2,7 +2,7 @@ import { PayloadAction } from '@reduxjs/toolkit';
 import { Reducer } from 'redux';
 
 export interface DrawingState {
-	canvas?: HTMLCanvasElement | null;
+	canvas?: ICanvas | null;
 	data?: string;
 	brush: BrushTool;
 	size: number;

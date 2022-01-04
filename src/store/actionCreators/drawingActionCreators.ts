@@ -13,7 +13,7 @@ export const changeColor = (color: string) => {
 	return { type: 'CHANGE_COLOR', payload: { color: color } };
 };
 
-export const setCurCanvas = (canvas: HTMLCanvasElement | null) => {
+export const setCurCanvas = (canvas: ICanvas | null) => {
 	return { type: 'SET_CANVAS', payload: { canvas: canvas } };
 };
 

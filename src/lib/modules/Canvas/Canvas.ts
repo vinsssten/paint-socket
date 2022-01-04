@@ -1,13 +1,12 @@
 import { MouseEvent } from "react";
-import CanvasHistory from "./CanvasHistory";
-import Tool from "../Tools/Tool";
+import CanvasHistory from "../Canvas/CanvasHistory";
 
 class Canvas {
-    public canvas: HTMLCanvasElement;
+    public canvas: ICanvas;
     protected context: CanvasRenderingContext2D | null;
     private canvasHistory: CanvasHistory
 
-    constructor (canvas: HTMLCanvasElement) {
+    constructor (canvas: ICanvas) {
         this.canvas = canvas;
         this.context = canvas.getContext('2d')
         this.destroyEvents();

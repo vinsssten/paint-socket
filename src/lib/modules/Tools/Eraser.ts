@@ -3,7 +3,7 @@ import Tool from './Tool';
 class Eraser extends Tool {
 	isMouseDown: boolean;
 
-	constructor(canvas: HTMLCanvasElement) {
+	constructor(canvas: ICanvas) {
 		super(canvas);
 		this.handleEvents();
 		this.isMouseDown = false;
@@ -36,7 +36,7 @@ class Eraser extends Tool {
 		this.context!.strokeStyle = '#ffffff';
 	}
 
-	onMouseDown(event: MouseEvent) {
+	onMouseDown(event: MouseEventCanvas) {
 		this.isMouseDown = true;
 		this.context?.beginPath();
 		const curCoord = this.getCurCoord(event);
@@ -47,7 +47,7 @@ class Eraser extends Tool {
 		this.isMouseDown = false;
 	}
 
-	onMouseMove(event: MouseEvent) {
+	onMouseMove(event: MouseEventCanvas) {
 		if (this.isMouseDown) {
 			const curCoord = this.getCurCoord(event);
 			this.draw(curCoord);
@@ -58,7 +58,7 @@ class Eraser extends Tool {
 		this.isMouseDown = false;
 	}
 
-	onMouseEnter(event: MouseEvent) {
+	onMouseEnter(event: MouseEventCanvas) {
 		if (event.buttons === 1) {
 			this.isMouseDown = true;
 			const curCoord = this.getCurCoord(event);

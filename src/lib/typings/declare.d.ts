@@ -9,5 +9,5 @@ declare module '*.svg' {
 }
 
 
-declare type Canvas = HTMLCanvasElement;
+declare type ICanvas = HTMLCanvasElement;
 declare type MouseEventCanvas = globalThis.MouseEvent

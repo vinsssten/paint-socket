@@ -11,7 +11,7 @@ import Tool from '../modules/Tools/Tool';
 
 //TODO: Изменить способ установки дефолтных настроек кисти
 
-const useDrawing = (canvasRef: React.MutableRefObject<HTMLCanvasElement | null>) => {
+const useDrawing = (canvasRef: React.MutableRefObject<ICanvas | null>) => {
 	const [tool, setTool] = useState<Tool | null>(null);
 	const { brush, color, size, history, curHistoryIndex } = useAppSelector(
 		store => store.drawing,

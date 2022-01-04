@@ -2,14 +2,14 @@ import { saveDataInHistory } from "../../../store/actionCreators/drawingActionCr
 import store from "../../../store/store";
 
 class CanvasHistory {
-    private canvas: HTMLCanvasElement
+    private canvas: ICanvas
 
-    constructor (canvas: HTMLCanvasElement) {
+    constructor (canvas: ICanvas) {
         this.canvas = canvas;
         this.handleDefaultEvents(this.canvas);
     }
 
-	private handleDefaultEvents(canvas: HTMLCanvasElement) {
+	private handleDefaultEvents(canvas: ICanvas) {
 		canvas.addEventListener('mouseup', CanvasHistory.saveContextInHistory);
 	}
 

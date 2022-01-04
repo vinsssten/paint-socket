@@ -3,7 +3,7 @@ import useDrawing from '../../lib/hooks/useDrawing';
 import stl from './Canvas.scss';
 
 const DrawingField = () => {
-	const canvasRef: React.MutableRefObject<HTMLCanvasElement | null> = useRef(null);
+	const canvasRef: React.MutableRefObject<ICanvas | null> = useRef(null);
 	useDrawing(canvasRef);
 
 	useEffect(() => {

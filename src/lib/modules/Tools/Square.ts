@@ -6,7 +6,7 @@ class Square extends Tool {
 	private startY?: number;
 	private savedData?: string;
 
-	constructor(canvas: HTMLCanvasElement) {
+	constructor(canvas: ICanvas) {
 		super(canvas);
 		this.handleEvents();
 		this.isMouseDown = false;
@@ -24,7 +24,7 @@ class Square extends Tool {
 		this.canvas.onmouseenter = this.onMouseEnter.bind(this);
 	}
 
-	onMouseDown(event: MouseEvent) {
+	onMouseDown(event: MouseEventCanvas) {
 		this.isMouseDown = true;
 		const curCoord = this.getCurCoord(event);
 		this.startX = curCoord.x;
@@ -37,7 +37,7 @@ class Square extends Tool {
 		this.isMouseDown = false;
 	}
 
-	onMouseMove(event: MouseEvent) {
+	onMouseMove(event: MouseEventCanvas) {
 		if (this.isMouseDown) {
 			const curCoord = this.getCurCoord(event);
 			if (this.startX && this.startY) {
@@ -52,7 +52,7 @@ class Square extends Tool {
 		// this.isMouseDown = false;
 	}
 
-	onMouseEnter(event: MouseEvent) {
+	onMouseEnter(event: MouseEventCanvas) {
 		if (event.buttons === 1) {
 			this.isMouseDown = true;
 			const curCoord = this.getCurCoord(event);

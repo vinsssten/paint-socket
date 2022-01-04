@@ -4,7 +4,7 @@ import Canvas from '../Canvas/Canvas';
 class Tool extends Canvas {
 	scale: number;
 
-	constructor(canvas: HTMLCanvasElement) {
+	constructor(canvas: ICanvas) {
 		super(canvas)
 		this.scale = 1;
 		this.setDefaultSettings();
@@ -31,7 +31,7 @@ class Tool extends Canvas {
 		this.context!.lineJoin = 'round';
 	}
 
-	protected getCurCoord(event: MouseEvent): { x: number; y: number } {
+	protected getCurCoord(event: MouseEventCanvas): { x: number; y: number } {
 		const canvasRect: DOMRect = this.canvas.getBoundingClientRect();
 		return {
 			x: (event.pageX - canvasRect.x) * this.scale,
