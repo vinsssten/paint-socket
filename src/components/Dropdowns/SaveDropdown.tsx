@@ -1,13 +1,14 @@
 import React, { FC, useState } from 'react';
 import ButtonToolbox from '../ToolboxDrawing/components/ButtonToolbox';
 
-import Tool from '../../lib/modules/drawingTools/Tool';
+import Tool from '../../lib/modules/Tools/Tool';
 import { useAppSelector } from '../..';
 import Dropdown, { MenuButton } from './Dropdown';
 
 import localSVG from '../../../public/icons/Tools/edit-save_local.svg';
 import cloudSVG from '../../../public/icons/Tools/edit-save_cloud.svg';
 import saveSVG from '../../../public/icons/Tools/edit_save.svg'
+import Canvas from '../../lib/modules/Canvas/Canvas';
 
 interface Props {
 	
@@ -15,8 +16,8 @@ interface Props {
 
 const SaveDropdown: FC<Props> = ({ }) => {
 	const [isVisible, setIsVisible] = useState<boolean>(false);
-	const canvas: HTMLCanvasElement | undefined | null = useAppSelector(
-		store => store.drawing.canvas,
+	const {canvas: canvasElem} = useAppSelector(
+		store => store.drawing,
 	);
 
 	const menuButtons: MenuButton[] = [
@@ -37,9 +38,9 @@ const SaveDropdown: FC<Props> = ({ }) => {
 	}
 
 	function localSaveContent() {
-		if (canvas) {
-			Tool.downloadImage(canvas);
-			setIsVisible(false);
+		if (canvasElem) {
+			const canvas = new Canvas(canvasElem);
+			canvas.downloadImage();
 		}
 	}
 

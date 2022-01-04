@@ -2,11 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useAppSelector } from '../..';
 import { setCurCanvas } from '../../store/actionCreators/drawingActionCreators';
-import Brush from '../modules/drawingTools/Brush';
-import Circle from '../modules/drawingTools/Circle';
-import Eraser from '../modules/drawingTools/Eraser';
-import Square from '../modules/drawingTools/Square';
-import Tool from '../modules/drawingTools/Tool';
+
+import Brush from '../modules/Tools/Brush';
+import Circle from '../modules/Tools/Circle';
+import Eraser from '../modules/Tools/Eraser';
+import Square from '../modules/Tools/Square';
+import Tool from '../modules/Tools/Tool';
 
 //TODO: Изменить способ установки дефолтных настроек кисти
 
@@ -21,7 +22,6 @@ const useDrawing = (canvasRef: React.MutableRefObject<HTMLCanvasElement | null>)
 		if (brush && canvasRef) {
 			toolSetter(brush);
 			dispatch(setCurCanvas(canvasRef.current));
-			// tool?.fillCanvasWhite();
 		}
 	}, [brush, canvasRef]);
 
@@ -37,10 +37,6 @@ const useDrawing = (canvasRef: React.MutableRefObject<HTMLCanvasElement | null>)
 			tool!.setDefaultSettings();
 		}
 	}, [brush, tool]);
-
-	useEffect(() => {
-		console.log('History', history, curHistoryIndex);
-	}, [history, curHistoryIndex]);
 
 	useEffect(() => {
 		tool?.setDataToContext(history[curHistoryIndex]);

@@ -1,3 +1,4 @@
+import { MouseEvent } from 'react';
 import Tool from './Tool';
 
 class Brush extends Tool {
