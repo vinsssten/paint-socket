@@ -8,6 +8,7 @@ const plugins = [
         template: './src/index.html',
         filename: 'index.html',
         inject: true,
+        favicon: './public/icons/icon.ico',
     }),
     new MiniCssExtractPlugin({
         filename: 'main.[contenthash:5].css'
