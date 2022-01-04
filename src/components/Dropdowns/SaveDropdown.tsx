@@ -1,17 +1,19 @@
 import React, { FC, useState } from 'react';
 import ButtonToolbox from '../ToolboxDrawing/components/ButtonToolbox';
 
-import localSVG from '../../../public/icons/Tools/edit-save_local.svg';
-import cloudSVG from '../../../public/icons/Tools/edit-save_cloud.svg';
 import Tool from '../../lib/modules/drawingTools/Tool';
 import { useAppSelector } from '../..';
 import Dropdown, { MenuButton } from './Dropdown';
 
+import localSVG from '../../../public/icons/Tools/edit-save_local.svg';
+import cloudSVG from '../../../public/icons/Tools/edit-save_cloud.svg';
+import saveSVG from '../../../public/icons/Tools/edit_save.svg'
+
 interface Props {
-	image: string;
+	
 }
 
-const SaveDropdown: FC<Props> = ({ image }) => {
+const SaveDropdown: FC<Props> = ({ }) => {
 	const [isVisible, setIsVisible] = useState<boolean>(false);
 	const canvas: HTMLCanvasElement | undefined | null = useAppSelector(
 		store => store.drawing.canvas,
@@ -45,7 +47,7 @@ const SaveDropdown: FC<Props> = ({ image }) => {
 
 	return (
 		<Dropdown menuButtons={menuButtons} isVisible={isVisible} setIsVisible={setIsVisible}>
-			<ButtonToolbox action={handleClick} image={image} toolName="save" />
+			<ButtonToolbox action={handleClick} image={saveSVG} toolName="save" />
 		</Dropdown>
 	);
 };

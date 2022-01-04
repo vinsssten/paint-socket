@@ -13,7 +13,6 @@ import ToolContainer from '../ToolContainer';
 import clearSVG from '../../../../public/icons/Tools/edit_clear.svg';
 import undoSVG from '../../../../public/icons/Tools/edit_undo.svg';
 import redoSVG from '../../../../public/icons/Tools/edit_redo.svg';
-import saveSVG from '../../../../public/icons/Tools/edit_save.svg';
 import SaveDropdown from '../../Dropdowns/SaveDropdown';
 
 const EditCard = () => {
@@ -61,7 +60,7 @@ const EditCard = () => {
 				<ButtonToolbox action={canvasClear} image={clearSVG} toolName="clear" />
 				<ButtonToolbox action={undoHistory} image={undoSVG} toolName="undo" />
 				<ButtonToolbox action={redoHistory} image={redoSVG} toolName="redo" />
-				<SaveDropdown image={saveSVG} />
+				<SaveDropdown />
 			</>
 		</ToolContainer>
 	);

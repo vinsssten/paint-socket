@@ -6,8 +6,8 @@ import store from '../../../store/store';
 function saveContextInHistory(event: any) {
 	const target: EventTarget = event.currentTarget;
 	const dataUrl: string = event.currentTarget?.toDataURL();
-	// store.dispatch(saveDataInHistory(dataUrl));
-	store.dispatch({ type: 'HISTORY_ADD', payload: { data: dataUrl } });
+	store.dispatch(saveDataInHistory(dataUrl));
+	// store.dispatch({ type: 'HISTORY_ADD', payload: { data: dataUrl } });
 }
 
 class Tool {
@@ -40,12 +40,6 @@ class Tool {
 		}
 	}
 
-	// fillCanvasWhite () {
-	// 	this.context?.rect(0, 0, this.canvas.width, this.canvas.height);
-	// 	this.context!.strokeStyle = '#000000';
-	// 	this.context?.stroke();
-	// }
-
 	setDefaultSettings() {
 		this.context!.lineCap = 'round';
 		this.context!.lineJoin = 'round';
@@ -62,11 +56,6 @@ class Tool {
 		this.canvas.onmouseleave = null;
 		this.canvas.onmouseenter = null;
 	}
-
-	// private saveContextInHistory () {
-	//     const dataUrl = this.canvas.toDataURL();
-	//     store.dispatch(saveDataInHistory(dataUrl));
-	// }
 
 	static downloadImage(canvas: HTMLCanvasElement) {
 		const dataUrl = canvas.toDataURL();
