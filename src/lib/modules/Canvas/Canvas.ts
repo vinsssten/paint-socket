@@ -5,17 +5,35 @@ class Canvas {
     public canvas: ICanvas;
     protected context: CanvasRenderingContext2D | null;
     private canvasHistory: CanvasHistory
+	private hotkeyHandle: (event: any) => void
 
     constructor (canvas: ICanvas) {
         this.canvas = canvas;
         this.context = canvas.getContext('2d')
+        this.canvasHistory = new CanvasHistory(this.canvas);
         this.destroyEvents();
-        this.canvasHistory = new CanvasHistory(this.canvas)
+
+		this.hotkeyHandle = this.hotkeyEventCheck.bind(this);
+		
+		this.handleDefaultEvents();
+		
     }
 
     get getContext () {
         return this.context;
     }
+
+	private handleDefaultEvents () {
+		document.addEventListener('keyup', this.hotkeyHandle)
+	}
+
+	private hotkeyEventCheck (event: KeyboardEvent) {
+		if (event.key === 'z' && event.ctrlKey) {
+			this.canvasHistory.undoHistory();
+		} else if (event.key === 'y' && event.ctrlKey) {
+			this.canvasHistory.redoHistory();
+		}
+	}
 
 	protected destroyEvents() {
 		this.canvas.onmousedown = null;

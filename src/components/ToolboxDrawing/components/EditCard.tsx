@@ -1,11 +1,8 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useAppSelector } from '../../..';
 import { useDispatch } from 'react-redux';
-import {
-	clearCanvas,
-	redoHistoryAction,
-	undoHistoryAction,
-} from '../../../store/actionCreators/drawingActionCreators';
+
+import CanvasHistory from '../../../lib/modules/Canvas/CanvasHistory';
 
 import ButtonToolbox from './ButtonToolbox';
 import ToolContainer from '../ToolContainer';
@@ -17,41 +14,25 @@ import SaveDropdown from '../../Dropdowns/SaveDropdown';
 
 const EditCard = () => {
 	const { canvas, curHistoryIndex, history } = useAppSelector(store => store.drawing);
+	const [canvasHistory, setCanvasHistory] = useState<CanvasHistory | null>(null);
 	const dispatch = useDispatch();
 
 	useEffect(() => {
-		document.onkeydown = (event: any) => {
-			if (event.key === 'z' && event.ctrlKey) {
-				undoHistory();
-			} else if (event.key === 'y' && event.ctrlKey) {
-				redoHistory();
-			}
-		};
-
-		return () => {
-			document.onkeydown = null;
-		};
-	}, [curHistoryIndex]);
+		if (canvas) {
+			setCanvasHistory(new CanvasHistory(canvas))
+		}
+	}, [canvas])
 
 	function canvasClear() {
-		const msg = 'Are you sure you want to clear the canvas, all changes will be lost?';
-		if (canvas) {
-			if (confirm(msg)) {
-				dispatch(clearCanvas());
-			}
-		}
+		canvasHistory?.canvasClear()
 	}
 
 	function undoHistory() {
-		if (curHistoryIndex > 0) {
-			dispatch(undoHistoryAction());
-		}
+		canvasHistory?.undoHistory();
 	}
 
 	function redoHistory() {
-		if (curHistoryIndex < history.length - 1) {
-			dispatch(redoHistoryAction());
-		}
+		canvasHistory?.redoHistory();
 	}
 
 	return (
