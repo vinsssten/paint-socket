@@ -32,7 +32,7 @@ module.exports = (argv) => {
                     exclude: /(node_modules|bower_components|server)/,
                     use: {
                         loader: "babel-loader"
-                    }
+                    },
                 },
                 {
                     test: /\.scss$/,
@@ -58,9 +58,19 @@ module.exports = (argv) => {
                     ],
                 },
                 {
-                    test: /\.(png|jpg|otf|svg|ttf|ico)$/,
-                    type: 'asset/resource'
+                    test: /\.(otf|ttf)$/,
+                    type: 'asset/resource',
+                    generator: {
+                        filename: 'fonts/[hash][ext][query]'
+                    }
                 }, 
+                {
+                    test: /\.(png|jpg|svg|ico)$/,
+                    type: 'asset/resource',
+                    generator: {
+                        filename: 'icons/[hash][ext][query]'
+                    }
+                }
             ]
         },
         resolve: {
@@ -76,7 +86,7 @@ module.exports = (argv) => {
                 directory: path.join(__dirname, 'build'),
             },
             compress: true,
-            port: 3000,
+            port: 8080,
             open: true,
             historyApiFallback: true,
         },
