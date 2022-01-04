@@ -19,12 +19,12 @@ const EditCard = () => {
 
 	useEffect(() => {
 		if (canvas) {
-			setCanvasHistory(new CanvasHistory(canvas))
+			setCanvasHistory(new CanvasHistory(canvas));
 		}
-	}, [canvas])
+	}, [canvas]);
 
 	function canvasClear() {
-		canvasHistory?.canvasClear()
+		canvasHistory?.canvasClear();
 	}
 
 	function undoHistory() {

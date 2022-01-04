@@ -1,33 +1,32 @@
-import { MouseEvent } from "react";
-import CanvasHistory from "../Canvas/CanvasHistory";
+import { MouseEvent } from 'react';
+import CanvasHistory from '../Canvas/CanvasHistory';
 
 class Canvas {
-    public canvas: ICanvas;
-    protected context: CanvasRenderingContext2D | null;
-    private canvasHistory: CanvasHistory
-	private hotkeyHandle: (event: any) => void
+	public canvas: ICanvas;
+	protected context: CanvasRenderingContext2D | null;
+	private canvasHistory: CanvasHistory;
+	private hotkeyHandle: (event: KeyboardEvent) => void;
 
-    constructor (canvas: ICanvas) {
-        this.canvas = canvas;
-        this.context = canvas.getContext('2d')
-        this.canvasHistory = new CanvasHistory(this.canvas);
-        this.destroyEvents();
+	constructor(canvas: ICanvas) {
+		this.canvas = canvas;
+		this.context = canvas.getContext('2d');
+		this.canvasHistory = new CanvasHistory(this.canvas);
+		this.destroyEvents();
 
 		this.hotkeyHandle = this.hotkeyEventCheck.bind(this);
-		
+
 		this.handleDefaultEvents();
-		
-    }
-
-    get getContext () {
-        return this.context;
-    }
-
-	private handleDefaultEvents () {
-		document.addEventListener('keyup', this.hotkeyHandle)
 	}
 
-	private hotkeyEventCheck (event: KeyboardEvent) {
+	get getContext() {
+		return this.context;
+	}
+
+	private handleDefaultEvents() {
+		document.addEventListener('keyup', this.hotkeyHandle);
+	}
+
+	private hotkeyEventCheck(event: KeyboardEvent) {
 		if (event.key === 'z' && event.ctrlKey) {
 			this.canvasHistory.undoHistory();
 		} else if (event.key === 'y' && event.ctrlKey) {
@@ -43,7 +42,7 @@ class Canvas {
 		this.canvas.onmouseenter = null;
 	}
 
-    downloadImage() {
+	downloadImage() {
 		const dataUrl = this.canvas.toDataURL();
 		const anchor = document.createElement('a');
 		anchor.href = dataUrl;
@@ -65,4 +64,4 @@ class Canvas {
 	}
 }
 
-export default Canvas
+export default Canvas;

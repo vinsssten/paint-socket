@@ -5,7 +5,7 @@ class Tool extends Canvas {
 	scale: number;
 
 	constructor(canvas: ICanvas) {
-		super(canvas)
+		super(canvas);
 		this.scale = 1;
 		this.setDefaultSettings();
 	}

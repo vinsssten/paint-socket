@@ -7,18 +7,14 @@ import Dropdown, { MenuButton } from './Dropdown';
 
 import localSVG from '../../../public/icons/Tools/edit-save_local.svg';
 import cloudSVG from '../../../public/icons/Tools/edit-save_cloud.svg';
-import saveSVG from '../../../public/icons/Tools/edit_save.svg'
+import saveSVG from '../../../public/icons/Tools/edit_save.svg';
 import Canvas from '../../lib/modules/Canvas/Canvas';
 
-interface Props {
-	
-}
+interface Props {}
 
-const SaveDropdown: FC<Props> = ({ }) => {
+const SaveDropdown: FC<Props> = ({}) => {
 	const [isVisible, setIsVisible] = useState<boolean>(false);
-	const {canvas: canvasElem} = useAppSelector(
-		store => store.drawing,
-	);
+	const { canvas: canvasElem } = useAppSelector(store => store.drawing);
 
 	const menuButtons: MenuButton[] = [
 		{
