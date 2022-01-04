@@ -1,19 +1,19 @@
-import stl from './ToolboxDrawing.scss';
 import React, { MouseEvent, useState } from 'react';
-import ToolContainer from './ToolContainer';
+import ToolContainer from '../ToolContainer';
 import ButtonTool from './ButtonTool';
+import stl from '../ToolboxDrawing.scss';
 
-import brushSVG from '../../../public/icons/tool_brush.svg';
-import squareSVG from '../../../public/icons/tool_square.svg';
-import circleSVG from '../../../public/icons/tool_circle.svg';
-import eraserSVG from '../../../public/icons/tool_eraser.svg';
+import brushSVG from '../../../../public/icons/Tools/tool_brush.svg';
+import squareSVG from '../../../../public/icons/Tools/tool_square.svg';
+import circleSVG from '../../../../public/icons/Tools/tool_circle.svg';
+import eraserSVG from '../../../../public/icons/Tools/tool_eraser.svg';
 
-interface BrushTool {
+interface BrushToolImage {
 	image: string;
-	brushType: Brush;
+	brushType: BrushTool;
 }
 
-const toolsArray: BrushTool[] = [
+const toolsArray: BrushToolImage[] = [
 	{
 		image: brushSVG,
 		brushType: 'brush',
@@ -33,7 +33,6 @@ const toolsArray: BrushTool[] = [
 ];
 
 const BrushesCard = () => {
-
 	return (
 		<ToolContainer title="Brushes">
 			<>

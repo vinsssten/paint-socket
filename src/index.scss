@@ -19,6 +19,9 @@
 $backgroundColor_primary-light: #d3cccc;
 $backgroundColor_secondary-light: #f3f3f3e1;
 $backgroundColor_button-light: #ffffffd8;
+$backgroundColor_buttonHover-light: #ecececd8;
+$backgroundColor_menu-light: #ffffffc2;
+$backgroundColor_menuHover-light: #c8c8c8a1;
 
 @mixin flexCenter {
 	display: flex;
@@ -38,6 +41,18 @@ $backgroundColor_button-light: #ffffffd8;
 	color: black;
 }
 
+@mixin fontRegular-dark {
+	font-family: 'Cabin';
+	font-weight: 400;
+	color: white;
+}
+
+@mixin fontBold-dark {
+	font-family: 'Cabin';
+	font-weight: 600;
+	color: white;
+}
+
 body {
 	margin: 0;
 	padding: 0;
@@ -51,4 +66,21 @@ h4,
 h5 {
 	margin: 0;
 	padding: 0;
+}
+
+::-webkit-scrollbar {
+	width: 6px;
+	height: 6px;
+}
+::-webkit-scrollbar-thumb {
+	background: #a6a6a6;
+	border-radius: 30px;
+}
+::-webkit-scrollbar-thumb:hover {
+	background: #3d3d3d;
+}
+::-webkit-scrollbar-track {
+	background: #f0f0f0;
+	border-radius: 30px;
+	box-shadow: inset 0.8px 0px 0px 0px #ffffff;
 }
