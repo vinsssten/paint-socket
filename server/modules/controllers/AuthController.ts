@@ -26,7 +26,8 @@ export default class AuthController {
                 .catch((err: RegistrationResolve) => AuthController.errorHandler(err, res));
             res.send(databaseResolve);                                                       
         } catch (err) {
-            res.status(500).json({message: `Server error ${err}`})
+            console.log(`Top-level catch registration: ${err}`.red)
+            res.status(500).json({message: `Server error, try later`})
         }
     }
 
@@ -57,10 +58,10 @@ export default class AuthController {
     async test (req: Request, res: Response, next: NextFunction) {
         try {
             const users = await DatabaseGetterController.getUsersTable()
-                .catch((err: RegistrationResolve) => AuthController.errorHandler(err, res));;
             res.send(users)
         } catch (err) {
-            res.status(500).json({message: `Server error ${err}`})
+            console.log(`Top-level catch test: ${err}`.red)
+            res.status(500).json({message: `Server error, please, try later`})
         }
     }
 
