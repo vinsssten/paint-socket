@@ -11,6 +11,8 @@ const port = 8080;
 const root = path.join(__dirname, '../') + 'build';
 
 app.use(express.static(root));
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
 app.use('/api', apiRouter);
 
 app.get('*', (req, res) => {

@@ -1,5 +1,7 @@
 import { NextFunction, Request, Response } from "express";
-import DatabaseController from "../../models/DatabaseController";
+import LoginParams from "../../models/LoginParams";
+import DatabaseController from "./DatabaseController";
+import { RegistrationResolve } from "./ResolveTypes";
 
 interface AuthParams {
     req: Request,
@@ -9,25 +11,46 @@ interface AuthParams {
 
 export default class AuthController {
     database: DatabaseController
+    // private errorHandler: (error: any) => void
 
     constructor () {
         this.database = new DatabaseController();
+        // this.errorHandler = this.errorThrow.bind(this);
     }
 
-    async registration () {
-
+    async registration (req: Request, res: Response, next: NextFunction) {
+        try {
+            console.log(' Request to registration '.bgMagenta);
+            const databaseResolve = await DatabaseController.loginUser(req.body);
+            res.send(databaseResolve);
+            
+        } catch (err) {
+            res.send(err);
+        }                                                                                                                     
     }
 
-    async login () {
-
+    async login (req: Request, res: Response, next: NextFunction) {
+        try {
+            
+        } catch (err) {
+            console.log(`Something went wrong: ${err}`.red)
+        }
     }
 
-    async logout () {
+    async logout (req: Request, res: Response, next: NextFunction) {
+        try {
 
+        } catch (err) {
+            console.log(`Something went wrong: ${err}`.red)
+        }
     }
      
-    async refresh () {
-        
+    async refresh (req: Request, res: Response, next: NextFunction) {
+        try {
+
+        } catch (err) {
+            console.log(`Something went wrong: ${err}`.red)
+        }
     }
 
     async test (req: Request, res: Response, next: NextFunction) {
@@ -39,4 +62,8 @@ export default class AuthController {
             res.send('Somenthing went wrong on server, try later...')
         }
     }
+
+    // errorThrow (err: any) {
+    //     throw new Error(err.red)
+    // }
 };
