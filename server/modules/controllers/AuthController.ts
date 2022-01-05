@@ -20,10 +20,14 @@ export default class AuthController {
     }
 
     async registration (req: Request, res: Response, next: NextFunction) {
-        console.log(' Request to registration '.bgMagenta);
-        const databaseResolve = await DatabaseController.registrateUser(req.body)
-            .catch((err: RegistrationResolve) => AuthController.errorHandler(err, res));
-        res.send(databaseResolve);                                                       
+        try {
+            console.log(' Request to registration '.bgMagenta);
+            const databaseResolve = await DatabaseController.registrateUser(req.body)
+                .catch((err: RegistrationResolve) => AuthController.errorHandler(err, res));
+            res.send(databaseResolve);                                                       
+        } catch (err) {
+            res.status(500).json({message: `Server error ${err}`})
+        }
     }
 
     async login (req: Request, res: Response, next: NextFunction) {
@@ -52,11 +56,11 @@ export default class AuthController {
 
     async test (req: Request, res: Response, next: NextFunction) {
         try {
-            const users = await DatabaseGetterController.getUsersTable();
+            const users = await DatabaseGetterController.getUsersTable()
+                .catch((err: RegistrationResolve) => AuthController.errorHandler(err, res));;
             res.send(users)
         } catch (err) {
-            console.log(`Error in test request: \n ${err}`.red)
-            res.send('Somenthing went wrong on server, try later...')
+            res.status(500).json({message: `Server error ${err}`})
         }
     }
 

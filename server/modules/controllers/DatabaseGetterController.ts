@@ -27,6 +27,25 @@ class DatabaseGetterController extends DatabaseController {
             });
         });
     }
+
+    static async getValueByField (fieldName: string, value: string) {
+        return new Promise(async (resolve, reject) => {
+            const db: any = await DatabaseController.databaseConnection().catch(reject);
+
+            let value: any = null;
+            db.serialize(() => {
+                
+            });
+
+            db.close((error: any) => {
+                if (error) {
+                    console.log(`Some error in close ${error}`.red);
+                } else {
+                    resolve(value);
+                }
+            });
+        });
+    }
 }
 
 export default DatabaseGetterController
