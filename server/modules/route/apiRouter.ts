@@ -5,10 +5,10 @@ const apiRouter = Router();
 
 const authController = new AuthController();
 
-apiRouter.post('/registration');
-apiRouter.post('/login');
-apiRouter.post('/logout');
-apiRouter.post('/refresh');
+apiRouter.post('/registration', authController.registration);
+apiRouter.post('/login', authController.login);
+apiRouter.post('/logout', authController.logout);
+apiRouter.post('/refresh', authController.refresh);
 apiRouter.get('/test', authController.test);
 
 export default apiRouter

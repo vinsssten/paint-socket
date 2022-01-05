@@ -26,13 +26,13 @@ class DatabaseController {
         return await new Promise(async (resolve, reject) => {
             const db: any = await DatabaseController.databaseConnection().catch(reject);
             
-            let users: UsersTable[] = [];
+            let users: UsersTable[] | null = null;
             db.serialize(() => {
-                db.all('SELECT * FROM Users', (err: any, row: UsersTable) => {
+                db.all('SELECT * FROM Users', (err: any, row: UsersTable[]) => {
                     if (err) {
                         reject(`Error in get users table: ${err}`)
                     } else {
-                        users.push(row);
+                        users = row;
                     } 
                 })
                 

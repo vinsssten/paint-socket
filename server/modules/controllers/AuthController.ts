@@ -14,8 +14,20 @@ export default class AuthController {
         this.database = new DatabaseController();
     }
 
+    async registration () {
+
+    }
+
     async login () {
 
+    }
+
+    async logout () {
+
+    }
+     
+    async refresh () {
+        
     }
 
     async test (req: Request, res: Response, next: NextFunction) {
