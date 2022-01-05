@@ -8,6 +8,7 @@
         "noFallthroughCasesInSwitch": true,
         "noImplicitAny": true,
         "allowJs": true,
+        "noEmitOnError": false,
         "removeComments": true,
         "allowSyntheticDefaultImports": true,
         "preserveConstEnums": true,

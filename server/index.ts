@@ -1,5 +1,6 @@
 import { Color } from "colors";
 import { Application } from "express";
+import errorMiddleware from "./modules/middlewares/ErrorMiddleware";
 import apiRouter from "./modules/route/apiRouter";
 
 const express = require('express')
@@ -11,8 +12,8 @@ const port = 8080;
 const root = path.join(__dirname, '../') + 'build';
 
 app.use(express.static(root));
-app.use(express.json())
-app.use(express.urlencoded({ extended: true }))
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use('/api', apiRouter);
 
 app.get('*', (req, res) => {

@@ -25,7 +25,7 @@ class DatabaseController {
             });
         });
     }
-    
+
     static async registrateUser({ login, password, username }: LoginParams) {
         return await new Promise<RegistrationResolve>(async (resolve, reject) => {
             const db: any = await DatabaseController.databaseConnection().catch(reject);
@@ -41,17 +41,14 @@ class DatabaseController {
                     (err: Error | null) => {
                         if (err) {
                             const errorMessage: RegistrationResolve = {
-                                code: 400,
-                                isError: true,
+                                code: 401,
                                 message: `Error in registration: ${err}`,
                             };
-                            console.log(`Error in registration: ${err.message}`.red)
                             reject(errorMessage);
                         } else {
                             console.log('Registration was succeed'.green);
                             resolve({
                                 code: 200,
-                                isError: false,
                                 message: 'Registration successful',
                             });
                         }

@@ -20,13 +20,10 @@ export default class AuthController {
     }
 
     async registration (req: Request, res: Response, next: NextFunction) {
-        try {
-            console.log(' Request to registration '.bgMagenta);
-            const databaseResolve = await DatabaseController.registrateUser(req.body);
-            res.send(databaseResolve);
-        } catch (err) {
-            res.send(err);
-        }                                                                                                                     
+        console.log(' Request to registration '.bgMagenta);
+        const databaseResolve = await DatabaseController.registrateUser(req.body)
+            .catch((err: RegistrationResolve) => AuthController.errorHandler(err, res));
+        res.send(databaseResolve);                                                       
     }
 
     async login (req: Request, res: Response, next: NextFunction) {
@@ -63,7 +60,7 @@ export default class AuthController {
         }
     }
 
-    // errorThrow (err: any) {
-    //     throw new Error(err.red)
-    // }
+    static errorHandler (err: any, res: Response) {
+        res.status(err.code).json({message: err.message});
+    }
 };
