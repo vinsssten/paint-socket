@@ -21,9 +21,8 @@ export default class AuthController {
     async registration (req: Request, res: Response, next: NextFunction) {
         try {
             console.log(' Request to registration '.bgMagenta);
-            const databaseResolve = await DatabaseController.loginUser(req.body);
+            const databaseResolve = await DatabaseController.registrateUser(req.body);
             res.send(databaseResolve);
-            
         } catch (err) {
             res.send(err);
         }                                                                                                                     

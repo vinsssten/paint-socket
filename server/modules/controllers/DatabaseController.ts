@@ -52,7 +52,7 @@ class DatabaseController {
         });
     }
 
-    static async loginUser({ login, password, username }: LoginParams) {
+    static async registrateUser({ login, password, username }: LoginParams) {
         return await new Promise<RegistrationResolve>(async (resolve, reject) => {
             const db: any = await DatabaseController.databaseConnection().catch(reject);
 
