@@ -1,6 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import LoginParams from "../../models/LoginParams";
 import DatabaseController from "./DatabaseController";
+import DatabaseGetterController from "./DatabaseGetterController";
 import { RegistrationResolve } from "./ResolveTypes";
 
 interface AuthParams {
@@ -54,7 +55,7 @@ export default class AuthController {
 
     async test (req: Request, res: Response, next: NextFunction) {
         try {
-            const users = await DatabaseController.getUsersTable();
+            const users = await DatabaseGetterController.getUsersTable();
             res.send(users)
         } catch (err) {
             console.log(`Error in test request: \n ${err}`.red)
