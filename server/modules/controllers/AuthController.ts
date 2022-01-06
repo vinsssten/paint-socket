@@ -53,8 +53,10 @@ export default class AuthController {
 
     async test (req: Request, res: Response, next: NextFunction) {
        try {
-           const usersTableData = await new DatabaseGetter().getUsersTable();
-            res.send(usersTableData);
+        //    const usersTableData = await new DatabaseGetter().getUsersTable();
+        //     res.send(usersTableData);
+            const row = await new DatabaseGetter().getRowByField('Users', 'login', 'vinsssten')
+            res.send(row)
         } catch (error) {
             next(error)
         }

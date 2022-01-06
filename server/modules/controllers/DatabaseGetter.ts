@@ -1,5 +1,6 @@
-import { Database } from "sqlite3";
+import { AllUsersTablesRows, UsersTablesNames } from "../../models/AllUsersTablesRows";
 import UsersTable from "../../models/UsersTable";
+import ApiError from "../exceptions/ApiError";
 import DatabaseController from "./DatabaseController";
 
 class DatabaseGetter extends DatabaseController {
@@ -15,6 +16,33 @@ class DatabaseGetter extends DatabaseController {
                     } else {
                         console.log(`DATA RECEIVE ERROR ${error}`)
                         reject(error)
+                    }
+                })
+            })
+
+            this.close(db);
+        } catch (error) {
+            reject(error)
+        }
+    })
+
+    getRowByField = (tableName: UsersTablesNames, 
+                     fieldName: string, 
+                     value: string) => new Promise(async (resolve, reject) => {
+        try {
+            const db = await this.connect();
+
+            db.serialize(() => {
+                const sqlString = `SELECT * FROM ${tableName} WHERE ${fieldName} = '${value}'`;
+                console.log('sqlString', sqlString);
+
+                db.all(sqlString, (err, row) => {
+                    if (!err) {
+                        console.log(row)
+                        resolve(row[0]);
+                    } else {
+                        console.log(err);
+                        reject(err);
                     }
                 })
             })
