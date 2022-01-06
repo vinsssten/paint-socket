@@ -14,7 +14,8 @@ const root = path.join(__dirname, '../') + 'build';
 app.use(express.static(root));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use('/api', apiRouter);
+app.use('/api/auth', apiRouter);
+// app.use(errorMiddleware)
 
 app.get('*', (req, res) => {
     res.sendFile('index.html', {root: root}, err => {
