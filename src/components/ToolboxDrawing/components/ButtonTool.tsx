@@ -5,19 +5,19 @@ import { switchBrushTool } from '../../../store/actionCreators/drawingActionCrea
 import ButtonToolbox from './ButtonToolbox';
 
 interface Props {
-	image: string;
-	toolName: BrushTool;
+    image: string;
+    toolName: BrushTool;
 }
 
 const ButtonTool: FC<Props> = props => {
-	const currentBrush = useAppSelector(state => state.drawing.brush);
-	const dispatch = useDispatch();
+    const currentBrush = useAppSelector(state => state.drawing.brush);
+    const dispatch = useDispatch();
 
-	function handleClick() {
-		dispatch(switchBrushTool(props.toolName));
-	}
+    function handleClick() {
+        dispatch(switchBrushTool(props.toolName));
+    }
 
-	return <ButtonToolbox {...props} currentBrush={currentBrush} action={handleClick} />;
+    return <ButtonToolbox {...props} currentBrush={currentBrush} action={handleClick} />;
 };
 
 export default ButtonTool;

@@ -6,16 +6,16 @@ import SizeSelector from './components/SizeSelector';
 import stl from './ToolboxDrawing.scss';
 
 function ToolboxDrawing() {
-	return (
-		<div className={stl.maincont}>
-			<div className={stl.cont}>
-				<BrushesCard />
-				<SizeSelector />
-				<ColorPicker />
-				<EditCard />
-			</div>
-		</div>
-	);
+    return (
+        <div className={stl.maincont}>
+            <div className={stl.cont}>
+                <BrushesCard />
+                <SizeSelector />
+                <ColorPicker />
+                <EditCard />
+            </div>
+        </div>
+    );
 }
 
 export default ToolboxDrawing;

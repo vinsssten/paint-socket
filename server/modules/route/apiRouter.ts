@@ -1,5 +1,5 @@
-import { Router } from "express";
-import AuthController from "../controllers/AuthController";
+import { Router } from 'express';
+import AuthController from '../controllers/AuthController';
 
 const apiRouter = Router();
 
@@ -11,4 +11,4 @@ apiRouter.post('/logout', authController.logout);
 apiRouter.post('/refresh', authController.refresh);
 apiRouter.get('/test', authController.test);
 
-export default apiRouter
+export default apiRouter;

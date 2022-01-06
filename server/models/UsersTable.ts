@@ -1,8 +1,8 @@
 interface UsersTable {
-    id: string,
-    login: string,
-    username: string,
-    password: string,
+    id: string;
+    login: string;
+    username: string;
+    password: string;
 }
 
-export default UsersTable
+export default UsersTable;

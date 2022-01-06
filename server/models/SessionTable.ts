@@ -1,6 +1,6 @@
 interface SessionTable {
-    id: string,
-    refreshToken: string
+    id: string;
+    refreshToken: string;
 }
 
-export default SessionTable
+export default SessionTable;

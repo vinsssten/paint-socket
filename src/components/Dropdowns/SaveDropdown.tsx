@@ -13,40 +13,44 @@ import Canvas from '../../lib/modules/Canvas/Canvas';
 interface Props {}
 
 const SaveDropdown: FC<Props> = ({}) => {
-	const [isVisible, setIsVisible] = useState<boolean>(false);
-	const { canvas: canvasElem } = useAppSelector(store => store.drawing);
+    const [isVisible, setIsVisible] = useState<boolean>(false);
+    const { canvas: canvasElem } = useAppSelector(store => store.drawing);
 
-	const menuButtons: MenuButton[] = [
-		{
-			action: localSaveContent,
-			text: 'Local',
-			image: localSVG,
-		},
-		{
-			action: saveToCloud,
-			text: 'Cloud',
-			image: cloudSVG,
-		},
-	];
+    const menuButtons: MenuButton[] = [
+        {
+            action: localSaveContent,
+            text: 'Local',
+            image: localSVG,
+        },
+        {
+            action: saveToCloud,
+            text: 'Cloud',
+            image: cloudSVG,
+        },
+    ];
 
-	function handleClick() {
-		setIsVisible(!isVisible);
-	}
+    function handleClick() {
+        setIsVisible(!isVisible);
+    }
 
-	function localSaveContent() {
-		if (canvasElem) {
-			const canvas = new Canvas(canvasElem);
-			canvas.downloadImage();
-		}
-	}
+    function localSaveContent() {
+        if (canvasElem) {
+            const canvas = new Canvas(canvasElem);
+            canvas.downloadImage();
+        }
+    }
 
-	function saveToCloud() {}
+    function saveToCloud() {}
 
-	return (
-		<Dropdown menuButtons={menuButtons} isVisible={isVisible} setIsVisible={setIsVisible}>
-			<ButtonToolbox action={handleClick} image={saveSVG} toolName="save" />
-		</Dropdown>
-	);
+    return (
+        <Dropdown
+            menuButtons={menuButtons}
+            isVisible={isVisible}
+            setIsVisible={setIsVisible}
+        >
+            <ButtonToolbox action={handleClick} image={saveSVG} toolName="save" />
+        </Dropdown>
+    );
 };
 
 export default SaveDropdown;

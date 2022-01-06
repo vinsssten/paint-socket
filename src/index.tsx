@@ -11,8 +11,8 @@ export const useAppSelector = useSelector as TypedUseSelectorHook<RootState>;
 export const useAppDispatch = () => useDispatch<AppDispatch>();
 
 ReactDom.render(
-	<React.StrictMode>
-		<Router />
-	</React.StrictMode>,
-	document.getElementById('root'),
+    <React.StrictMode>
+        <Router />
+    </React.StrictMode>,
+    document.getElementById('root'),
 );
