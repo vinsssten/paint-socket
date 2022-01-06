@@ -1,60 +1,77 @@
-import { NextFunction, Request, Response } from 'express';
-import { Database } from 'sqlite3';
-import ApiError from '../exceptions/ApiError';
-import DatabaseController from './DatabaseController';
-import DatabaseGetter from './DatabaseGetter';
+import { error } from "console";
+import ApiError from "../exceptions/ApiError";
+import DatabaseGetter from "./DatabaseGetter";
 
-interface AuthParams {
-    req: Request;
-    res: Response;
-    next: NextFunction;
+const bcrypt = require('bcrypt');
+const uuid = require('uuid');
+
+interface RegistrationBody {
+    login: string;
+    username: string;
+    password: string;
 }
 
-type DB = Database | PromiseLike<Database>;
+class AuthController extends DatabaseGetter {
+    login = ({login, password}: RegistrationBody) => new Promise<{access: string, refresh: string}>(async (resolve, reject) => {
+        try {   
+            const db = await this.connect();
 
-export default class AuthController {
-    // database: DatabaseController;
+            const currentUser = await this.getRowByField('Users', 'login', login);
+            if (currentUser.length === 0) {
+                console.log('user with this login is was not found')
+                reject(new ApiError('Incorrect login or password', 400))
+            }
+            const currentUserPassword = currentUser[0].password;
+            const currentHashedPassword = await bcrypt.hash(password, 3);
 
-    constructor() {
-        // this.database = new DatabaseController();
-    }
+            if (currentUserPassword === currentHashedPassword) {
 
-    async registration(req: Request, res: Response, next: NextFunction) {
-        try {
-            const registrationMessage = await new DatabaseGetter().registration(req.body);
-            res.send(registrationMessage);
+            } else (
+                reject(new ApiError('Incorrect login or password', 400))
+            )
+
+            db.close()
         } catch (error) {
-            next(error);
+            
         }
-    }
+    })
 
-    async login(req: Request, res: Response, next: NextFunction) {
-        try {
-        } catch (error) {
-            next(error);
-        }
-    }
+    registration = ({ login, username, password }: RegistrationBody) =>
+        new Promise(async (resolve, reject) => {
+            try {
+                const isUniqueLogin = await this.isUniqueValue('Users', 'login', login);
+                if (!isUniqueLogin) {
+                    reject(
+                        new ApiError(
+                            'A user with this login already exists, try a different login',
+                            400,
+                        ),
+                    );
+                    return;
+                }
 
-    async logout(req: Request, res: Response, next: NextFunction) {
-        try {
-        } catch (error) {
-            next(error);
-        }
-    }
+                const db = await this.connect();
+                const hashedPassword = await bcrypt.hash(password, 3);
+                const id = uuid.v4();
+                const sql = `INSERT INTO Users (id, login, username, password) VALUES ('${id}', '${login}', '${username}', '${hashedPassword}')`;
+                db.serialize(() => {
+                    db.run(sql, error => {
+                        if (!error) {
+                            resolve({
+                                message: 'The user has been successfully registered',
+                            });
+                        } else {
+                            console.log(error);
+                            reject(new Error(`${error}`));
+                        }
+                    });
+                });
 
-    async refresh(req: Request, res: Response, next: NextFunction) {
-        try {
-        } catch (error) {
-            next(error);
-        }
-    }
-
-    async test(req: Request, res: Response, next: NextFunction) {
-        try {
-            const usersTableData = await new DatabaseGetter().getUsersTable();
-            res.send(usersTableData);
-        } catch (error) {
-            next(error);
-        }
-    }
+                this.close(db);
+            } catch (error) {
+                reject(error);
+            }
+        });
 }
+
+export default AuthController
