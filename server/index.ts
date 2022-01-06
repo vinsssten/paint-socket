@@ -1,5 +1,5 @@
 import { Color } from "colors";
-import { Application } from "express";
+import { Application, Request, Response, NextFunction } from "express";
 import errorMiddleware from "./modules/middlewares/ErrorMiddleware";
 import apiRouter from "./modules/route/apiRouter";
 
@@ -15,7 +15,9 @@ app.use(express.static(root));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use('/api/auth', apiRouter);
-// app.use(errorMiddleware)
+app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
+    errorMiddleware(err, req, res, next);
+})
 
 app.get('*', (req, res) => {
     res.sendFile('index.html', {root: root}, err => {
