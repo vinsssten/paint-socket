@@ -15,9 +15,8 @@ app.use(express.static(root));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use('/api/auth', apiRouter);
-app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
-    errorMiddleware(err, req, res, next);
-})
+app.use(errorMiddleware);
+
 
 app.get('*', (req, res) => {
     res.sendFile('index.html', {root: root}, err => {

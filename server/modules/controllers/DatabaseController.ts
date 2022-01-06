@@ -20,6 +20,16 @@ class DatabaseController {
             }
         })
     })
+
+    close = (database: Database) => new Promise ((resolve, reject) => { 
+        database.close((err) => {
+            if (!err) {
+                console.log('DATABASE CLOSED'.bgGreen.black);
+            } else {
+                console.log('ERROR IN CLOSE DATABASE'.bgRed.black)
+            }
+        })
+    })
 }
 
 export default DatabaseController

@@ -2,6 +2,7 @@ import { NextFunction, Request, Response } from "express";
 import { Database } from "sqlite3";
 import ApiError from "../exceptions/ApiError";
 import DatabaseController from "./DatabaseController";
+import DatabaseGetter from "./DatabaseGetter";
 
 interface AuthParams {
     req: Request,
@@ -20,7 +21,6 @@ export default class AuthController {
 
     async registration (req: Request, res: Response, next: NextFunction) {
         try {
-            const db =  await new DatabaseController().connect();
             
         } catch (error) {
             next(error)
@@ -53,18 +53,10 @@ export default class AuthController {
 
     async test (req: Request, res: Response, next: NextFunction) {
        try {
-            
+           const usersTableData = await new DatabaseGetter().getUsersTable();
+            res.send(usersTableData);
         } catch (error) {
             next(error)
-        }
-    }
-
-    static errorHandler (err: ApiError | Error | unknown, res?: Response) {
-        if (err instanceof ApiError) {
-            console.log('errorHandler')
-            throw new ApiError(err.message, err.code)
-        } else {
-            throw Error(JSON.stringify(err));
         }
     }
 };
