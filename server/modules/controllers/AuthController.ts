@@ -21,7 +21,8 @@ export default class AuthController {
 
     async registration (req: Request, res: Response, next: NextFunction) {
         try {
-            
+            const registrationMessage = await new DatabaseGetter().registration(req.body);
+            res.send(registrationMessage);
         } catch (error) {
             next(error)
         }
@@ -53,10 +54,8 @@ export default class AuthController {
 
     async test (req: Request, res: Response, next: NextFunction) {
        try {
-        //    const usersTableData = await new DatabaseGetter().getUsersTable();
-        //     res.send(usersTableData);
-            const row = await new DatabaseGetter().getRowByField('Users', 'login', 'vinsssten')
-            res.send(row)
+           const usersTableData = await new DatabaseGetter().getUsersTable();
+           res.send(usersTableData);
         } catch (error) {
             next(error)
         }
