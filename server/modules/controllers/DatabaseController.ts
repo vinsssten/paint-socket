@@ -11,7 +11,6 @@ class DatabaseController {
         new Promise<Database>((resolve, reject) => {
             const database: Database = new sqlite.Database('../db/Paint.sqlite3', err => {
                 if (!err) {
-                    console.log('DATABASE OPENED'.bgGreen.black);
                     resolve(database);
                 } else {
                     console.log(
@@ -26,7 +25,6 @@ class DatabaseController {
         new Promise((resolve, reject) => {
             database.close(err => {
                 if (!err) {
-                    console.log('DATABASE CLOSED'.bgGreen.black);
                 } else {
                     console.log('ERROR IN CLOSE DATABASE'.bgRed.black);
                 }

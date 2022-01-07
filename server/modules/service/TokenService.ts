@@ -1,5 +1,6 @@
 import DatabaseController from "../controllers/DatabaseController";
 import DatabaseGetter from "../controllers/DatabaseGetter";
+import ApiError from "../exceptions/ApiError";
 
 const jwt = require('jsonwebtoken');
 const colors = require('colors');
@@ -57,6 +58,33 @@ class TokenService {
             
             controller.close(db);
         } catch (error) {
+            reject(error);
+        }
+    });
+
+    removeToken = (refreshToken: string) =>  
+    new Promise(async (resolve, reject) => {
+        try {
+            const db = await new DatabaseController().connect();
+
+            const currentSession = await new DatabaseGetter().getRowByField('Sessions', 'refreshToken', refreshToken);
+            if (currentSession.length === 0) {
+                reject(new ApiError('Session didnt find', 400));
+            } 
+            db.serialize( () => {
+                db.run(`DELETE FROM Sessions WHERE refreshToken='${refreshToken}'`, (err) => {
+                    if (!err) {
+                        // console.log(`Logout success for user with login: ${currentSession[0].id}`);
+                        resolve({message: 'Logout success'})
+                    } else {
+                        reject(err);
+                    }
+                })
+            })
+
+            db.close();
+        } catch (error) {
+            console.log('low level catch'.red)
             reject(error);
         }
     });

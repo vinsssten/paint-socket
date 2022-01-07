@@ -3,6 +3,8 @@ import { Application, Request, Response, NextFunction } from 'express';
 import errorMiddleware from './modules/middlewares/ErrorMiddleware';
 import apiRouter from './modules/route/apiRouter';
 
+const cors = require('cors');
+const cookieParser = require('cookie-parser');
 const express = require('express');
 const app: Application = express();
 const path = require('path');
@@ -14,6 +16,8 @@ const root = path.join(__dirname, '../') + 'build';
 app.use(express.static(root));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cors())
+app.use(cookieParser())
 app.use('/api/auth', apiRouter);
 app.use(errorMiddleware);
 

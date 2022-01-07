@@ -28,7 +28,7 @@ export default class AuthRouterController {
     async login(req: Request, res: Response, next: NextFunction) {
         try {
             const {accessToken, refreshToken}: Tokens = await new AuthController().loginMain(req.body);
-            res.cookie('refresh', refreshToken, {maxAge: 1000 * 30 * 24 * 60 * 60, httpOnly: true, secure: true})
+            res.cookie('refreshToken', refreshToken, {maxAge: 1000 * 30 * 24 * 60 * 60, httpOnly: true})
             res.send({accessToken: accessToken});
         } catch (error) {
             next(error);
@@ -37,6 +37,10 @@ export default class AuthRouterController {
 
     async logout(req: Request, res: Response, next: NextFunction) {
         try {
+            const {refreshToken} = req.cookies;
+            const logoutMessage = await new AuthController().logout(refreshToken);
+            res.clearCookie('refreshToken');
+            res.send(logoutMessage);
         } catch (error) {
             next(error);
         }

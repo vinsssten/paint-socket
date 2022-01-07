@@ -18,7 +18,6 @@ class AuthController extends DatabaseGetter {
         try {   
             const tokenService = new TokenService();
             const {accessToken, refreshToken} = await tokenService.generateTokens({id: user.id, login: user.login});
-            console.log('user id', user)
             if (await tokenService.tokenSaveToDB(user.id, refreshToken)) {
                 resolve({accessToken, refreshToken})
             }
@@ -44,6 +43,15 @@ class AuthController extends DatabaseGetter {
             )
 
             db.close()
+        } catch (error) {
+            reject(error)
+        }
+    })
+
+    logout = (refreshToken: string) => new Promise(async (resolve, reject) => {
+        try {   
+            const removeToken = await new TokenService().removeToken(refreshToken);
+            resolve(removeToken)
         } catch (error) {
             reject(error)
         }
