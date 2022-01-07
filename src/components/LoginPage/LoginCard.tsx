@@ -16,6 +16,7 @@ const LoginCard: FC<Props> = ({  }) => {
                 <SignInInput placeholder='Password' isSecure={true} />
             </div>
             <ButtonLoginPage text='Sign in'/>
+            <p className={stl.textAdditional}>Registration</p>
         </div>
     )
 }

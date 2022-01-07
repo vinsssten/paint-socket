@@ -8,42 +8,39 @@
 
 .cardContainer {
     @include flexCenter;
+    @include glassContainer;
     flex-direction: column;
     height: 300px;
     width: 500px;
-    background: #ffffffcc;
-    box-shadow: 0 8px 32px 0 #7878785e;
-    backdrop-filter: blur( 6.5px );
-    -webkit-backdrop-filter: blur( 6.5px );
-    border-radius: 20px;
-    border: 1px solid #ffffff2e;
+    background: $bgColor_card-light;
 }
 
 .inputContainer {
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
-    margin: 10px 0;
     height: 80px;
     width: 60%    
 }
 
 .mainButton {
     @include flexCenter;
+    @include glassButton_main;
     @include fontSemiBold-dark;
+    margin-top: 15px;
     font-size: 20px;
     width: 50%;
     height: 40px;
-    background: #20202083;
-    text-shadow: $textShadow-dark;
-    box-shadow: 0 3px 20px 0 #5c5d5f5e;
-    backdrop-filter: blur( 4px );
-    -webkit-backdrop-filter: blur( 4px );
-    border-radius: 10px;
-    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    background: $bgColor_mainButton;
 }
 
 .textHead {
     @include fontBold-light;
     text-shadow: $textShadow-light;
+}
+
+.textAdditional {
+    margin: 0;
+    margin-top: 10px;
+    @include fontLight-light;
+    color: $bgColor_mainButton;
 }
