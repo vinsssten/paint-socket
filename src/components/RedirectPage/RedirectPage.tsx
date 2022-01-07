@@ -1,11 +1,9 @@
-import React, { FC, useEffect, useState } from 'react'
+import React, { FC, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
 
-interface Props {
+interface Props {}
 
-}
-
-const RedirectPage: FC<Props> = ({  }) => {
+const RedirectPage: FC<Props> = ({}) => {
     const [isLoggined, setIsLoggined] = useState(false);
     const navigate = useNavigate();
 
@@ -14,11 +12,7 @@ const RedirectPage: FC<Props> = ({  }) => {
             navigate('/signin');
         }
     }, []);
-    return (
-        <div>
-            
-        </div>
-    )
-}
+    return <div></div>;
+};
 
-export default RedirectPage
+export default RedirectPage;

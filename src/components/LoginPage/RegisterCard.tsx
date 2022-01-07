@@ -8,10 +8,10 @@ interface Props {
 }
 
 export interface InputProps {
-    placeholder?: string
-    isSecure: boolean
-    value: string
-    inputHandle: React.Dispatch<React.SetStateAction<string>>
+    placeholder?: string;
+    isSecure: boolean;
+    value: string;
+    inputHandle: React.Dispatch<React.SetStateAction<string>>;
 }
 
 const RegisterCard: FC<Props> = ({ setIsRegister }) => {
@@ -22,34 +22,52 @@ const RegisterCard: FC<Props> = ({ setIsRegister }) => {
 
     const inputsArray: InputProps[] = [
         { placeholder: 'Login', isSecure: false, value: login, inputHandle: setLogin },
-        { placeholder: 'Username', isSecure: false, value: username, inputHandle: setUsername },
-        { placeholder: 'Password', isSecure: true, value: password, inputHandle: setPassword, },
-        { placeholder: 'Repeat password', isSecure:true, value:rpassword, inputHandle:setRPassword},
+        {
+            placeholder: 'Username',
+            isSecure: false,
+            value: username,
+            inputHandle: setUsername,
+        },
+        {
+            placeholder: 'Password',
+            isSecure: true,
+            value: password,
+            inputHandle: setPassword,
+        },
+        {
+            placeholder: 'Repeat password',
+            isSecure: true,
+            value: rpassword,
+            inputHandle: setRPassword,
+        },
     ];
 
-    function changeCard () {
-        setIsRegister(false)
+    function changeCard() {
+        setIsRegister(false);
     }
 
     return (
         <div>
             <div className={stl.cardContainer}>
-            <h1 className={stl.textHead}>Sign up</h1>
-            <div className={stl.inputContainer}>
-                {inputsArray.map((value) => (
-                    <SignInInput 
-                        placeholder={value.placeholder}
-                        isSecure={value.isSecure}
-                        value={value.value}
-                        inputHandle={value.inputHandle}
-                    />
-                ))}
+                <h1 className={stl.textHead}>Sign up</h1>
+                <div className={stl.inputContainer}>
+                    {inputsArray.map((value, index) => (
+                        <SignInInput
+                            key={index}
+                            placeholder={value.placeholder}
+                            isSecure={value.isSecure}
+                            value={value.value}
+                            inputHandle={value.inputHandle}
+                        />
+                    ))}
+                </div>
+                <ButtonLoginPage text="Sign in" action={() => {}} />
+                <p onClick={changeCard} className={stl.textAdditional}>
+                    Go back to login
+                </p>
             </div>
-            <ButtonLoginPage text='Sign in' action={() => {}}/>
-            <p onClick={changeCard} className={stl.textAdditional}>Go back to login</p>
         </div>
-        </div>
-    )
-}
+    );
+};
 
-export default RegisterCard
+export default RegisterCard;

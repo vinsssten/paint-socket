@@ -11,7 +11,7 @@ function Router() {
         <Provider store={store}>
             <BrowserRouter>
                 <Routes>
-                    <Route path='/' element={<RedirectPage />} />
+                    <Route path="/" element={<RedirectPage />} />
                     <Route path="/signin" element={<LoginPage />} />
                     <Route path="/singledrawing" element={<SingleDrawingPage />} />
                 </Routes>

@@ -37,8 +37,8 @@ $textShadow-dark: 1px 2px 5px #ecececa4;
 
 @mixin glassContainer {
     box-shadow: 0 8px 32px 0 #7878785e;
-    backdrop-filter: blur( 6.5px );
-    -webkit-backdrop-filter: blur( 6.5px );
+    backdrop-filter: blur(6.5px);
+    -webkit-backdrop-filter: blur(6.5px);
     border-radius: 20px;
     border: 1px solid #ffffff2e;
 }
@@ -46,8 +46,8 @@ $textShadow-dark: 1px 2px 5px #ecececa4;
 @mixin glassButton_main {
     text-shadow: 0px 0px 4px #dad3d3a4;
     box-shadow: 0 5px 10px 0 #5c5d5f7a;
-    backdrop-filter: blur( 4px );
-    -webkit-backdrop-filter: blur( 4px );
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
     border-radius: 10px;
     border: 1px solid #ffffff2e;
     cursor: pointer;
@@ -93,7 +93,6 @@ $textShadow-dark: 1px 2px 5px #ecececa4;
     font-weight: 600;
     color: #1b1b1b;
 }
-
 
 @mixin fontRegular-dark {
     font-family: 'Prompt';
