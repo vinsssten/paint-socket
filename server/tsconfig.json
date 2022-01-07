@@ -20,6 +20,7 @@
             "es2017"
         ],
     },
+    // "include": ["./index.d.ts"],
     "exclude": [
         "../src/**/*",
         "node_modules"

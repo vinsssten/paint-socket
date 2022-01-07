@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import AuthRouterController from '../controllers/AuthRouterController';
+import AuthMiddleware from '../middlewares/AuthMiddleware';
 
 const apiRouter = Router();
 
@@ -9,6 +10,6 @@ apiRouter.post('/registration', authController.registration);
 apiRouter.post('/login', authController.login);
 apiRouter.post('/logout', authController.logout);
 apiRouter.post('/refresh', authController.refresh);
-apiRouter.get('/test', authController.test);
+apiRouter.get('/test', AuthMiddleware, authController.test);
 
 export default apiRouter;

@@ -3,6 +3,14 @@ import { Application, Request, Response, NextFunction } from 'express';
 import errorMiddleware from './modules/middlewares/ErrorMiddleware';
 import apiRouter from './modules/route/apiRouter';
 
+declare global {
+    namespace Express {
+        interface Request {
+            user: any
+        }
+    }
+}
+
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const express = require('express');
