@@ -14,7 +14,7 @@ class ApiError extends Error {
         return new ApiError('The user is not logged in', 401);
     }
 
-    static BadRequest(message: string, errors: Error[]) {
+    static BadRequest(message: string, errors?: Error[]) {
         return new ApiError(message, 400, errors);
     }
 }

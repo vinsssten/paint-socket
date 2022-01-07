@@ -1,6 +1,5 @@
 import { AllUsersTablesRows, UsersTablesNames } from '../../models/AllUsersTablesRows';
 import UsersTable from '../../models/UsersTable';
-import ApiError from '../exceptions/ApiError';
 import DatabaseController from './DatabaseController';
 
 class DatabaseGetter extends DatabaseController {

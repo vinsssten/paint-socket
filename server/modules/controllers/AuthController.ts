@@ -33,13 +33,13 @@ class AuthController extends DatabaseGetter {
             const currentUser: UsersTable[] = await this.getRowByField('Users', 'login', login);
             if (currentUser.length === 0) {
                 console.log('user with this login is was not found')
-                reject(new ApiError('Incorrect login or password', 400))
+                reject(ApiError.BadRequest('Incorrect login or password'))
             }
            
             if (await bcrypt.compare(password, currentUser[0].password)) {
                 resolve(await this.login(currentUser[0]))
             } else (
-                reject(new ApiError('Incorrect login or password', 400))
+                reject(ApiError.BadRequest('Incorrect login or password'))
             )
 
             db.close()
@@ -62,13 +62,8 @@ class AuthController extends DatabaseGetter {
             try {
                 const isUniqueLogin = await this.isUniqueValue('Users', 'login', login);
                 if (!isUniqueLogin) {
-                    reject(
-                        new ApiError(
-                            'A user with this login already exists, try a different login',
-                            400,
-                        ),
-                    );
-                    return;
+                    reject(ApiError.BadRequest('A user with this login already exists, try a different login'));
+                    return; 
                 }
 
                 const db = await this.connect();

@@ -69,7 +69,7 @@ class TokenService {
 
             const currentSession = await new DatabaseGetter().getRowByField('Sessions', 'refreshToken', refreshToken);
             if (currentSession.length === 0) {
-                reject(new ApiError('Session didnt find', 400));
+                reject(ApiError.BadRequest('Session didnt find'));
             } 
             db.serialize( () => {
                 db.run(`DELETE FROM Sessions WHERE refreshToken='${refreshToken}'`, (err) => {
