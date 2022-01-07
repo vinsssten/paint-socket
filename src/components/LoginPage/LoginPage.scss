@@ -1,0 +1,49 @@
+@import '../../index.scss';
+
+.mainContainer {
+    @include flexCenter;
+    height: 100vh;
+    width: 100vw;
+}
+
+.cardContainer {
+    @include flexCenter;
+    flex-direction: column;
+    height: 300px;
+    width: 500px;
+    background: #ffffffcc;
+    box-shadow: 0 8px 32px 0 #7878785e;
+    backdrop-filter: blur( 6.5px );
+    -webkit-backdrop-filter: blur( 6.5px );
+    border-radius: 20px;
+    border: 1px solid #ffffff2e;
+}
+
+.inputContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    margin: 10px 0;
+    height: 80px;
+    width: 60%    
+}
+
+.mainButton {
+    @include flexCenter;
+    @include fontSemiBold-dark;
+    font-size: 20px;
+    width: 50%;
+    height: 40px;
+    background: #20202083;
+    text-shadow: $textShadow-dark;
+    box-shadow: 0 3px 20px 0 #5c5d5f5e;
+    backdrop-filter: blur( 4px );
+    -webkit-backdrop-filter: blur( 4px );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+}
+
+.textHead {
+    @include fontBold-light;
+    text-shadow: $textShadow-light;
+}

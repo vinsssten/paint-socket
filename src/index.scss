@@ -1,18 +1,24 @@
 @font-face {
-    font-family: 'Cabin';
-    src: url('/public/fonts/Cabin-Regular.ttf');
+    font-family: 'Prompt';
+    src: url('/public/fonts/Prompt-Light.ttf');
+    font-weight: 300;
+}
+
+@font-face {
+    font-family: 'Prompt';
+    src: url('/public/fonts/Prompt-Regular.ttf');
     font-weight: 400;
 }
 
 @font-face {
-    font-family: 'Cabin';
-    src: url('/public/fonts/Cabin-SemiBold.ttf');
+    font-family: 'Prompt';
+    src: url('/public/fonts/Prompt-SemiBold.ttf');
     font-weight: 500;
 }
 
 @font-face {
-    font-family: 'Cabin';
-    src: url('/public/fonts/Cabin-Bold.ttf');
+    font-family: 'Prompt';
+    src: url('/public/fonts/Prompt-Bold.ttf');
     font-weight: 600;
 }
 
@@ -23,32 +29,54 @@ $backgroundColor_buttonHover-light: #ecececd8;
 $backgroundColor_menu-light: #ffffffc2;
 $backgroundColor_menuHover-light: #c8c8c8a1;
 
+$textShadow-light: 1px 2px 5px #9e9e9ee3;
+$textShadow-dark: 1px 2px 5px #ecececa4;
+
 @mixin flexCenter {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
+@mixin fontLight-light {
+    font-family: 'Prompt';
+    font-weight: 300;
+    color: black;
+}
+
 @mixin fontRegular-light {
-    font-family: 'Cabin';
+    font-family: 'Prompt';
     font-weight: 400;
+    color: black;
+}
+
+@mixin fontSemiBold-light {
+    font-family: 'Prompt';
+    font-weight: 500;
     color: black;
 }
 
 @mixin fontBold-light {
-    font-family: 'Cabin';
+    font-family: 'Prompt';
     font-weight: 600;
-    color: black;
+    color: rgb(36, 36, 36);
 }
 
+
 @mixin fontRegular-dark {
-    font-family: 'Cabin';
+    font-family: 'Prompt';
     font-weight: 400;
     color: white;
 }
 
+@mixin fontSemiBold-dark {
+    font-family: 'Prompt';
+    font-weight: 500;
+    color: #ffffff;
+}
+
 @mixin fontBold-dark {
-    font-family: 'Cabin';
+    font-family: 'Prompt';
     font-weight: 600;
     color: white;
 }

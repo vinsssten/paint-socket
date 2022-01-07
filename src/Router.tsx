@@ -1,7 +1,7 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import App from './App';
+import LoginPage from './components/LoginPage/LoginPage';
 import SingleDrawingPage from './components/LocalDrawingPage/SingleDrawingPage';
 import store from './store/store';
 
@@ -10,7 +10,7 @@ function Router() {
         <Provider store={store}>
             <BrowserRouter>
                 <Routes>
-                    <Route path="/" element={<App />} />
+                    <Route path="/" element={<LoginPage />} />
                     <Route path="/singledrawing" element={<SingleDrawingPage />} />
                 </Routes>
             </BrowserRouter>

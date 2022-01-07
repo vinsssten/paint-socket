@@ -1,4 +1,3 @@
-import { error } from 'console';
 import ApiError from '../exceptions/ApiError';
 import TokenService, { Tokens } from '../service/TokenService';
 import DatabaseGetter from './DatabaseGetter';
