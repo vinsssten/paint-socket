@@ -4,10 +4,14 @@ import ButtonLoginPage from './ButtonLoginPage'
 import stl from './LoginPage.scss'
 
 interface Props {
-
+    setIsRegister: React.Dispatch<React.SetStateAction<Boolean>>;
 }
 
-const LoginCard: FC<Props> = ({  }) => {
+const LoginCard: FC<Props> = ({ setIsRegister }) => {
+
+    function changeCard () {
+        setIsRegister(true);
+    }
     return (
         <div className={stl.cardContainer}>
             <h1 className={stl.textHead}>Sign in</h1>
@@ -16,7 +20,8 @@ const LoginCard: FC<Props> = ({  }) => {
                 <SignInInput placeholder='Password' isSecure={true} />
             </div>
             <ButtonLoginPage text='Sign in'/>
-            <p className={stl.textAdditional}>Registration</p>
+            <p onClick={changeCard} className={stl.textAdditional}>Registration</p>
+            <p onClick={changeCard} className={stl.textAdditional}>Forgot my password</p>
         </div>
     )
 }

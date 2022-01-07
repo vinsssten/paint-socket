@@ -3,10 +3,11 @@ import { useNavigate } from 'react-router';
 import stl from './LoginPage.scss'
 
 import LoginCard from './LoginCard';
+import RegisterCard from './RegisterCard';
 
 function LoginPage() {
     const [isLoggined, setIsLoggined] = useState<Boolean>(false);
-    const [isRegister, setIsRegister] = useState<Boolean>(false);
+    const [isRegister, setIsRegister] = useState<Boolean>(true);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -18,9 +19,9 @@ function LoginPage() {
     return (
         <div className={stl.mainContainer}>
             {!isRegister ? 
-                <LoginCard />
+                <LoginCard setIsRegister={setIsRegister}/>
                 :
-                <h1>Register</h1>
+                <RegisterCard setIsRegister={setIsRegister}/>
             }
         </div>
     )
