@@ -1,4 +1,5 @@
 import { AllUsersTablesRows, UsersTablesNames } from '../../models/AllUsersTablesRows';
+import SessionTable from '../../models/SessionTable';
 import UsersTable from '../../models/UsersTable';
 import DatabaseController from './DatabaseController';
 

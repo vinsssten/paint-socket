@@ -48,6 +48,11 @@ export default class AuthRouterController {
 
     async refresh(req: Request, res: Response, next: NextFunction) {
         try {
+            const {refreshToken} = req.cookies;
+            const newTokens = await new TokenService().refreshToken(refreshToken);
+            res.clearCookie('refreshToken');
+            res.cookie('refreshToken', newTokens.refreshToken, {maxAge: 1000 * 30 * 24 * 60 * 60, httpOnly: true})
+            res.send({accessToken: newTokens.accessToken});
         } catch (error) {
             next(error);
         }

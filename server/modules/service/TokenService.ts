@@ -11,12 +11,36 @@ export interface Tokens {
     refreshToken: string
 }
 
+export interface TokenPayload {
+    id: string,
+    login: string
+}
+
 class TokenService {
-    generateTokens (payload: object): Tokens {
+    generateTokens (id: string, login: string): Tokens {
+        const payload: TokenPayload = {id: id, login: login}
         const accessToken: string = jwt.sign(payload, process.env.JWT_ACCESS_SECRET, {expiresIn: '30m'})
         const refreshToken: string = jwt.sign(payload, process.env.JWT_REFRESH_SECRET, {expiresIn: '30d'})
 
         return {accessToken, refreshToken}
+    }
+
+    validateAccessToken (token: string) {
+        try {
+            const userData = jwt.verify(token, process.env.JWT_ACCESS_SECRET);
+            return userData;
+        } catch (error) {
+            return null;
+        }
+    }
+
+    validateRefreshToken (token: string) {
+        try {
+            const userData = jwt.verify(token, process.env.JWT_REFRESH_SECRET);
+            return userData;
+        } catch (error) {
+            return null;
+        }
     }
 
     tokenSaveToDB = (id: string, refreshToken: string) => 
@@ -85,6 +109,30 @@ class TokenService {
             db.close();
         } catch (error) {
             console.log('low level catch'.red)
+            reject(error);
+        }
+    });
+
+    refreshToken = (refreshToken: string) =>  
+    new Promise<Tokens>(async (resolve, reject) => {
+        try {
+            const databaseGetter = new DatabaseGetter();
+            if (!refreshToken) {
+                throw ApiError.UnauthorizeError();
+            }
+            const userDataPayload = this.validateRefreshToken(refreshToken);
+            const tokenFromDb = await databaseGetter.getRowByField('Sessions', 'refreshToken', refreshToken);
+            if (!userDataPayload && tokenFromDb.length > 0) {
+                throw ApiError.UnauthorizeError();
+            }
+            
+            const userDataFromDb = await databaseGetter.getRowByField('Users', 'id', tokenFromDb[0].id);
+            const {accessToken: newAccess, refreshToken: newRefresh} = this.generateTokens(userDataFromDb[0].id, userDataFromDb[0].login);
+            const saveToken = await this.tokenSaveToDB(userDataFromDb[0].id, newRefresh);
+            console.log(`Refresh token to ${userDataFromDb[0].id}`.bgGreen)
+            resolve({accessToken: newAccess, refreshToken: newRefresh});
+
+        } catch (error) {
             reject(error);
         }
     });

@@ -17,7 +17,7 @@ class AuthController extends DatabaseGetter {
     private login = (user: UsersTable) => new Promise<Tokens>(async (resolve, reject) => {
         try {   
             const tokenService = new TokenService();
-            const {accessToken, refreshToken} = await tokenService.generateTokens({id: user.id, login: user.login});
+            const {accessToken, refreshToken} = await tokenService.generateTokens(user.id, user.login);
             if (await tokenService.tokenSaveToDB(user.id, refreshToken)) {
                 resolve({accessToken, refreshToken})
             }
@@ -30,7 +30,7 @@ class AuthController extends DatabaseGetter {
         try {   
             const db = await this.connect();
 
-            const currentUser: UsersTable[] = await this.getRowByField('Users', 'login', login);
+            const currentUser = await this.getRowByField('Users', 'login', login);
             if (currentUser.length === 0) {
                 console.log('user with this login is was not found')
                 reject(ApiError.BadRequest('Incorrect login or password'))
