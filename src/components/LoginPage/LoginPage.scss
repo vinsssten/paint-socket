@@ -26,7 +26,7 @@
     @include flexCenter;
     @include glassButton_main;
     @include fontSemiBold-dark;
-    margin-top: 15px;
+    margin: 15px 0 5px 0;
     font-size: 20px;
     width: 50%;
     height: 40px;
@@ -40,8 +40,9 @@
 
 .textAdditional {
     margin: 0;
-    margin-top: 20px;
+    margin-top: 10px;
     @include fontLight-light;
     text-decoration: underline;
     color: $bgColor_mainButton;
+    cursor: pointer;
 }

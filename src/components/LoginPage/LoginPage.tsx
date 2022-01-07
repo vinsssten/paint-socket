@@ -7,7 +7,7 @@ import RegisterCard from './RegisterCard';
 
 function LoginPage() {
     const [isLoggined, setIsLoggined] = useState<Boolean>(false);
-    const [isRegister, setIsRegister] = useState<Boolean>(true);
+    const [isRegister, setIsRegister] = useState<Boolean>(false);
     const navigate = useNavigate();
 
     useEffect(() => {
