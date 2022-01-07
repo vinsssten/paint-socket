@@ -4,6 +4,7 @@ import stl from './LoginPage.scss';
 
 import LoginCard from './LoginCard';
 import RegisterCard from './RegisterCard';
+import ToLocalDrawingCard from './ToLocalDrawingCard';
 
 function LoginPage() {
     const [isLoggined, setIsLoggined] = useState<Boolean>(false);
@@ -19,7 +20,10 @@ function LoginPage() {
     return (
         <div className={stl.mainContainer}>
             {!isRegister ? (
-                <LoginCard setIsRegister={setIsRegister} />
+                <div className={stl.mainContainer}>
+                    <LoginCard setIsRegister={setIsRegister} />
+                    <ToLocalDrawingCard />
+                </div>
             ) : (
                 <RegisterCard setIsRegister={setIsRegister} />
             )}

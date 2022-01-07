@@ -2,6 +2,7 @@
 
 .mainContainer {
     @include flexCenter;
+    flex-direction: column;
     height: 100vh;
     width: 100vw;
 }
@@ -10,9 +11,10 @@
     @include flexCenter;
     @include glassContainer;
     flex-direction: column;
-    padding: 40px 0;
+    padding: 40px 50px;
     width: 500px;
     background: $bgColor_card-light;
+    box-sizing: border-box;
 }
 
 .inputContainer {
@@ -36,6 +38,7 @@
 .textHead {
     @include fontBold-light;
     text-shadow: $textShadow-light;
+    text-align: center;
 }
 
 .textAdditional {
