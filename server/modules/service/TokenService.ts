@@ -3,9 +3,15 @@ import DatabaseGetter from "../controllers/DatabaseGetter";
 
 const jwt = require('jsonwebtoken');
 const colors = require('colors');
+const dotenv = require('dotenv').config();
+
+export interface Tokens {
+    accessToken: string, 
+    refreshToken: string
+}
 
 class TokenService {
-    generateTokens (payload: string) {
+    generateTokens (payload: object): Tokens {
         const accessToken: string = jwt.sign(payload, process.env.JWT_ACCESS_SECRET, {expiresIn: '30m'})
         const refreshToken: string = jwt.sign(payload, process.env.JWT_REFRESH_SECRET, {expiresIn: '30d'})
 

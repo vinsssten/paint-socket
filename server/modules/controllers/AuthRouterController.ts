@@ -1,17 +1,12 @@
 import { NextFunction, Request, Response } from 'express';
 import { Database } from 'sqlite3';
-import TokenService from '../service/TokenService';
+import TokenService, { Tokens } from '../service/TokenService';
 import AuthController from './AuthController';
 
 interface AuthParams {
     req: Request;
     res: Response;
     next: NextFunction;
-}
-
-interface Tokens {
-    access: string, 
-    refresh: string
 }
 
 type DB = Database | PromiseLike<Database>;
@@ -32,7 +27,9 @@ export default class AuthRouterController {
 
     async login(req: Request, res: Response, next: NextFunction) {
         try {
-            const {access, refresh}: Tokens = await new AuthController().login(req.body);
+            const {accessToken, refreshToken}: Tokens = await new AuthController().loginMain(req.body);
+            res.cookie('refresh', refreshToken, {maxAge: 1000 * 30 * 24 * 60 * 60, httpOnly: true, secure: true})
+            res.send({accessToken: accessToken});
         } catch (error) {
             next(error);
         }
