@@ -4,8 +4,8 @@ import app from './reducers/app';
 import drawing from './reducers/drawing';
 
 const rootReducer = combineReducers({
-	app: app,
-	drawing: drawing,
+    app: app,
+    drawing: drawing,
 });
 
 const store = createStore(rootReducer, composeWithDevTools());

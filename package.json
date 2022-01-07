@@ -11,7 +11,8 @@
     "build:serve": "npm run prebuild && npm run build && npx serve -s build",
     "prettier": "npx prettier \"./**/*.{js,ts,jsx,tsx,scss,css}\" --write -u",
     "server": "npm run build && cd ./server && ts-node index.ts",
-    "server:dev": "npm run build:dev && cd ./server && ts-node-dev index.ts --respawn --rs"
+    "server:dev": "npm run build:dev && cd ./server && ts-node-dev index.ts --respawn --rs",
+    "api": "cd ./server && ts-node-dev index.ts --respawn --rs"
   },
   "author": "vinsssten",
   "license": "ISC",
@@ -23,7 +24,8 @@
     ]
   },
   "dependencies": {
-    "@types/node-sass": "^4.11.2"
+    "@types/node-sass": "^4.11.2",
+    "colors": "^1.4.0"
   },
   "devDependencies": {
     "@babel/core": "^7.16.5",
@@ -36,13 +38,18 @@
     "@types/react": "^17.0.38",
     "@types/react-dom": "^17.0.11",
     "@types/react-redux": "^7.1.21",
+    "@types/sqlite3": "^3.1.8",
     "babel": "^6.23.0",
     "babel-loader": "^8.2.3",
     "bcrypt": "^5.0.1",
     "classnames": "^2.3.1",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
     "css-loader": "^6.5.1",
     "del-cli": "^4.0.1",
+    "dotenv": "^10.0.0",
     "express-history-api-fallback": "^2.2.1",
+    "express-validator": "^6.14.0",
     "file-loader": "^6.2.0",
     "html-webpack-plugin": "^5.5.0",
     "jsonwebtoken": "^8.5.1",
@@ -59,10 +66,12 @@
     "sass-loader": "^12.4.0",
     "socket.io": "^4.4.0",
     "socket.io-client": "^4.4.0",
+    "sqlite3": "^5.0.2",
     "style-loader": "^3.3.1",
     "ts-node": "^10.4.0",
     "ts-node-dev": "^1.1.8",
     "typescript": "^4.5.4",
+    "uuid": "^8.3.2",
     "webpack": "^5.65.0",
     "webpack-cli": "^4.9.1",
     "webpack-dev-server": "^4.7.1"

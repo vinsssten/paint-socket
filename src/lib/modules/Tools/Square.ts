@@ -1,78 +1,84 @@
 import Tool from './Tool';
 
 class Square extends Tool {
-	private isMouseDown: boolean;
-	private startX?: number;
-	private startY?: number;
-	private savedData?: string;
+    private isMouseDown: boolean;
+    private startX?: number;
+    private startY?: number;
+    private savedData?: string;
 
-	constructor(canvas: ICanvas) {
-		super(canvas);
-		this.handleEvents();
-		this.isMouseDown = false;
-	}
+    constructor(canvas: ICanvas) {
+        super(canvas);
+        this.handleEvents();
+        this.isMouseDown = false;
+    }
 
-	set setColor(brushColor: string) {
-		this.context!.fillStyle = brushColor;
-	}
+    set setColor(brushColor: string) {
+        this.context!.fillStyle = brushColor;
+    }
 
-	handleEvents() {
-		this.canvas.onmousedown = this.onMouseDown.bind(this);
-		this.canvas.onmouseup = this.onMouseUp.bind(this);
-		this.canvas.onmousemove = this.onMouseMove.bind(this);
-		this.canvas.onmouseleave = this.onMouseLeave.bind(this);
-		this.canvas.onmouseenter = this.onMouseEnter.bind(this);
-	}
+    handleEvents() {
+        this.canvas.onmousedown = this.onMouseDown.bind(this);
+        this.canvas.onmouseup = this.onMouseUp.bind(this);
+        this.canvas.onmousemove = this.onMouseMove.bind(this);
+        this.canvas.onmouseleave = this.onMouseLeave.bind(this);
+        this.canvas.onmouseenter = this.onMouseEnter.bind(this);
+    }
 
-	onMouseDown(event: MouseEventCanvas) {
-		this.isMouseDown = true;
-		const curCoord = this.getCurCoord(event);
-		this.startX = curCoord.x;
-		this.startY = curCoord.y;
-		this.context?.moveTo(curCoord.x, curCoord.y);
-		this.savedData = this.canvas.toDataURL();
-	}
+    onMouseDown(event: MouseEventCanvas) {
+        this.isMouseDown = true;
+        const curCoord = this.getCurCoord(event);
+        this.startX = curCoord.x;
+        this.startY = curCoord.y;
+        this.context?.moveTo(curCoord.x, curCoord.y);
+        this.savedData = this.canvas.toDataURL();
+    }
 
-	onMouseUp() {
-		this.isMouseDown = false;
-	}
+    onMouseUp() {
+        this.isMouseDown = false;
+    }
 
-	onMouseMove(event: MouseEventCanvas) {
-		if (this.isMouseDown) {
-			const curCoord = this.getCurCoord(event);
-			if (this.startX && this.startY) {
-				const width = curCoord.x - this.startX;
-				const height = curCoord.y - this.startY;
-				this.draw(this.startX, this.startY, width, height);
-			}
-		}
-	}
+    onMouseMove(event: MouseEventCanvas) {
+        if (this.isMouseDown) {
+            const curCoord = this.getCurCoord(event);
+            if (this.startX && this.startY) {
+                const width = curCoord.x - this.startX;
+                const height = curCoord.y - this.startY;
+                this.draw(this.startX, this.startY, width, height);
+            }
+        }
+    }
 
-	onMouseLeave() {
-		// this.isMouseDown = false;
-	}
+    onMouseLeave() {
+        // this.isMouseDown = false;
+    }
 
-	onMouseEnter(event: MouseEventCanvas) {
-		if (event.buttons === 1) {
-			this.isMouseDown = true;
-			const curCoord = this.getCurCoord(event);
-			this.context?.moveTo(curCoord.x, curCoord.y);
-		}
-	}
+    onMouseEnter(event: MouseEventCanvas) {
+        if (event.buttons === 1) {
+            this.isMouseDown = true;
+            const curCoord = this.getCurCoord(event);
+            this.context?.moveTo(curCoord.x, curCoord.y);
+        }
+    }
 
-	draw(startX: number, startY: number, width: number, height: number) {
-		if (this.savedData) {
-			const image = new Image();
-			image.src = this.savedData;
-			image.onload = () => {
-				this.context?.clearRect(0, 0, this.canvas.width, this.canvas.height);
-				this.context?.drawImage(image, 0, 0, this.canvas.width, this.canvas.height);
-				this.context?.beginPath();
-				this.context?.fillRect(startX, startY, width, height);
-				this.context?.stroke();
-			};
-		}
-	}
+    draw(startX: number, startY: number, width: number, height: number) {
+        if (this.savedData) {
+            const image = new Image();
+            image.src = this.savedData;
+            image.onload = () => {
+                this.context?.clearRect(0, 0, this.canvas.width, this.canvas.height);
+                this.context?.drawImage(
+                    image,
+                    0,
+                    0,
+                    this.canvas.width,
+                    this.canvas.height,
+                );
+                this.context?.beginPath();
+                this.context?.fillRect(startX, startY, width, height);
+                this.context?.stroke();
+            };
+        }
+    }
 }
 
 export default Square;

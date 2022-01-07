@@ -1,19 +1,19 @@
 @font-face {
-	font-family: 'Cabin';
-	src: url('/public/fonts/Cabin-Regular.ttf');
-	font-weight: 400;
+    font-family: 'Cabin';
+    src: url('/public/fonts/Cabin-Regular.ttf');
+    font-weight: 400;
 }
 
 @font-face {
-	font-family: 'Cabin';
-	src: url('/public/fonts/Cabin-SemiBold.ttf');
-	font-weight: 500;
+    font-family: 'Cabin';
+    src: url('/public/fonts/Cabin-SemiBold.ttf');
+    font-weight: 500;
 }
 
 @font-face {
-	font-family: 'Cabin';
-	src: url('/public/fonts/Cabin-Bold.ttf');
-	font-weight: 600;
+    font-family: 'Cabin';
+    src: url('/public/fonts/Cabin-Bold.ttf');
+    font-weight: 600;
 }
 
 $backgroundColor_primary-light: #d3cccc;
@@ -24,39 +24,39 @@ $backgroundColor_menu-light: #ffffffc2;
 $backgroundColor_menuHover-light: #c8c8c8a1;
 
 @mixin flexCenter {
-	display: flex;
-	justify-content: center;
-	align-items: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 @mixin fontRegular-light {
-	font-family: 'Cabin';
-	font-weight: 400;
-	color: black;
+    font-family: 'Cabin';
+    font-weight: 400;
+    color: black;
 }
 
 @mixin fontBold-light {
-	font-family: 'Cabin';
-	font-weight: 600;
-	color: black;
+    font-family: 'Cabin';
+    font-weight: 600;
+    color: black;
 }
 
 @mixin fontRegular-dark {
-	font-family: 'Cabin';
-	font-weight: 400;
-	color: white;
+    font-family: 'Cabin';
+    font-weight: 400;
+    color: white;
 }
 
 @mixin fontBold-dark {
-	font-family: 'Cabin';
-	font-weight: 600;
-	color: white;
+    font-family: 'Cabin';
+    font-weight: 600;
+    color: white;
 }
 
 body {
-	margin: 0;
-	padding: 0;
-	background-color: $backgroundColor_primary-light;
+    margin: 0;
+    padding: 0;
+    background-color: $backgroundColor_primary-light;
 }
 
 h1,
@@ -64,23 +64,23 @@ h2,
 h3,
 h4,
 h5 {
-	margin: 0;
-	padding: 0;
+    margin: 0;
+    padding: 0;
 }
 
 ::-webkit-scrollbar {
-	width: 6px;
-	height: 6px;
+    width: 6px;
+    height: 6px;
 }
 ::-webkit-scrollbar-thumb {
-	background: #a6a6a6;
-	border-radius: 30px;
+    background: #a6a6a6;
+    border-radius: 30px;
 }
 ::-webkit-scrollbar-thumb:hover {
-	background: #3d3d3d;
+    background: #3d3d3d;
 }
 ::-webkit-scrollbar-track {
-	background: #f0f0f0;
-	border-radius: 30px;
-	box-shadow: inset 0.8px 0px 0px 0px #ffffff;
+    background: #f0f0f0;
+    border-radius: 30px;
+    box-shadow: inset 0.8px 0px 0px 0px #ffffff;
 }
