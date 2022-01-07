@@ -10,7 +10,7 @@
     @include flexCenter;
     @include glassContainer;
     flex-direction: column;
-    height: 300px;
+    padding: 40px 0;
     width: 500px;
     background: $bgColor_card-light;
 }
@@ -40,7 +40,8 @@
 
 .textAdditional {
     margin: 0;
-    margin-top: 10px;
+    margin-top: 20px;
     @include fontLight-light;
+    text-decoration: underline;
     color: $bgColor_mainButton;
 }
