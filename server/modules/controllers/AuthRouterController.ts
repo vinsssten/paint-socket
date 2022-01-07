@@ -12,9 +12,7 @@ interface AuthParams {
 type DB = Database | PromiseLike<Database>;
 
 export default class AuthRouterController {
-
-    constructor() {
-    }
+    constructor() {}
 
     async registration(req: Request, res: Response, next: NextFunction) {
         try {
@@ -27,9 +25,13 @@ export default class AuthRouterController {
 
     async login(req: Request, res: Response, next: NextFunction) {
         try {
-            const {accessToken, refreshToken}: Tokens = await new AuthController().loginMain(req.body);
-            res.cookie('refreshToken', refreshToken, {maxAge: 1000 * 30 * 24 * 60 * 60, httpOnly: true})
-            res.send({accessToken: accessToken});
+            const { accessToken, refreshToken }: Tokens =
+                await new AuthController().loginMain(req.body);
+            res.cookie('refreshToken', refreshToken, {
+                maxAge: 1000 * 30 * 24 * 60 * 60,
+                httpOnly: true,
+            });
+            res.send({ accessToken: accessToken });
         } catch (error) {
             next(error);
         }
@@ -37,7 +39,7 @@ export default class AuthRouterController {
 
     async logout(req: Request, res: Response, next: NextFunction) {
         try {
-            const {refreshToken} = req.cookies;
+            const { refreshToken } = req.cookies;
             const logoutMessage = await new AuthController().logout(refreshToken);
             res.clearCookie('refreshToken');
             res.send(logoutMessage);
@@ -48,11 +50,14 @@ export default class AuthRouterController {
 
     async refresh(req: Request, res: Response, next: NextFunction) {
         try {
-            const {refreshToken} = req.cookies;
+            const { refreshToken } = req.cookies;
             const newTokens = await new TokenService().refreshToken(refreshToken);
             res.clearCookie('refreshToken');
-            res.cookie('refreshToken', newTokens.refreshToken, {maxAge: 1000 * 30 * 24 * 60 * 60, httpOnly: true})
-            res.send({accessToken: newTokens.accessToken});
+            res.cookie('refreshToken', newTokens.refreshToken, {
+                maxAge: 1000 * 30 * 24 * 60 * 60,
+                httpOnly: true,
+            });
+            res.send({ accessToken: newTokens.accessToken });
         } catch (error) {
             next(error);
         }

@@ -5,7 +5,7 @@ import TokenService from '../service/TokenService';
 
 var colors: Color = require('colors');
 
-function AuthMiddleware (req: Request, res: Response, next: NextFunction) {
+function AuthMiddleware(req: Request, res: Response, next: NextFunction) {
     try {
         const authHeader = req.headers.authorization;
         if (!authHeader) {
@@ -29,4 +29,4 @@ function AuthMiddleware (req: Request, res: Response, next: NextFunction) {
     }
 }
 
-export default AuthMiddleware
+export default AuthMiddleware;

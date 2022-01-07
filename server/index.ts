@@ -6,7 +6,7 @@ import apiRouter from './modules/route/apiRouter';
 declare global {
     namespace Express {
         interface Request {
-            user: any
+            user: any;
         }
     }
 }
@@ -24,8 +24,8 @@ const root = path.join(__dirname, '../') + 'build';
 app.use(express.static(root));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cors())
-app.use(cookieParser())
+app.use(cors());
+app.use(cookieParser());
 app.use('/api/auth', apiRouter);
 app.use(errorMiddleware);
 
