@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router';
 import stl from './LoginPage.scss';
 
 import LoginCard from './LoginCard';
-import RegisterCard from './RegisterCard';
+import RegisterCard from './RegisterPage/RegisterCard';
 import ToLocalDrawingCard from './ToLocalDrawingCard';
 import useAuth from '../../lib/hooks/useAuth';
 
@@ -20,15 +20,11 @@ function LoginPage() {
     }, [isAuth]);
 
     return (
-        <div className={stl.mainContainer}>
-            {!isRegister ? (
-                <div className={stl.mainContainer}>
-                    <LoginCard setIsRegister={setIsRegister} />
-                    <ToLocalDrawingCard />
-                </div>
-            ) : (
-                <RegisterCard setIsRegister={setIsRegister} />
-            )}
+        <div className={stl.mainContainer}>   
+            <div className={stl.mainContainer}>
+                <LoginCard setIsRegister={setIsRegister} />
+                <ToLocalDrawingCard />
+            </div>
         </div>
     );
 }

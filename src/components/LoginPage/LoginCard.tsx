@@ -3,7 +3,9 @@ import useAuth from '../../lib/hooks/useAuth';
 import SignInInput from '../Inputs/SignInInput';
 import ButtonLoginPage from './ButtonLoginPage';
 import stl from './LoginPage.scss';
-import WarningListCard from '../WarningCards/WarningListCard';
+import WarningListCard from '../Cards/WarningCards/WarningListCard';
+import { Link } from 'react-router-dom';
+import EmptyCard from '../Cards/EmptyCard';
 
 interface Props {
     setIsRegister: React.Dispatch<React.SetStateAction<Boolean>>;
@@ -20,36 +22,33 @@ const LoginCard: FC<Props> = ({ setIsRegister }) => {
         }
     }
 
-    function changeCard() {
-        setIsRegister(true);
-    }
-
     return (
-        <div className={stl.cardContainer}>
-            <h1 className={stl.textHead}>Sign in</h1>
-            <div className={stl.inputContainer}>
-                <SignInInput
-                    placeholder="Login"
-                    isSecure={false}
-                    value={login}
-                    inputHandle={setLogin}
-                />
-                <SignInInput
-                    placeholder="Password"
-                    isSecure={true}
-                    value={password}
-                    inputHandle={setPassword}
-                />
+        <EmptyCard>
+            <div className={stl.cardContainer}>
+                <h1 className={stl.textHead}>Sign in</h1>
+                <div className={stl.inputContainer}>
+                    <SignInInput
+                        placeholder="Login"
+                        isSecure={false}
+                        value={login}
+                        inputHandle={setLogin}
+                    />
+                    <SignInInput
+                        placeholder="Password"
+                        isSecure={true}
+                        value={password}
+                        inputHandle={setPassword}
+                    />
+                </div>
+                <WarningListCard isVisible={loginErrorMessage != null} header={loginErrorMessage} />
+                <ButtonLoginPage text="Sign in" action={handleLogin} />
+                <Link className={stl.textAdditional} to='/signup'>Registration</Link>
+                <Link className={stl.textAdditional} to='/signup'>Forgot my password</Link>
             </div>
-            <WarningListCard isVisible={loginErrorMessage != null} header={loginErrorMessage} />
-            <ButtonLoginPage text="Sign in" action={handleLogin} />
-            <p onClick={changeCard} className={stl.textAdditional}>
-                Registration
-            </p>
-            <p onClick={changeCard} className={stl.textAdditional}>
-                Forgot my password
-            </p>
-        </div>
+        </EmptyCard>
+        
+           
+        
     );
 };
 

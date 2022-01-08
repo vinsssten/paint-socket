@@ -10,7 +10,8 @@
 .cardContainer {
     @include flexCenter;
     flex-direction: column;
-    padding: 40px 150px;
+    width: 500px;
+    padding: 30px 0;
 }
 
 .inputContainer {

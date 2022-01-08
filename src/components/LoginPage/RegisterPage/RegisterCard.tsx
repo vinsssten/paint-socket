@@ -1,12 +1,13 @@
-import React, { FC, useEffect, useState } from 'react';
-import EmptyCard from '../Cards/EmptyCard';
-import SignInInput from '../Inputs/SignInInput';
-import WarningListCard from '../WarningCards/WarningListCard';
-import ButtonLoginPage from './ButtonLoginPage';
-import stl from './LoginPage.scss';
+import React, { FC, useState } from 'react';
+import EmptyCard from '../../Cards/EmptyCard';
+import SignInInput from '../../Inputs/SignInInput';
+import WarningListCard from '../../Cards/WarningCards/WarningListCard';
+import ButtonLoginPage from '../ButtonLoginPage';
+import stl from '../LoginPage.scss';
+import { Link } from 'react-router-dom';
 
 interface Props {
-    setIsRegister: React.Dispatch<React.SetStateAction<Boolean>>;
+    
 }
 
 export interface InputProps {
@@ -17,7 +18,7 @@ export interface InputProps {
 }
 
 //TODO: Need to refactor
-const RegisterCard: FC<Props> = ({ setIsRegister }) => {
+const RegisterCard: FC<Props> = ({  }) => {
     const [login, setLogin] = useState<string>('');
     const [username, setUsername] = useState<string>('');
     const [password, setPassword] = useState<string>('');
@@ -46,10 +47,6 @@ const RegisterCard: FC<Props> = ({ setIsRegister }) => {
         }
     }
 
-    function changeCard() {
-        setIsRegister(false);
-    }
-
     return (
         <EmptyCard>
             <div className={stl.cardContainer}>
@@ -67,9 +64,7 @@ const RegisterCard: FC<Props> = ({ setIsRegister }) => {
                 </div>
                 <WarningListCard isVisible={isVisibleWarningCard} preset='RegistrationFields'/>
                 <ButtonLoginPage text="Sign in" action={handleRegister} />
-                <p onClick={changeCard} className={stl.textAdditional}>
-                    Go back to login
-                </p>
+                <Link className={stl.textAdditional} to='/signin'>Go to login</Link>
             </div>
         </EmptyCard>
     );

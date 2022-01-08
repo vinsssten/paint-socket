@@ -1,5 +1,5 @@
 import React, { ChangeEventHandler, FC } from 'react';
-import { InputProps } from '../LoginPage/RegisterCard';
+import { InputProps } from '../LoginPage/RegisterPage/RegisterCard';
 import stl from './Inputs.scss';
 
 const SignInInput: FC<InputProps> = ({ placeholder, isSecure, value, inputHandle }) => {
