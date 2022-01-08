@@ -10,14 +10,14 @@ import useAuth from '../../lib/hooks/useAuth';
 //FIXME: Regenerator runtime error
 function LoginPage() {
     const { isAuth } = useAuth();
-    const [isRegister, setIsRegister] = useState<Boolean>(true);
+    const [isRegister, setIsRegister] = useState<Boolean>(false);
     const navigate = useNavigate();
 
     useEffect(() => {
         if (isAuth) {
             navigate('/mainpage');
         }
-    }, []);
+    }, [isAuth]);
 
     return (
         <div className={stl.mainContainer}>

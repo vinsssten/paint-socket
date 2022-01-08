@@ -10,21 +10,22 @@ function useAuth () {
     const dispatch = useDispatch();
 
     useEffect(() => {
-
+        
     }, [])
 
 
     async function login (login: string, password: string) {
         try {
             const response = await AuthService.login(login, password);
-            localStorage.setItem('token', response.data.token);
+            console.log('login response', response)
+            localStorage.setItem('token', response.data.accessToken);
             dispatch(setAuth(true));
         } catch (error) {
             console.log('auth error', error)
         }
     }
 
-    return {isAuth}
+    return {isAuth, login}
 }
 
 export default useAuth

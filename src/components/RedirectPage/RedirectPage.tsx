@@ -1,16 +1,15 @@
 import React, { FC, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
+import { useAppSelector } from '../..';
 
 interface Props {}
 
 const RedirectPage: FC<Props> = ({}) => {
-    const [isLoggined, setIsLoggined] = useState(false);
+    const {isAuth} = useAppSelector(state => state.auth);
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (!isLoggined) {
-            navigate('/signin');
-        }
+        navigate('/mainpage');
     }, []);
     return <div></div>;
 };

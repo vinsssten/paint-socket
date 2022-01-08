@@ -1,4 +1,5 @@
 import React, { FC, useState } from 'react';
+import useAuth from '../../lib/hooks/useAuth';
 import SignInInput from '../Inputs/SignInInput';
 import ButtonLoginPage from './ButtonLoginPage';
 import stl from './LoginPage.scss';
@@ -8,12 +9,13 @@ interface Props {
 }
 
 const LoginCard: FC<Props> = ({ setIsRegister }) => {
+    const {login: loginFunc} = useAuth();
     const [login, setLogin] = useState<string>('');
     const [password, setPassword] = useState<string>('');
 
     function handleLogin () {
         if (login != '' && password != '') {
-            console.log('login');
+            loginFunc(login, password);
         }
     }
 
