@@ -23,6 +23,11 @@ const WarningListCard: FC<Props> = ({ isVisible, header, subElements, preset }) 
         }
     }, [])
 
+    useEffect(() => {
+        setHeaderDisplayed(header);
+        setSubElementsDisplayed(subElementsDisplayed);
+    }, [header, subElementsDisplayed])
+
     if (isVisible) {
         return (
             <div className={stl.listCard}>   
