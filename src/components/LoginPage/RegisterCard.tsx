@@ -1,6 +1,6 @@
 import React, { FC, useEffect, useState } from 'react';
 import SignInInput from '../Inputs/SignInInput';
-import WarningListCard from './WarningListCard';
+import WarningListCard from '../WarningCards/WarningListCard';
 import ButtonLoginPage from './ButtonLoginPage';
 import stl from './LoginPage.scss';
 
@@ -39,10 +39,6 @@ const RegisterCard: FC<Props> = ({ setIsRegister }) => {
             setWarningsHeader('');
             if (login.length < 5 || username.length < 4 || password.length < 6 || rpassword != rpassword) {
                 setIsVisibleWarningCard(true);
-                setWarningsHeader('Be careful!')
-                setWarningsList(['The login must be at least 5 characters long, and be unique', 
-                'The username must be at least 4 characters long', 
-                'The username must be complex, and no shorter than 5 characters']);
             } else {
                 console.log('register');
             }
@@ -72,7 +68,7 @@ const RegisterCard: FC<Props> = ({ setIsRegister }) => {
                         />
                     ))}
                 </div>
-                <WarningListCard isVisible={isVisibleWarningCard} header={warningsHeader} subElements={warningsList}/>
+                <WarningListCard isVisible={isVisibleWarningCard} preset='RegistrationFields'/>
                 <ButtonLoginPage text="Sign in" action={handleRegister} />
                 <p onClick={changeCard} className={stl.textAdditional}>
                     Go back to login

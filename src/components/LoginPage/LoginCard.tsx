@@ -3,7 +3,7 @@ import useAuth from '../../lib/hooks/useAuth';
 import SignInInput from '../Inputs/SignInInput';
 import ButtonLoginPage from './ButtonLoginPage';
 import stl from './LoginPage.scss';
-import WarningListCard from './WarningListCard';
+import WarningListCard from '../WarningCards/WarningListCard';
 
 interface Props {
     setIsRegister: React.Dispatch<React.SetStateAction<Boolean>>;
