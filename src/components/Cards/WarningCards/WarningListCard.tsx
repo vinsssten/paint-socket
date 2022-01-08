@@ -21,11 +21,13 @@ const WarningListCard: FC<Props> = ({ isVisible, header, subElements, preset }) 
             'The username must be at least 4 characters long', 
             'The username must be complex, and no shorter than 5 characters']);
         }
-    }, [])
+    }, [preset])
 
     useEffect(() => {
-        setHeaderDisplayed(header);
-        setSubElementsDisplayed(subElementsDisplayed);
+        if (!preset) {
+            setHeaderDisplayed(header);
+            setSubElementsDisplayed(subElementsDisplayed);
+        }
     }, [header, subElementsDisplayed])
 
     if (isVisible) {
@@ -33,7 +35,7 @@ const WarningListCard: FC<Props> = ({ isVisible, header, subElements, preset }) 
             <div className={stl.listCard}>   
                 <h3>{headerDisplayed}</h3>
                 <ul>
-                    {subElementsDisplayed?.map((value, index) => <li>{value}</li>)}
+                    {subElementsDisplayed?.map((value, index) => <li key={index}>{value}</li>)}
                 </ul>
             </div>
         )
