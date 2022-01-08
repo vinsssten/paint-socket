@@ -1,4 +1,5 @@
 import React, { FC, useEffect, useState } from 'react';
+import EmptyCard from '../Cards/EmptyCard';
 import SignInInput from '../Inputs/SignInInput';
 import WarningListCard from '../WarningCards/WarningListCard';
 import ButtonLoginPage from './ButtonLoginPage';
@@ -23,8 +24,6 @@ const RegisterCard: FC<Props> = ({ setIsRegister }) => {
     const [rpassword, setRPassword] = useState<string>('');
 
     const [isVisibleWarningCard, setIsVisibleWarningCard] = useState<boolean>(false);
-    const [warningsHeader, setWarningsHeader] = useState<string>('');
-    const [warningsList, setWarningsList] = useState<string[]>([]);
 
     const inputsArray: InputProps[] = [
         { placeholder: 'Login', isSecure: false, value: login, inputHandle: setLogin },
@@ -36,7 +35,6 @@ const RegisterCard: FC<Props> = ({ setIsRegister }) => {
 
     function handleRegister () {
         if (login != '' && username !== '' && password != '' && rpassword != '') {
-            setWarningsHeader('');
             if (login.length < 5 || username.length < 4 || password.length < 6 || rpassword != rpassword) {
                 setIsVisibleWarningCard(true);
             } else {
@@ -44,7 +42,6 @@ const RegisterCard: FC<Props> = ({ setIsRegister }) => {
             }
 
         } else {
-            setWarningsHeader('All fields must be filled in!');
             setIsVisibleWarningCard(true);
         }
     }
@@ -54,7 +51,7 @@ const RegisterCard: FC<Props> = ({ setIsRegister }) => {
     }
 
     return (
-        <div>
+        <EmptyCard>
             <div className={stl.cardContainer}>
                 <h1 className={stl.textHead}>Sign up</h1>
                 <div className={stl.inputContainer}>
@@ -74,7 +71,7 @@ const RegisterCard: FC<Props> = ({ setIsRegister }) => {
                     Go back to login
                 </p>
             </div>
-        </div>
+        </EmptyCard>
     );
 };
 

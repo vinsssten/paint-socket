@@ -9,12 +9,8 @@
 
 .cardContainer {
     @include flexCenter;
-    @include glassContainer;
     flex-direction: column;
-    padding: 40px 50px;
-    width: 500px;
-    background: $bgColor_card-light;
-    box-sizing: border-box;
+    padding: 40px 150px;
 }
 
 .inputContainer {

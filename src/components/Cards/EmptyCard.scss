@@ -1,0 +1,9 @@
+@import '../../index.scss';
+
+.glassCard {
+    @include flexCenter;
+    @include glassContainer;
+    flex-direction: column;
+    background: $bgColor_card-light;
+    box-sizing: border-box;
+}
