@@ -1,0 +1,24 @@
+@import '../../index.scss';
+
+$shadow_input: #959da533 0px 8px 24px;
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    width: 100%;
+}
+
+.authInput {
+    @include fontLight-light;
+    height: 30px;
+    width: 100%;
+    padding-left: 5px;
+    margin: 5px 0;
+    box-shadow: $shadow_input;
+    border: 1px solid #00000075;
+    border-radius: 5px;
+    font-size: 20px;
+    outline: none;
+}

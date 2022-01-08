@@ -1,0 +1,56 @@
+@import '../../index.scss';
+
+.mainContainer {
+    @include flexCenter;
+    flex-direction: column;
+    height: 100vh;
+    width: 100vw;
+}
+
+.cardContainer {
+    @include flexCenter;
+    flex-direction: column;
+    width: 500px;
+    padding: 30px;
+}
+
+.localDrawingContainer {
+    @include flexCenter;
+    flex-direction: column;
+    width: 500px;
+    padding: 40px 0;
+}
+
+.inputContainer {
+    display: flex;
+    flex-direction: column;
+    // height: 80px;
+    width: 60%;
+}
+
+.textHead {
+    @include fontBold-light;
+    text-shadow: $textShadow-light;
+    text-align: center;
+}
+
+.textHeadGreen {
+    @include fontBold-light;
+    text-align: center;
+    color: #065306cc;
+}
+
+.textAdditional {
+    margin: 0;
+    margin-top: 10px;
+    @include fontLight-light;
+    text-decoration: underline;
+    color: $bgColor_mainButton;
+    cursor: pointer;
+}
+
+.greenLink {
+    @include fontRegular-light;
+    margin-top: 10px;
+    color: #065306cc;
+}

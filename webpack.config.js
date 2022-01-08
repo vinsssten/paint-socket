@@ -87,7 +87,7 @@ module.exports = (argv) => {
                 directory: path.join(__dirname, 'build'),
             },
             compress: true,
-            port: 8080,
+            port: 5000,
             open: true,
             historyApiFallback: true,
         },

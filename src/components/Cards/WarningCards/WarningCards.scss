@@ -1,0 +1,18 @@
+@import '../../../index.scss';
+
+.listCard {
+    @include glassContainer;
+    @include fontRegular-light;
+    margin: 10px 0;
+    padding: 20px;
+    max-width: 90%;
+    box-sizing: border-box;
+    background: #e0040466;
+    color: #ad0707;
+    text-shadow: 1px 1px 0px #4b060662;
+
+    ul {
+        padding: 0 10px;
+        margin: 0;
+    }
+}

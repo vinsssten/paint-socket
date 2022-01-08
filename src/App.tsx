@@ -1,17 +1,16 @@
-import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router';
+import React, { FC } from 'react';
+import { Provider } from 'react-redux';
+import Router from './Router';
+import store from './store/store';
 
-function App() {
-    const [isLoggined, setIsLoggined] = useState<Boolean>(true);
-    const navigate = useNavigate();
+interface Props {}
 
-    useEffect(() => {
-        if (isLoggined) {
-            navigate('/singledrawing');
-        }
-    }, []);
-
-    return <div>Login Page</div>;
-}
+const App: FC<Props> = ({}) => {
+    return (
+        <Provider store={store}>
+            <Router />
+        </Provider>
+    );
+};
 
 export default App;
