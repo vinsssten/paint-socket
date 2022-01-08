@@ -5,6 +5,7 @@ import LoginPage from './components/LoginPage/LoginPage';
 import SingleDrawingPage from './components/LocalDrawingPage/SingleDrawingPage';
 import store from './store/store';
 import RedirectPage from './components/RedirectPage/RedirectPage';
+import MainPage from './components/MainPage/MainPage';
 
 function Router() {
     return (
@@ -14,6 +15,7 @@ function Router() {
                     <Route path="/" element={<RedirectPage />} />
                     <Route path="/signin" element={<LoginPage />} />
                     <Route path="/singledrawing" element={<SingleDrawingPage />} />
+                    <Route path="/mainpage" element={<MainPage />} />
                 </Routes>
             </BrowserRouter>
         </Provider>
