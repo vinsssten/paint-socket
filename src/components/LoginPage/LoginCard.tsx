@@ -8,10 +8,10 @@ import { Link } from 'react-router-dom';
 import EmptyCard from '../Cards/EmptyCard';
 
 interface Props {
-    setIsRegister: React.Dispatch<React.SetStateAction<Boolean>>;
+    
 }
 
-const LoginCard: FC<Props> = ({ setIsRegister }) => {
+const LoginCard: FC<Props> = ({ }) => {
     const {login: loginFunc, loginErrorMessage} = useAuth();
     const [login, setLogin] = useState<string>('');
     const [password, setPassword] = useState<string>('');

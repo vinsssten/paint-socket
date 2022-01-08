@@ -19,16 +19,16 @@ const WarningListCard: FC<Props> = ({ isVisible, header, subElements, preset }) 
             setHeaderDisplayed('Something went wrong...');
             setSubElementsDisplayed(['The login must be at least 5 characters long, and be unique', 
             'The username must be at least 4 characters long', 
-            'The username must be complex, and no shorter than 5 characters']);
+            'The password must be complex, and no shorter than 5 characters']);
         }
     }, [preset])
 
     useEffect(() => {
         if (!preset) {
             setHeaderDisplayed(header);
-            setSubElementsDisplayed(subElementsDisplayed);
+            setSubElementsDisplayed(subElements);
         }
-    }, [header, subElementsDisplayed])
+    }, [header, subElements])
 
     if (isVisible) {
         return (

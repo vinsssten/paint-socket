@@ -22,7 +22,7 @@ function LoginPage() {
     return (
         <div className={stl.mainContainer}>   
             <div className={stl.mainContainer}>
-                <LoginCard setIsRegister={setIsRegister} />
+                <LoginCard />
                 <ToLocalDrawingCard />
             </div>
         </div>

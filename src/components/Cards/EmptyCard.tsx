@@ -2,12 +2,12 @@ import React, { FC } from 'react'
 import stl from './EmptyCard.scss'
 
 interface Props {
-
+    color?: string
 }
 
-const EmptyCard: FC<Props> = ({ children }) => {
+const EmptyCard: FC<Props> = ({ color, children }) => {
     return (
-        <div className={stl.glassCard}>
+        <div style={{backgroundColor: color}} className={stl.glassCard}>
             {children}
         </div>
     )

@@ -11,7 +11,7 @@
     @include flexCenter;
     flex-direction: column;
     width: 500px;
-    padding: 30px 0;
+    padding: 30px;
 }
 
 .localDrawingContainer {
@@ -34,6 +34,12 @@
     text-align: center;
 }
 
+.textHeadGreen {
+    @include fontBold-light;
+    text-align: center;
+    color: #065306cc;
+}
+
 .textAdditional {
     margin: 0;
     margin-top: 10px;
@@ -41,4 +47,10 @@
     text-decoration: underline;
     color: $bgColor_mainButton;
     cursor: pointer;
+}
+
+.greenLink {
+    @include fontRegular-light;
+    margin-top: 10px;
+    color: #065306cc;
 }

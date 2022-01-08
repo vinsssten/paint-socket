@@ -1,5 +1,4 @@
-import axios, { AxiosError } from "axios";
-import { response } from "express";
+import { AxiosError } from "axios";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useAppSelector } from "../..";
@@ -15,16 +14,6 @@ function useAuth () {
     useEffect(() => {
         
     }, [])
-
-    async function registration (login: string, username: string, password: string) {
-        AuthService.registration(login, username, password)
-        .then((response) => {
-
-        })
-        .catch((error) => {
-
-        })
-    }
 
     async function isValidAccess () {
 
