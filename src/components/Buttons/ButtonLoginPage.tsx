@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import stl from './LoginPage.scss';
+import stl from './Buttons.scss';
 
 interface Props {
     text: string;

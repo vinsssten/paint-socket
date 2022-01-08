@@ -14,22 +14,18 @@
     padding: 30px 0;
 }
 
+.localDrawingContainer {
+    @include flexCenter;
+    flex-direction: column;
+    width: 500px;
+    padding: 40px 0;
+}
+
 .inputContainer {
     display: flex;
     flex-direction: column;
     // height: 80px;
     width: 60%;
-}
-
-.mainButton {
-    @include flexCenter;
-    @include glassButton_main;
-    @include fontSemiBold-dark;
-    margin: 15px 0 5px 0;
-    font-size: 20px;
-    width: 50%;
-    height: 40px;
-    background: $bgColor_mainButton;
 }
 
 .textHead {

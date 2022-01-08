@@ -1,0 +1,12 @@
+@import '../../index.scss';
+
+.mainButton {
+    @include flexCenter;
+    @include glassButton_main;
+    @include fontSemiBold-dark;
+    margin: 15px 0 5px 0;
+    font-size: 20px;
+    width: 50%;
+    height: 40px;
+    background: $bgColor_mainButton;
+}

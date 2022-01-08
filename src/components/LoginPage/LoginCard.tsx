@@ -1,7 +1,7 @@
 import React, { FC, useState } from 'react';
 import useAuth from '../../lib/hooks/useAuth';
 import SignInInput from '../Inputs/SignInInput';
-import ButtonLoginPage from './ButtonLoginPage';
+import ButtonLoginPage from '../Buttons/ButtonLoginPage';
 import stl from './LoginPage.scss';
 import WarningListCard from '../Cards/WarningCards/WarningListCard';
 import { Link } from 'react-router-dom';

@@ -2,7 +2,7 @@ import React, { FC, useState } from 'react';
 import EmptyCard from '../../Cards/EmptyCard';
 import SignInInput from '../../Inputs/SignInInput';
 import WarningListCard from '../../Cards/WarningCards/WarningListCard';
-import ButtonLoginPage from '../ButtonLoginPage';
+import ButtonLoginPage from '../../Buttons/ButtonLoginPage';
 import stl from '../LoginPage.scss';
 import { Link } from 'react-router-dom';
 
