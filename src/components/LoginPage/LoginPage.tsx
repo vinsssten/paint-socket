@@ -5,15 +5,17 @@ import stl from './LoginPage.scss';
 import LoginCard from './LoginCard';
 import RegisterCard from './RegisterCard';
 import ToLocalDrawingCard from './ToLocalDrawingCard';
+import useAuth from '../../lib/hooks/useAuth';
 
+//FIXME: Regenerator runtime error
 function LoginPage() {
-    const [isLoggined, setIsLoggined] = useState<Boolean>(false);
+    const { isAuth } = useAuth();
     const [isRegister, setIsRegister] = useState<Boolean>(true);
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (isLoggined) {
-            navigate('/singledrawing');
+        if (isAuth) {
+            navigate('/mainpage');
         }
     }, []);
 
