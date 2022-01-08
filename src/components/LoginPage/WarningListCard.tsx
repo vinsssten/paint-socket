@@ -3,7 +3,7 @@ import stl from './LoginPage.scss';
 
 interface Props {
     isVisible: boolean
-    header: string
+    header: string | null
     subElements?: string[]
 }
 

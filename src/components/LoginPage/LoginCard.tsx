@@ -3,13 +3,14 @@ import useAuth from '../../lib/hooks/useAuth';
 import SignInInput from '../Inputs/SignInInput';
 import ButtonLoginPage from './ButtonLoginPage';
 import stl from './LoginPage.scss';
+import WarningListCard from './WarningListCard';
 
 interface Props {
     setIsRegister: React.Dispatch<React.SetStateAction<Boolean>>;
 }
 
 const LoginCard: FC<Props> = ({ setIsRegister }) => {
-    const {login: loginFunc} = useAuth();
+    const {login: loginFunc, loginErrorMessage} = useAuth();
     const [login, setLogin] = useState<string>('');
     const [password, setPassword] = useState<string>('');
 
@@ -40,6 +41,7 @@ const LoginCard: FC<Props> = ({ setIsRegister }) => {
                     inputHandle={setPassword}
                 />
             </div>
+            <WarningListCard isVisible={loginErrorMessage != null} header={loginErrorMessage} />
             <ButtonLoginPage text="Sign in" action={handleLogin} />
             <p onClick={changeCard} className={stl.textAdditional}>
                 Registration
