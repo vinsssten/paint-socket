@@ -20,7 +20,7 @@ function LoginPage() {
     }, [isAuth]);
 
     return (
-        <div className={stl.mainContainer}>   
+        <div className={stl.mainContainer}>
             <div className={stl.mainContainer}>
                 <LoginCard />
                 <ToLocalDrawingCard />

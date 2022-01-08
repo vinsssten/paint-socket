@@ -1,25 +1,21 @@
-import React, { FC, useEffect } from 'react'
+import React, { FC, useEffect } from 'react';
 import { useNavigate } from 'react-router';
 import useAuth from '../../lib/hooks/useAuth';
-import stl from './MainPage.scss'
+import stl from './MainPage.scss';
 
-interface Props {
+interface Props {}
 
-}
-
-const MainPage: FC<Props> = ({  }) => {
+const MainPage: FC<Props> = ({}) => {
     const { isAuth } = useAuth();
     const navigate = useNavigate();
 
     useEffect(() => {
         if (!isAuth) {
-            navigate('/signin')
+            navigate('/signin');
         }
-    }, [isAuth])
+    }, [isAuth]);
 
-    return (
-        <h1>MAIN PAGE</h1>
-    )
-}
+    return <h1>MAIN PAGE</h1>;
+};
 
-export default MainPage
+export default MainPage;

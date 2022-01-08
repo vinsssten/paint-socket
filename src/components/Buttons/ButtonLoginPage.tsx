@@ -7,9 +7,11 @@ interface Props {
 }
 
 const ButtonLoginPage: FC<Props> = ({ text, action }) => {
-    return <div 
-        onClick={action}
-        className={stl.mainButton}>{text}</div>;
+    return (
+        <div onClick={action} className={stl.mainButton}>
+            {text}
+        </div>
+    );
 };
 
 export default ButtonLoginPage;

@@ -5,7 +5,7 @@ import { useAppSelector } from '../..';
 interface Props {}
 
 const RedirectPage: FC<Props> = ({}) => {
-    const {isAuth} = useAppSelector(state => state.auth);
+    const { isAuth } = useAppSelector(state => state.auth);
     const navigate = useNavigate();
 
     useEffect(() => {

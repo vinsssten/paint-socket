@@ -1,49 +1,41 @@
-import { AxiosError } from "axios";
-import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
-import { useAppSelector } from "../..";
-import { setAuth } from "../../store/actionCreators/authActionCreators";
-import AuthService from "../axios/services/AuthService";
+import { AxiosError } from 'axios';
+import { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { useAppSelector } from '../..';
+import { setAuth } from '../../store/actionCreators/authActionCreators';
+import AuthService from '../axios/services/AuthService';
 
-function useAuth () {
+function useAuth() {
     const { isAuth } = useAppSelector(store => store.auth);
     const [isLoadingAuth, setIsLoadingAuth] = useState<boolean>(true);
     const [loginErrorMessage, setLoginErrorMessage] = useState<string | null>(null);
     const dispatch = useDispatch();
 
-    useEffect(() => {
-        
-    }, [])
+    useEffect(() => {}, []);
 
-    async function isValidAccess () {
+    async function isValidAccess() {}
 
-    }
-
-    async function login (login: string, password: string) {
+    async function login(login: string, password: string) {
         AuthService.login(login, password)
-        .then((response) => {
-            console.log('login response', response)
-            localStorage.setItem('token', response.data.accessToken);
-            dispatch(setAuth(true));
-        })
-        .catch((error: AxiosError) => {
-            if (error.response?.status === 400) {
-                setLoginErrorMessage(error.response.data.message)
-            }
-        })
+            .then(response => {
+                console.log('login response', response);
+                localStorage.setItem('token', response.data.accessToken);
+                dispatch(setAuth(true));
+            })
+            .catch((error: AxiosError) => {
+                if (error.response?.status === 400) {
+                    setLoginErrorMessage(error.response.data.message);
+                }
+            });
     }
 
-    async function logout () {
+    async function logout() {
         AuthService.logout()
-        .then((response) => {
-
-        })
-        .catch((error) => {
-
-        })
+            .then(response => {})
+            .catch(error => {});
     }
 
-    return {isAuth, login, loginErrorMessage}
+    return { isAuth, login, loginErrorMessage };
 }
 
-export default useAuth
+export default useAuth;

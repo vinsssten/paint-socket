@@ -7,16 +7,14 @@ import WarningListCard from '../Cards/WarningCards/WarningListCard';
 import { Link } from 'react-router-dom';
 import EmptyCard from '../Cards/EmptyCard';
 
-interface Props {
-    
-}
+interface Props {}
 
-const LoginCard: FC<Props> = ({ }) => {
-    const {login: loginFunc, loginErrorMessage} = useAuth();
+const LoginCard: FC<Props> = ({}) => {
+    const { login: loginFunc, loginErrorMessage } = useAuth();
     const [login, setLogin] = useState<string>('');
     const [password, setPassword] = useState<string>('');
 
-    function handleLogin () {
+    function handleLogin() {
         if (login != '' && password != '') {
             loginFunc(login, password);
         }
@@ -40,15 +38,19 @@ const LoginCard: FC<Props> = ({ }) => {
                         inputHandle={setPassword}
                     />
                 </div>
-                <WarningListCard isVisible={loginErrorMessage != null} header={loginErrorMessage} />
+                <WarningListCard
+                    isVisible={loginErrorMessage != null}
+                    header={loginErrorMessage}
+                />
                 <ButtonLoginPage text="Sign in" action={handleLogin} />
-                <Link className={stl.textAdditional} to='/signup'>Registration</Link>
-                <Link className={stl.textAdditional} to='/signup'>Forgot my password</Link>
+                <Link className={stl.textAdditional} to="/signup">
+                    Registration
+                </Link>
+                <Link className={stl.textAdditional} to="/signup">
+                    Forgot my password
+                </Link>
             </div>
         </EmptyCard>
-        
-           
-        
     );
 };
 
