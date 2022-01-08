@@ -1,5 +1,6 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import SignInInput from '../Inputs/SignInInput';
+import WarningListCard from './WarningListCard';
 import ButtonLoginPage from './ButtonLoginPage';
 import stl from './LoginPage.scss';
 
@@ -14,33 +15,43 @@ export interface InputProps {
     inputHandle: React.Dispatch<React.SetStateAction<string>>;
 }
 
+//TODO: Need to refactor
 const RegisterCard: FC<Props> = ({ setIsRegister }) => {
     const [login, setLogin] = useState<string>('');
     const [username, setUsername] = useState<string>('');
     const [password, setPassword] = useState<string>('');
     const [rpassword, setRPassword] = useState<string>('');
 
+    const [isVisibleWarningCard, setIsVisibleWarningCard] = useState<boolean>(false);
+    const [warningsHeader, setWarningsHeader] = useState<string>('');
+    const [warningsList, setWarningsList] = useState<string[]>([]);
+
     const inputsArray: InputProps[] = [
         { placeholder: 'Login', isSecure: false, value: login, inputHandle: setLogin },
-        {
-            placeholder: 'Username',
-            isSecure: false,
-            value: username,
-            inputHandle: setUsername,
-        },
-        {
-            placeholder: 'Password',
-            isSecure: true,
-            value: password,
-            inputHandle: setPassword,
-        },
-        {
-            placeholder: 'Repeat password',
-            isSecure: true,
-            value: rpassword,
-            inputHandle: setRPassword,
-        },
+        { placeholder: 'Username',isSecure: false, value: username,inputHandle: setUsername, },
+        { placeholder: 'Password', isSecure: true, value: password, inputHandle: setPassword,},
+        { placeholder: 'Repeat password', isSecure: true, value: rpassword, inputHandle: setRPassword},
     ];
+
+
+    function handleRegister () {
+        if (login != '' && username !== '' && password != '' && rpassword != '') {
+            setWarningsHeader('');
+            if (login.length < 5 || username.length < 4 || password.length < 6 || rpassword != rpassword) {
+                setIsVisibleWarningCard(true);
+                setWarningsHeader('Be careful!')
+                setWarningsList(['The login must be at least 5 characters long, and be unique', 
+                'The username must be at least 4 characters long', 
+                'The username must be complex, and no shorter than 5 characters']);
+            } else {
+                console.log('register');
+            }
+
+        } else {
+            setWarningsHeader('All fields must be filled in!');
+            setIsVisibleWarningCard(true);
+        }
+    }
 
     function changeCard() {
         setIsRegister(false);
@@ -61,7 +72,8 @@ const RegisterCard: FC<Props> = ({ setIsRegister }) => {
                         />
                     ))}
                 </div>
-                <ButtonLoginPage text="Sign in" action={() => {}} />
+                <WarningListCard isVisible={isVisibleWarningCard} header={warningsHeader} subElements={warningsList}/>
+                <ButtonLoginPage text="Sign in" action={handleRegister} />
                 <p onClick={changeCard} className={stl.textAdditional}>
                     Go back to login
                 </p>

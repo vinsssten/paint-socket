@@ -11,9 +11,16 @@ const LoginCard: FC<Props> = ({ setIsRegister }) => {
     const [login, setLogin] = useState<string>('');
     const [password, setPassword] = useState<string>('');
 
+    function handleLogin () {
+        if (login != '' && password != '') {
+            console.log('login');
+        }
+    }
+
     function changeCard() {
         setIsRegister(true);
     }
+
     return (
         <div className={stl.cardContainer}>
             <h1 className={stl.textHead}>Sign in</h1>
@@ -31,7 +38,7 @@ const LoginCard: FC<Props> = ({ setIsRegister }) => {
                     inputHandle={setPassword}
                 />
             </div>
-            <ButtonLoginPage text="Sign in" action={() => {}} />
+            <ButtonLoginPage text="Sign in" action={handleLogin} />
             <p onClick={changeCard} className={stl.textAdditional}>
                 Registration
             </p>

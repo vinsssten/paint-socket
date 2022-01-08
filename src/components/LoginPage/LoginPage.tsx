@@ -8,7 +8,7 @@ import ToLocalDrawingCard from './ToLocalDrawingCard';
 
 function LoginPage() {
     const [isLoggined, setIsLoggined] = useState<Boolean>(false);
-    const [isRegister, setIsRegister] = useState<Boolean>(false);
+    const [isRegister, setIsRegister] = useState<Boolean>(true);
     const navigate = useNavigate();
 
     useEffect(() => {
