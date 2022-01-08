@@ -1,4 +1,5 @@
 import axios, { AxiosError } from "axios";
+import { response } from "express";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useAppSelector } from "../..";
@@ -7,6 +8,7 @@ import AuthService from "../axios/services/AuthService";
 
 function useAuth () {
     const { isAuth } = useAppSelector(store => store.auth);
+    const [isLoadingAuth, setIsLoadingAuth] = useState<boolean>(true);
     const [loginErrorMessage, setLoginErrorMessage] = useState<string | null>(null);
     const dispatch = useDispatch();
 
@@ -14,6 +16,19 @@ function useAuth () {
         
     }, [])
 
+    async function registration (login: string, username: string, password: string) {
+        AuthService.registration(login, username, password)
+        .then((response) => {
+
+        })
+        .catch((error) => {
+
+        })
+    }
+
+    async function isValidAccess () {
+
+    }
 
     async function login (login: string, password: string) {
         AuthService.login(login, password)
@@ -27,7 +42,16 @@ function useAuth () {
                 setLoginErrorMessage(error.response.data.message)
             }
         })
-        
+    }
+
+    async function logout () {
+        AuthService.logout()
+        .then((response) => {
+
+        })
+        .catch((error) => {
+
+        })
     }
 
     return {isAuth, login, loginErrorMessage}
