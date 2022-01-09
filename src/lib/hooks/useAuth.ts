@@ -25,6 +25,8 @@ function useAuth() {
             .catch((error: AxiosError) => {
                 if (error.response?.status === 400) {
                     setLoginErrorMessage(error.response.data.message);
+                } else {
+                    setLoginErrorMessage('Auth server is not responding, please, try later')
                 }
             });
     }
