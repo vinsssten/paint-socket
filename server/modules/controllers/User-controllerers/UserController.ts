@@ -1,9 +1,17 @@
-import { NextFunction, Request, Response } from "express";
+import UsersTable from "../../../models/UsersTable";
+import TokenService from "../../service/TokenService"
+import DatabaseController from "../Darabase-controller/DatabaseController";
+import DatabaseGetter from "../Darabase-controller/DatabaseGetter";
+
+const database = new DatabaseController();
+const dbgetter = new DatabaseGetter();
 
 class UserController {
-    getProfile = () => new Promise (async (resolve, reject) => {
+    getSelfProfile = (accessToken: string) => new Promise (async (resolve, reject) => {
         try {
-            
+            const { id: userId } = await new TokenService().validateAccessToken(accessToken);
+            const curUser = await dbgetter.getRowByField('Users', 'id', userId);
+            resolve({login: curUser[0].login, username: curUser[0].username})
         } catch (err) {
             reject(err)
         } 

@@ -7,6 +7,6 @@ const userApiRouter = Router();
 
 const userController = new UserRouterController();
 
-userApiRouter.get('/profile', AuthMiddleware, userController.getProfile);
+userApiRouter.get('/selfprofile', AuthMiddleware, userController.getSelfProfile);
 
 export default userApiRouter;
