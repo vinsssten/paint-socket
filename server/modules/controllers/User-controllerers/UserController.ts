@@ -11,7 +11,7 @@ class UserController {
         try {
             const { id: userId } = await new TokenService().validateAccessToken(accessToken);
             const curUser = await dbgetter.getRowByField('Users', 'id', userId);
-            resolve({login: curUser[0].login, username: curUser[0].username})
+            resolve({login: curUser[0].login, username: curUser[0].username, createDate: curUser[0].createDate})
         } catch (err) {
             reject(err)
         } 

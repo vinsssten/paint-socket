@@ -25,6 +25,10 @@ class AuthService {
     static async logout(): Promise<AxiosResponse> {
         return api.post('/auth/logout');
     }
+
+    static async refresh() {
+        return api.post<{accessToken: string}>('/auth/refresh');
+    }
 }
 
 export default AuthService;
