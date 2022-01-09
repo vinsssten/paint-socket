@@ -76,7 +76,7 @@ class AuthController extends DatabaseGetter {
                 const db = await this.connect();
                 const hashedPassword = await bcrypt.hash(password, 3);
                 const id = uuid.v4();
-                const sql = `INSERT INTO Users (id, login, username, password) VALUES ('${id}', '${login}', '${username}', '${hashedPassword}')`;
+                const sql = `INSERT INTO Users (id, login, username, password, createDate) VALUES ('${id}', '${login}', '${username}', '${hashedPassword}', date("now"))`;
                 db.serialize(() => {
                     db.run(sql, error => {
                         if (!error) {
