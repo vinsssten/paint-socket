@@ -1,7 +1,7 @@
-import ApiError from '../exceptions/ApiError';
-import TokenService, { Tokens } from '../service/TokenService';
-import DatabaseGetter from './DatabaseGetter';
-import UsersTable from '../../models/UsersTable';
+import ApiError from '../../exceptions/ApiError';
+import TokenService, { Tokens } from '../../service/TokenService';
+import DatabaseGetter from '../Darabase-controller/DatabaseGetter';
+import UsersTable from '../../../models/UsersTable';
 
 const bcrypt = require('bcrypt');
 const uuid = require('uuid');

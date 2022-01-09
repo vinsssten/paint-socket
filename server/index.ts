@@ -1,7 +1,8 @@
 import { Color } from 'colors';
-import { Application, Request, Response, NextFunction } from 'express';
+import { Application } from 'express';
 import errorMiddleware from './modules/middlewares/ErrorMiddleware';
-import apiRouter from './modules/route/apiRouter';
+import apiRouter from './modules/route/authRouter';
+import userApiRouter from './modules/route/userApiRouter';
 
 declare global {
     namespace Express {
@@ -14,7 +15,7 @@ declare global {
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const express = require('express');
-const app: Application = express();
+export const app: Application = express();
 const path = require('path');
 var colors: Color = require('colors');
 
@@ -27,6 +28,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 app.use(cookieParser());
 app.use('/api/auth', apiRouter);
+app.use('/api/user', userApiRouter)
 app.use(errorMiddleware);
 
 app.get('*', (req, res) => {

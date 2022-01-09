@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
 import { Database } from 'sqlite3';
-import TokenService, { Tokens } from '../service/TokenService';
+import TokenService, { Tokens } from '../../service/TokenService';
 import AuthController from './AuthController';
 
 interface AuthParams {

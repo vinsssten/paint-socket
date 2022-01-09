@@ -1,5 +1,5 @@
-import { UsersTablesNames } from '../../models/AllUsersTablesRows';
-import UsersTable from '../../models/UsersTable';
+import { UsersTablesNames } from '../../../models/AllUsersTablesRows';
+import UsersTable from '../../../models/UsersTable';
 import DatabaseController from './DatabaseController';
 
 class DatabaseGetter extends DatabaseController {
