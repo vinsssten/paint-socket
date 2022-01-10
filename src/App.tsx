@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 import Header from './components/Header/Header';
 import Router from './Router';
 import store from './store/store';
+import { BrowserRouter } from 'react-router-dom';
 
 interface Props {}
 
@@ -14,7 +15,9 @@ const App: FC<Props> = ({}) => {
                 <div className={stl.gridContainer}>
                     <Header />
                     <div className={stl.gridBodyContainer}>
-                        <Router />
+                        <BrowserRouter>
+                            <Router />
+                        </BrowserRouter>
                     </div>
                 </div>
             </div>

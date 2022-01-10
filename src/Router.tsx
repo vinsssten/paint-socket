@@ -3,28 +3,44 @@ import { Provider, useDispatch } from 'react-redux';
 import { BrowserRouter, Route, Routes, useNavigate } from 'react-router-dom';
 import LoginPage from './components/LoginPage/LoginPage';
 import SingleDrawingPage from './components/LocalDrawingPage/SingleDrawingPage';
-import RedirectPage from './components/RedirectPage/RedirectPage';
 import MainPage from './components/MainPage/MainPage';
 import RegisterPage from './components/LoginPage/RegisterPage/RegisterPage';
-import { loadTestAuth } from './store/actionCreators/authActionCreators';
+import { loadTestAuth, setAuth } from './store/actionCreators/authActionCreators';
+import useAuth from './lib/hooks/useAuth';
+import LoadingSpinner from './components/LoadingSpinner/LoadingSpinner';
 
 function Router() {
-    const dispatch = useDispatch();
+    const { isAuth, isLoadingAuth } = useAuth();
+    const navigate = useNavigate();
+    const dispatch = useDispatch()
 
     useEffect(() => {
-        // dispatch(loadTestAuth());
+        if (isLoadingAuth) {
+            if (isAuth) {
+                console.log('go to main page');
+                navigate('/mainpage', {replace: true});
+            } else {
+                console.log('go to login');
+                navigate('/signin', {replace: true});
+            }
+        }
+    }, [isAuth, isLoadingAuth])
+
+    useEffect(() => {
+        dispatch(loadTestAuth());
     }, [])
 
+    if (isLoadingAuth) {
+        return <LoadingSpinner />
+    }
+
     return (
-        <BrowserRouter>
-            <Routes>
-                <Route path="/" element={<RedirectPage />} />
-                <Route path="/signin" element={<LoginPage />} />
-                <Route path="/signup" element={<RegisterPage />} />
-                <Route path="/singledrawing" element={<SingleDrawingPage />} />
-                <Route path="/mainpage" element={<MainPage />} />
-            </Routes>
-        </BrowserRouter>
+        <Routes>
+            <Route path="/signin" element={<LoginPage />} />
+            <Route path="/signup" element={<RegisterPage />}  />
+            <Route path="/singledrawing" element={<SingleDrawingPage />} />
+            <Route path="/mainpage" element={<MainPage />}/>
+        </Routes>
     );
 }
 

@@ -7,15 +7,6 @@ import stl from './MainPage.scss';
 interface Props {}
 
 const MainPage: FC<Props> = ({}) => {
-    const { isAuth } = useAuth();
-    const navigate = useNavigate();
-
-    useEffect(() => {
-        if (!isAuth) {
-            navigate('/signin');
-        }
-    }, [isAuth]);
-
     return (
         <div className={stl.mainContainer}>
             <ProfileCard />

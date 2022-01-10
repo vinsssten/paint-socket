@@ -17,6 +17,9 @@ function useAuth() {
 
     async function isValidAccess() {
         // dispatch(setAuth(true));
+        // setTimeout(() => {
+        //     setIsLoadingAuth(false);
+        // }, 2000)
     }
 
     async function login(login: string, password: string) {
@@ -41,7 +44,7 @@ function useAuth() {
             .catch(error => {});
     }
 
-    return { isAuth, login, loginErrorMessage };
+    return { isAuth, isLoadingAuth, login, loginErrorMessage };
 }
 
 export default useAuth;

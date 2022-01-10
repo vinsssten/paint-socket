@@ -13,12 +13,6 @@ function LoginPage() {
     const [isRegister, setIsRegister] = useState<Boolean>(false);
     const navigate = useNavigate();
 
-    useEffect(() => {
-        if (isAuth) {
-            navigate('/mainpage');
-        }
-    }, [isAuth]);
-
     return (
         <div className={stl.mainContainer}>
             <div className={stl.mainContainer}>
