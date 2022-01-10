@@ -12,7 +12,7 @@ function Router() {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(loadTestAuth());
+        // dispatch(loadTestAuth());
     }, [])
 
     return (

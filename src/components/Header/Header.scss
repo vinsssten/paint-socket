@@ -1,4 +1,24 @@
+@import '../../index.scss';
+
 .headerContainer {
+    @include flexCenter;
+    background-color: $bgColor_card-light;
     grid-area: header;
-    background-color: red;
+    border: 1px solid #cfcfcfa8;
+    box-sizing: border-box;
+}
+
+.logo {
+    height: 100%;
+    width: auto;
+    user-select: none;
+
+    h1 {
+        @include fontSemiBold-light;
+        height: 100%;
+    }
+
+    img {
+        height: 100%;
+    }
 }

@@ -1,14 +1,11 @@
 import React, { FC } from 'react'
 import stl from './Header.scss'
+import Logo from './Logo'
 
-interface Props {
-
-}
-
-const Header: FC<Props> = ({  }) => {
+const Header: FC = ({  }) => {
     return (
         <div className={stl.headerContainer}>
-            
+            <Logo />
         </div>
     )
 }
