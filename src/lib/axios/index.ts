@@ -13,9 +13,9 @@ api.interceptors.request.use(config => {
     return config;
 });
 
-api.interceptors.response.use(() => {}, async (error: AxiosError) => {
+api.interceptors.response.use(response => response , async (error: AxiosError) => {
     try {
-        if (error.response!.status === 400) {
+        if (error.response!.status === 401) {
             const response = await AuthService.refresh();
             localStorage.setItem('token', response.data.accessToken);
         }
