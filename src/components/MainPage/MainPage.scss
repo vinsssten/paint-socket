@@ -1,0 +1,8 @@
+@import '../../index.scss';
+
+.mainContainer {
+    @include flexCenter;
+    flex-direction: column;
+    width: 100vw;
+    height: 100vh;
+}

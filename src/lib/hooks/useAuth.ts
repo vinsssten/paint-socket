@@ -11,9 +11,13 @@ function useAuth() {
     const [loginErrorMessage, setLoginErrorMessage] = useState<string | null>(null);
     const dispatch = useDispatch();
 
-    useEffect(() => {}, []);
+    useEffect(() => {
+        isValidAccess();
+    }, []);
 
-    async function isValidAccess() {}
+    async function isValidAccess() {
+        dispatch(setAuth(true));
+    }
 
     async function login(login: string, password: string) {
         AuthService.login(login, password)
