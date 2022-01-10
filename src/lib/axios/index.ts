@@ -1,4 +1,4 @@
-import axios, { AxiosResponse } from 'axios';
+import axios, { AxiosError, AxiosResponse } from 'axios';
 import AuthService from './services/AuthService';
 
 const url = 'http://localhost:8080/api';
@@ -13,10 +13,12 @@ api.interceptors.request.use(config => {
     return config;
 });
 
-api.interceptors.response.use(() => {}, async () => {
+api.interceptors.response.use(response => response , async (error: AxiosError) => {
     try {
-        const response = await AuthService.refresh();
-        localStorage.setItem('token', response.data.accessToken);
+        if (error.response!.status === 401) {
+            const response = await AuthService.refresh();
+            localStorage.setItem('token', response.data.accessToken);
+        }
     } catch (error) {
         console.log('interceptor refresh errro', error)
     }

@@ -16,7 +16,7 @@ function useAuth() {
     }, []);
 
     async function isValidAccess() {
-        dispatch(setAuth(true));
+        // dispatch(setAuth(true));
     }
 
     async function login(login: string, password: string) {
