@@ -3,7 +3,6 @@ import { Provider, useDispatch } from 'react-redux';
 import { BrowserRouter, Route, Routes, useNavigate } from 'react-router-dom';
 import LoginPage from './components/LoginPage/LoginPage';
 import SingleDrawingPage from './components/LocalDrawingPage/SingleDrawingPage';
-import store from './store/store';
 import RedirectPage from './components/RedirectPage/RedirectPage';
 import MainPage from './components/MainPage/MainPage';
 import RegisterPage from './components/LoginPage/RegisterPage/RegisterPage';
