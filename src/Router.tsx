@@ -8,9 +8,11 @@ import RegisterPage from './components/LoginPage/RegisterPage/RegisterPage';
 import { loadTestAuth, setAuth } from './store/actionCreators/authActionCreators';
 import useAuth from './lib/hooks/useAuth';
 import LoadingSpinner from './components/LoadingSpinner/LoadingSpinner';
+import useAuthLoading from './lib/hooks/useAuthLoading';
 
 function Router() {
-    const { isAuth, isAuthLoading } = useAuth();
+    const { isAuth } = useAuth();
+    const { isAuthLoading } = useAuthLoading();
     const navigate = useNavigate();
     const dispatch = useDispatch()
 
