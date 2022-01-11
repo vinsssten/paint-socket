@@ -5,6 +5,7 @@ import { useAppSelector } from '../..';
 import { setAuth } from '../../store/actionCreators/authActionCreators';
 import AuthService from '../axios/services/AuthService';
 
+//TODO: Move isLoadingAuth in global state
 function useAuth() {
     const { isAuth } = useAppSelector(store => store.auth);
     const [isLoadingAuth, setIsLoadingAuth] = useState<boolean>(true);
@@ -16,10 +17,16 @@ function useAuth() {
     }, []);
 
     async function isValidAccess() {
-        // dispatch(setAuth(true));
-        // setTimeout(() => {
-        //     setIsLoadingAuth(false);
-        // }, 2000)
+        AuthService.validateAccess()
+            .then(() => {
+                console.log('access valide')
+                dispatch(setAuth(true));
+                setIsLoadingAuth(false);
+            })
+            .catch(() => {
+                dispatch(setAuth(false));
+                setIsLoadingAuth(false);
+            })
     }
 
     async function login(login: string, password: string) {

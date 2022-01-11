@@ -15,7 +15,7 @@ function Router() {
     const dispatch = useDispatch()
 
     useEffect(() => {
-        if (isLoadingAuth) {
+        if (!isLoadingAuth) {
             if (isAuth) {
                 console.log('go to main page');
                 navigate('/mainpage', {replace: true});

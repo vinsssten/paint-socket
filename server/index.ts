@@ -1,4 +1,5 @@
 import { Color } from 'colors';
+import { CorsOptions } from 'cors';
 import { Application } from 'express';
 import errorMiddleware from './modules/middlewares/ErrorMiddleware';
 import apiRouter from './modules/route/authRouter';
@@ -22,10 +23,21 @@ var colors: Color = require('colors');
 const port = 8080;
 const root = path.join(__dirname, '../') + 'build';
 
+const corsConfig: CorsOptions = {
+    credentials: true,
+    origin: 'http://localhost:5000',
+    // allowedHeaders: ['Content-Type', 'Authorization']
+}
+
+app.use(cors(corsConfig));
+// app.use("/", (req: any, res: any, next: any) => {
+//     res.header("Access-Control-Allow-Origin", "*");
+//     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
+//     next();
+// })
 app.use(express.static(root));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cors());
 app.use(cookieParser());
 app.use('/api/auth', apiRouter);
 app.use('/api/user', userApiRouter)

@@ -10,7 +10,6 @@ interface Props {
 const LoadingSpinner: FC<Props> = ({  }) => {
     return (
         <div className={stl.cont}>
-            {/* <img className={stl.spinner} src={spinner} />  */}
             <div className={stl.ldsring}><div></div><div></div><div></div><div></div></div>
         </div>
     )
