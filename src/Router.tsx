@@ -10,12 +10,14 @@ import useAuth from './lib/hooks/useAuth';
 import LoadingSpinner from './components/LoadingSpinner/LoadingSpinner';
 
 function Router() {
-    const { isAuth, isLoadingAuth } = useAuth();
+    const { isAuth, isAuthLoading } = useAuth();
     const navigate = useNavigate();
     const dispatch = useDispatch()
 
     useEffect(() => {
-        if (!isLoadingAuth) {
+        if (isAuthLoading) {
+            navigate('/', {replace: true});
+        } else {
             if (isAuth) {
                 console.log('go to main page');
                 navigate('/mainpage', {replace: true});
@@ -24,18 +26,15 @@ function Router() {
                 navigate('/signin', {replace: true});
             }
         }
-    }, [isAuth, isLoadingAuth])
+    }, [isAuth, isAuthLoading])
 
     useEffect(() => {
-        dispatch(loadTestAuth());
+        // dispatch(loadTestAuth());
     }, [])
-
-    if (isLoadingAuth) {
-        return <LoadingSpinner />
-    }
 
     return (
         <Routes>
+            <Route path="/" element={<LoadingSpinner />} />
             <Route path="/signin" element={<LoginPage />} />
             <Route path="/signup" element={<RegisterPage />}  />
             <Route path="/singledrawing" element={<SingleDrawingPage />} />

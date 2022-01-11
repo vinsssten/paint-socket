@@ -4,11 +4,13 @@ import { Reducer } from 'redux';
 export interface AuthState {
     isAuth: boolean;
     isAuthError: boolean;
+    isAuthLoading: boolean
 }
 
 const initialState: AuthState = {
     isAuth: false,
     isAuthError: false,
+    isAuthLoading: true,
 };
 
 const auth: Reducer<AuthState, PayloadAction<AuthState>> = (
@@ -18,6 +20,8 @@ const auth: Reducer<AuthState, PayloadAction<AuthState>> = (
     switch (action.type) {
         case 'SET_AUTH':
             return { ...state, isAuth: action.payload.isAuth };
+        case 'SET_LOADING_AUTH':
+            return { ...state, isAuthLoading: action.payload.isAuthLoading };
         default:
             return { ...state };
     }

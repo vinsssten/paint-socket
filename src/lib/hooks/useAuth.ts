@@ -2,30 +2,33 @@ import { AxiosError } from 'axios';
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useAppSelector } from '../..';
-import { setAuth } from '../../store/actionCreators/authActionCreators';
+import { setAuth, setIsAuthLoading } from '../../store/actionCreators/authActionCreators';
 import AuthService from '../axios/services/AuthService';
 
-//TODO: Move isLoadingAuth in global state
+//Move isAuthLoading and access validation in separate hook
 function useAuth() {
-    const { isAuth } = useAppSelector(store => store.auth);
-    const [isLoadingAuth, setIsLoadingAuth] = useState<boolean>(true);
+    const { isAuth, isAuthLoading } = useAppSelector(store => store.auth);
     const [loginErrorMessage, setLoginErrorMessage] = useState<string | null>(null);
     const dispatch = useDispatch();
 
     useEffect(() => {
-        isValidAccess();
+        if (isAuthLoading) {
+            isValidAccess();
+        } 
     }, []);
 
     async function isValidAccess() {
+        console.log('IsValidAccess')
         AuthService.validateAccess()
             .then(() => {
-                console.log('access valide')
+                console.log('access allowed')
                 dispatch(setAuth(true));
-                setIsLoadingAuth(false);
+                dispatch(setIsAuthLoading(false));
             })
             .catch(() => {
+                console.log('access denied')
                 dispatch(setAuth(false));
-                setIsLoadingAuth(false);
+                dispatch(setIsAuthLoading(false));
             })
     }
 
@@ -47,11 +50,14 @@ function useAuth() {
 
     async function logout() {
         AuthService.logout()
-            .then(response => {})
-            .catch(error => {});
+            .then(response => {
+                dispatch(setAuth(false));
+                localStorage.removeItem('token');
+            })
+            .catch(error => {console.log('logout err', error)});
     }
 
-    return { isAuth, isLoadingAuth, login, loginErrorMessage };
+    return { isAuth, isAuthLoading, login, loginErrorMessage, logout };
 }
 
 export default useAuth;
