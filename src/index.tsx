@@ -7,7 +7,6 @@ import App from './App';
 
 window.React = React;
 
-//TODO: Убрать редирект со страницы рисования в сингл моде
 //FIXME: Настроить проверку пароля и других данных в регистарции
 
 export const useAppSelector = useSelector as TypedUseSelectorHook<RootState>;

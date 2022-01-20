@@ -17,6 +17,10 @@ function Router() {
     const dispatch = useDispatch()
 
     useEffect(() => {
+        console.log('path', document.location.pathname);
+        if (document.location.pathname === '/singledrawing') {
+            return;
+        }
         if (isAuthLoading) {
             navigate('/', {replace: true});
         } else {
