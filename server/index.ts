@@ -5,6 +5,8 @@ import errorMiddleware from './modules/middlewares/ErrorMiddleware';
 import apiRouter from './modules/route/authRouter';
 import userApiRouter from './modules/route/userApiRouter';
 
+//FIXME: Пофиксить ошибку Session didnt found при логауте
+
 declare global {
     namespace Express {
         interface Request {
@@ -30,11 +32,6 @@ const corsConfig: CorsOptions = {
 }
 
 app.use(cors(corsConfig));
-// app.use("/", (req: any, res: any, next: any) => {
-//     res.header("Access-Control-Allow-Origin", "*");
-//     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
-//     next();
-// })
 app.use(express.static(root));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
