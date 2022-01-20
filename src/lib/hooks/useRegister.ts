@@ -18,6 +18,7 @@ function useRegister() {
                 setIsLoading(false);
             })
             .catch((error: AxiosError) => {
+                console.log('error', error);
                 setRegisterMessage(error.response!.data.message);
                 setIsLoading(false);
             });

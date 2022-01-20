@@ -7,6 +7,8 @@ import App from './App';
 
 window.React = React;
 
+//TODO: Убрать редирект со страницы рисования в сингл моде
+
 export const useAppSelector = useSelector as TypedUseSelectorHook<RootState>;
 export const useAppDispatch = () => useDispatch<AppDispatch>();
 
