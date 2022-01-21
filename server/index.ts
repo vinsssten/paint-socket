@@ -29,7 +29,7 @@ const corsConfig: CorsOptions = {
     credentials: true,
     origin: 'http://localhost:5000',
     // allowedHeaders: ['Content-Type', 'Authorization']
-}
+};
 
 app.use(cors(corsConfig));
 app.use(express.static(root));
@@ -37,7 +37,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use('/api/auth', apiRouter);
-app.use('/api/user', userApiRouter)
+app.use('/api/user', userApiRouter);
 app.use(errorMiddleware);
 
 app.get('*', (req, res) => {

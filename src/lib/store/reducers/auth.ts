@@ -4,7 +4,7 @@ import { Reducer } from 'redux';
 export interface AuthState {
     isAuth: boolean;
     isAuthError: boolean;
-    isAuthLoading: boolean
+    isAuthLoading: boolean;
 }
 
 const initialState: AuthState = {

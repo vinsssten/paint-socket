@@ -14,7 +14,7 @@ function Router() {
     const { isAuth } = useAuth();
     const { isAuthLoading } = useAuthLoading();
     const navigate = useNavigate();
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
 
     useEffect(() => {
         console.log('path', document.location.pathname);
@@ -22,29 +22,29 @@ function Router() {
             return;
         }
         if (isAuthLoading) {
-            navigate('/', {replace: true});
+            navigate('/', { replace: true });
         } else {
             if (isAuth) {
                 console.log('go to main page');
-                navigate('/mainpage', {replace: true});
+                navigate('/mainpage', { replace: true });
             } else {
                 console.log('go to login');
-                navigate('/signin', {replace: true});
+                navigate('/signin', { replace: true });
             }
         }
-    }, [isAuth, isAuthLoading])
+    }, [isAuth, isAuthLoading]);
 
     useEffect(() => {
         // dispatch(loadTestAuth());
-    }, [])
+    }, []);
 
     return (
         <Routes>
             <Route path="/" element={<LoadingSpinner />} />
             <Route path="/signin" element={<LoginPage />} />
-            <Route path="/signup" element={<RegisterPage />}  />
+            <Route path="/signup" element={<RegisterPage />} />
             <Route path="/singledrawing" element={<SingleDrawingPage />} />
-            <Route path="/mainpage" element={<MainPage />}/>
+            <Route path="/mainpage" element={<MainPage />} />
         </Routes>
     );
 }

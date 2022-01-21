@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import stl from './index.scss'
+import stl from './index.scss';
 import { Provider } from 'react-redux';
 import Header from './components/Header/Header';
 import Router from './Router';

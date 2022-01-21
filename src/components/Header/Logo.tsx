@@ -1,12 +1,12 @@
-import React, { FC } from 'react'
-import stl from './Header.scss'
+import React, { FC } from 'react';
+import stl from './Header.scss';
 
-const Logo: FC = ({  }) => {
+const Logo: FC = ({}) => {
     return (
         <div className={stl.logo}>
             <h1 className={stl.logoText}>Paint socket</h1>
         </div>
-    )
-}
+    );
+};
 
-export default Logo
+export default Logo;

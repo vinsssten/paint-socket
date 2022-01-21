@@ -50,7 +50,7 @@ export default class AuthRouterController {
 
     async validate(req: Request, res: Response, next: NextFunction) {
         try {
-            console.log('validate request')
+            console.log('validate request');
             res.send(req.headers.authorization?.split(' ')[1]);
         } catch (error) {
             next(error);
@@ -59,7 +59,7 @@ export default class AuthRouterController {
 
     async refresh(req: Request, res: Response, next: NextFunction) {
         try {
-            console.log('refresh req')
+            console.log('refresh req');
             const { refreshToken } = req.cookies;
             const newTokens = await new TokenService().refreshToken(refreshToken);
             res.clearCookie('refreshToken');

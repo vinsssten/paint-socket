@@ -21,7 +21,9 @@ function useAuth() {
                 if (error.response?.status === 400) {
                     setLoginErrorMessage(error.response.data.message);
                 } else {
-                    setLoginErrorMessage('Auth server is not responding, please, try later')
+                    setLoginErrorMessage(
+                        'Auth server is not responding, please, try later',
+                    );
                 }
             });
     }
@@ -32,7 +34,9 @@ function useAuth() {
                 dispatch(setAuth(false));
                 localStorage.removeItem('token');
             })
-            .catch(error => {console.log('logout err', error)});
+            .catch(error => {
+                console.log('logout err', error);
+            });
     }
 
     return { isAuth, login, loginErrorMessage, logout };

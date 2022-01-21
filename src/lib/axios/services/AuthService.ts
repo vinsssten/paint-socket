@@ -24,7 +24,7 @@ class AuthService {
         });
     }
 
-    static async validateAccess (): Promise<AxiosResponse> {
+    static async validateAccess(): Promise<AxiosResponse> {
         return api.post('/auth/validate');
     }
 
@@ -33,7 +33,11 @@ class AuthService {
     }
 
     static async refresh() {
-        return axios.post<{accessToken: string}>(url + '/auth/refresh', {}, {withCredentials: true});
+        return axios.post<{ accessToken: string }>(
+            url + '/auth/refresh',
+            {},
+            { withCredentials: true },
+        );
     }
 }
 

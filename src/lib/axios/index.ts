@@ -13,17 +13,20 @@ api.interceptors.request.use(config => {
     return config;
 });
 
-api.interceptors.response.use(response => response , async (error: AxiosError) => {
-    try {
-        if (error.response!.status === 401) {
-            console.log('refresh request')
-            const response = await AuthService.refresh();
-            localStorage.setItem('token', response.data.accessToken);
+api.interceptors.response.use(
+    response => response,
+    async (error: AxiosError) => {
+        try {
+            if (error.response!.status === 401) {
+                console.log('refresh request');
+                const response = await AuthService.refresh();
+                localStorage.setItem('token', response.data.accessToken);
+            }
+        } catch (error) {
+            console.log('refresh interceptor error', error);
+            throw error;
         }
-    } catch (error) {
-        console.log('refresh interceptor error', error)
-        throw error
-    }
-})
+    },
+);
 
 export default api;
