@@ -1,6 +1,6 @@
 import ApiError from '../../exceptions/ApiError';
 import TokenService, { Tokens } from '../../service/TokenService';
-import DatabaseGetter from '../Darabase-controller/DatabaseGetter';
+import DatabaseGetter from '../Database-controller/DatabaseGetter';
 import UsersTable from '../../../models/UsersTable';
 
 const bcrypt = require('bcrypt');

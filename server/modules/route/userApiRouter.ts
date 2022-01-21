@@ -1,6 +1,6 @@
 import { Router } from 'express';
-import UserController from '../controllers/User-controllerers/UserController';
-import UserRouterController from '../controllers/User-controllerers/UserRouterController';
+import UserController from '../controllers/User-controllers/UserController';
+import UserRouterController from '../controllers/User-controllers/UserRouterController';
 import AuthMiddleware from '../middlewares/AuthMiddleware';
 
 const userApiRouter = Router();

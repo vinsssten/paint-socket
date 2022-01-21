@@ -1,7 +1,7 @@
 import { AxiosError } from 'axios';
 import { useState } from 'react';
-import { useAppSelector } from '../..';
-import AuthService from '../axios/services/AuthService';
+import { useAppSelector } from '../../..';
+import AuthService from '../../axios/services/AuthService';
 
 function useRegister() {
     const { isAuth } = useAppSelector(store => store.auth);

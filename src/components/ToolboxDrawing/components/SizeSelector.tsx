@@ -2,7 +2,7 @@ import React from 'react';
 import stl from '../ToolboxDrawing.scss';
 import { useDispatch } from 'react-redux';
 import { useAppSelector } from '../../..';
-import { sizeChange } from '../../../store/actionCreators/drawingActionCreators';
+import { sizeChange } from '../../../lib/store/actionCreators/drawingActionCreators';
 import ToolContainer from '../ToolContainer';
 
 const SizeSelector = () => {

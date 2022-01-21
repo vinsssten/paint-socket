@@ -4,13 +4,13 @@ import DatabaseController from './DatabaseController';
 
 class DatabaseGetter extends DatabaseController {
     getRowByField = (tableName: UsersTablesNames, fieldName: string, value: string) =>
-        new Promise<any[]>(async (resolve, reject) => {
+        new Promise<UsersTable[]>(async (resolve, reject) => {
             try {
                 const db = await this.connect();
 
                 db.serialize(() => {
                     const sqlString = `SELECT * FROM ${tableName} WHERE ${fieldName} = '${value}'`;
-                    db.all(sqlString, (err, row) => {
+                    db.all(sqlString, (err, row: UsersTable[]) => {
                         if (!err) {
                             resolve(row);
                         } else {

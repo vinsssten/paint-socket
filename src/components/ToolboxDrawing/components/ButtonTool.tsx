@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { useDispatch } from 'react-redux';
 import { useAppSelector } from '../../..';
-import { switchBrushTool } from '../../../store/actionCreators/drawingActionCreators';
+import { switchBrushTool } from '../../../lib/store/actionCreators/drawingActionCreators';
 import ButtonToolbox from './ButtonToolbox';
 
 interface Props {

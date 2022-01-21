@@ -1,5 +1,5 @@
-import DatabaseController from '../controllers/Darabase-controller/DatabaseController';
-import DatabaseGetter from '../controllers/Darabase-controller/DatabaseGetter';
+import DatabaseController from '../controllers/Database-controller/DatabaseController';
+import DatabaseGetter from '../controllers/Database-controller/DatabaseGetter';
 import ApiError from '../exceptions/ApiError';
 
 const jwt = require('jsonwebtoken');

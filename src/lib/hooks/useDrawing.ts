@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useAppSelector } from '../..';
-import { setCurCanvas } from '../../store/actionCreators/drawingActionCreators';
+import { setCurCanvas } from '../store/actionCreators/drawingActionCreators';
 
 import Brush from '../modules/Tools/Brush';
 import Circle from '../modules/Tools/Circle';

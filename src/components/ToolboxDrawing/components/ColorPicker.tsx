@@ -3,7 +3,7 @@ import ToolContainer from '../ToolContainer';
 import stl from '../ToolboxDrawing.scss';
 import { useDispatch } from 'react-redux';
 import { useAppSelector } from '../../..';
-import { changeColor } from '../../../store/actionCreators/drawingActionCreators';
+import { changeColor } from '../../../lib/store/actionCreators/drawingActionCreators';
 
 const ColorPicker = () => {
     const color = useAppSelector(store => store.drawing.color);

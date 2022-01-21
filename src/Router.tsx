@@ -5,10 +5,10 @@ import LoginPage from './components/LoginPage/LoginPage';
 import SingleDrawingPage from './components/LocalDrawingPage/SingleDrawingPage';
 import MainPage from './components/MainPage/MainPage';
 import RegisterPage from './components/LoginPage/RegisterPage/RegisterPage';
-import { loadTestAuth, setAuth } from './store/actionCreators/authActionCreators';
-import useAuth from './lib/hooks/useAuth';
+import { loadTestAuth, setAuth } from './lib/store/actionCreators/authActionCreators';
+import useAuth from './lib/hooks/authHooks/useAuth';
 import LoadingSpinner from './components/LoadingSpinner/LoadingSpinner';
-import useAuthLoading from './lib/hooks/useAuthLoading';
+import useAuthLoading from './lib/hooks/authHooks/useAuthLoading';
 
 function Router() {
     const { isAuth } = useAuth();

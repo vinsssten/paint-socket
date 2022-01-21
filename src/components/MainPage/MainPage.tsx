@@ -1,6 +1,6 @@
 import React, { FC, useEffect } from 'react';
 import { useNavigate } from 'react-router';
-import useAuth from '../../lib/hooks/useAuth';
+import useAuth from '../../lib/hooks/authHooks/useAuth';
 import ProfileCard from '../ProfileCard/ProfileCard';
 import stl from './MainPage.scss';
 

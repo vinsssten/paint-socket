@@ -1,5 +1,5 @@
 import React, { FC } from 'react'
-import useAuth from '../../lib/hooks/useAuth'
+import useAuth from '../../lib/hooks/authHooks/useAuth'
 import ButtonLoginPage from '../Buttons/ButtonLoginPage'
 import stl from './ProfileCard.scss'
 

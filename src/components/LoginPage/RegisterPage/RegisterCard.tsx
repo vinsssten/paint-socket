@@ -2,7 +2,7 @@ import React, { FC, useState } from 'react';
 import EmptyCard from '../../Cards/EmptyCard';
 import stl from '../LoginPage.scss';
 import StartRegisterCard from './StartRegisterCard';
-import useRegister from '../../../lib/hooks/useRegister';
+import useRegister from '../../../lib/hooks/authHooks/useRegister';
 import RegisterStatusCard from './RegisterStatusCard';
 
 interface Props {}

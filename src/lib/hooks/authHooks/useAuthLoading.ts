@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { useAppSelector } from "../..";
+import { useAppSelector } from "../../..";
 import { setAuth, setIsAuthLoading } from "../../store/actionCreators/authActionCreators";
-import AuthService from "../axios/services/AuthService";
+import AuthService from "../../axios/services/AuthService";
 
 function useAuthLoading () {
     const { isAuthLoading } = useAppSelector(store => store.auth);

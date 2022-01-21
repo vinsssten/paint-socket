@@ -3,7 +3,7 @@ import stl from './index.scss'
 import { Provider } from 'react-redux';
 import Header from './components/Header/Header';
 import Router from './Router';
-import store from './store/store';
+import store from './lib/store/store';
 import { BrowserRouter } from 'react-router-dom';
 
 interface Props {}

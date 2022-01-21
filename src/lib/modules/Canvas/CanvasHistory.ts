@@ -3,8 +3,8 @@ import {
     redoHistoryAction,
     saveDataInHistory,
     undoHistoryAction,
-} from '../../../store/actionCreators/drawingActionCreators';
-import store from '../../../store/store';
+} from '../../store/actionCreators/drawingActionCreators';
+import store from '../../store/store';
 
 //TODO: Разобраться с типами
 class CanvasHistory {

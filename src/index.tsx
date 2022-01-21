@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDom from 'react-dom';
 import './index.scss';
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
-import { AppDispatch, RootState } from './store/store';
+import { AppDispatch, RootState } from './lib/store/store';
 import App from './App';
 
 window.React = React;
