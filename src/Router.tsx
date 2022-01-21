@@ -1,23 +1,24 @@
-import React, { useEffect, useState } from 'react';
-import { Provider, useDispatch } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { BrowserRouter, Route, Routes, useNavigate } from 'react-router-dom';
 import LoginPage from './components/LoginPage/LoginPage';
 import SingleDrawingPage from './components/LocalDrawingPage/SingleDrawingPage';
 import MainPage from './components/MainPage/MainPage';
 import RegisterPage from './components/LoginPage/RegisterPage/RegisterPage';
-import { loadTestAuth, setAuth } from './lib/store/actionCreators/authActionCreators';
 import useAuth from './lib/hooks/authHooks/useAuth';
 import LoadingSpinner from './components/LoadingSpinner/LoadingSpinner';
 import useAuthLoading from './lib/hooks/authHooks/useAuthLoading';
+import { loadTestAuth } from './lib/store/actionCreators/authActionCreators';
+import { useAppSelector } from '.';
 
 function Router() {
-    const { isAuth } = useAuth();
-    const { isAuthLoading } = useAuthLoading();
+    const {isAuth, isAuthLoading} = useAppSelector(store => store.auth);
+    // const { isAuth } = useAuth();
+    // const { isAuthLoading } = useAuthLoading();
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
     useEffect(() => {
-        console.log('path', document.location.pathname);
         if (document.location.pathname === '/singledrawing') {
             return;
         }
@@ -35,8 +36,13 @@ function Router() {
     }, [isAuth, isAuthLoading]);
 
     useEffect(() => {
-        // dispatch(loadTestAuth());
+        dispatch(loadTestAuth());
     }, []);
+
+
+    useEffect(() => {
+        console.log('auth', isAuth, isAuthLoading);
+    }, [isAuth, isAuthLoading])
 
     return (
         <Routes>

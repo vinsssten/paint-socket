@@ -9,7 +9,9 @@ interface Props {}
 const MainPage: FC<Props> = ({}) => {
     return (
         <div className={stl.mainContainer}>
-            <ProfileCard />
+            <div className={stl.cardsContainer}>
+                <ProfileCard />
+            </div>
         </div>
     );
 };

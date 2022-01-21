@@ -1,5 +1,5 @@
 export const loadTestAuth = () => {
-    return { type: 'SET_AUTH', payload: { isAuth: true } };
+    return { type: 'SET_TEST_DATA' };
 };
 
 export const setAuth = (isAuth: boolean) => {

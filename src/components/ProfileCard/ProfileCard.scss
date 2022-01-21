@@ -3,8 +3,57 @@
 .cardContainer {
     @include glassContainer;
     background-color: $bgColor_card-light;
-    padding: 30px;
+    padding: 20px;
 }
 
 .container {
+    @include flexCenter;
+    flex-direction: column;
+}
+
+.headerText {
+    @include fontBold-light;
+    text-shadow: $textShadow-light;
+}
+
+.dataFieldContainer {
+    display: flex;
+    flex-direction: column;
+    width: 50%; 
+    background-color: $bgColor_grayContainer-light;
+    border-radius: 5px;
+    box-shadow: $boxShadow_subContainer-light;
+    box-sizing: border-box;
+
+    .title {
+        padding: 5px;
+        box-sizing: border-box;
+        border-radius: inherit;
+        background-color: $bgColor_darkGrayContainer-light;
+        width: 100%;
+        
+        h3 {
+            @include fontSemiBold-light;
+            text-shadow: $textShadow-light;
+            font-size: 14px;
+        }
+    }
+
+    .content {
+        padding: 0px 5px;
+        h2 {
+            @include fontRegular-light;
+            text-shadow: $textShadow-light;
+            font-size: 20px;
+        }
+    }
+}
+
+.imageContainer {
+    width: 20%;
+
+    img {
+        width: 100%;
+        border-radius: 100%;
+    }
 }
