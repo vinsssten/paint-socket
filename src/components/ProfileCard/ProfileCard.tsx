@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 import useAuth from '../../lib/hooks/authHooks/useAuth';
 import useUserProfile from '../../lib/hooks/useUserProfile';
 import ButtonLoginPage from '../Buttons/ButtonLoginPage';
@@ -11,8 +11,11 @@ interface Props {}
 
 const ProfileCard: FC<Props> = ({}) => {
     const { logout } = useAuth();
-    const {username, avatar, createDate, isLoading} = useUserProfile();
+    const {username, avatar, createDate, isLoading, getUserProfile} = useUserProfile();
 
+    useEffect(() => {
+        getUserProfile();
+    }, [])
 
     if (isLoading)  {
         return (

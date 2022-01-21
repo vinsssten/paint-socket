@@ -5,17 +5,17 @@ import LoginPage from './components/LoginPage/LoginPage';
 import SingleDrawingPage from './components/LocalDrawingPage/SingleDrawingPage';
 import MainPage from './components/MainPage/MainPage';
 import RegisterPage from './components/LoginPage/RegisterPage/RegisterPage';
-import useAuth from './lib/hooks/authHooks/useAuth';
 import LoadingSpinner from './components/LoadingSpinner/LoadingSpinner';
+import useAuth from './lib/hooks/authHooks/useAuth';
 import useAuthLoading from './lib/hooks/authHooks/useAuthLoading';
 import { loadTestAuth } from './lib/store/actionCreators/authActionCreators';
 import { useAppSelector } from '.';
 import { loadTestUser } from './lib/store/actionCreators/testData';
 
 function Router() {
-    const {isAuth, isAuthLoading} = useAppSelector(store => store.auth);
-    // const { isAuth } = useAuth();
-    // const { isAuthLoading } = useAuthLoading();
+    // const {isAuth, isAuthLoading} = useAppSelector(store => store.auth);
+    const { isAuth } = useAuth();
+    const { isAuthLoading } = useAuthLoading();
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
@@ -37,13 +37,8 @@ function Router() {
     }, [isAuth, isAuthLoading]);
 
     useEffect(() => {
-        loadTestUser(dispatch);
+        // loadTestUser(dispatch);
     }, []);
-
-
-    useEffect(() => {
-        console.log('auth', isAuth, isAuthLoading);
-    }, [isAuth, isAuthLoading])
 
     return (
         <Routes>
