@@ -10,6 +10,7 @@ import LoadingSpinner from './components/LoadingSpinner/LoadingSpinner';
 import useAuthLoading from './lib/hooks/authHooks/useAuthLoading';
 import { loadTestAuth } from './lib/store/actionCreators/authActionCreators';
 import { useAppSelector } from '.';
+import { loadTestUser } from './lib/store/actionCreators/testData';
 
 function Router() {
     const {isAuth, isAuthLoading} = useAppSelector(store => store.auth);
@@ -36,7 +37,7 @@ function Router() {
     }, [isAuth, isAuthLoading]);
 
     useEffect(() => {
-        dispatch(loadTestAuth());
+        loadTestUser(dispatch);
     }, []);
 
 
