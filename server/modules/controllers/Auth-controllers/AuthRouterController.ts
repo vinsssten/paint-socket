@@ -25,8 +25,7 @@ export default class AuthRouterController {
 
     async login(req: Request, res: Response, next: NextFunction) {
         try {
-            const { accessToken, refreshToken }: Tokens =
-                await new AuthController().loginMain(req.body);
+            const { accessToken, refreshToken }: Tokens = await new AuthController().loginMain(req.body);
             res.cookie('refreshToken', refreshToken, {
                 maxAge: 1000 * 30 * 24 * 60 * 60,
                 httpOnly: true,

@@ -3,6 +3,7 @@ import { CorsOptions } from 'cors';
 import { Application } from 'express';
 import errorMiddleware from './modules/middlewares/ErrorMiddleware';
 import apiRouter from './modules/route/authRouter';
+import friendsRouter from './modules/route/friendsController';
 import userApiRouter from './modules/route/userApiRouter';
 
 //FIXME: Пофиксить ошибку Session didnt found при логауте
@@ -36,8 +37,11 @@ app.use(express.static(root));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
+
 app.use('/api/auth', apiRouter);
 app.use('/api/user', userApiRouter);
+app.use('/api/friends', friendsRouter);
+
 app.use(errorMiddleware);
 
 app.get('*', (req, res) => {

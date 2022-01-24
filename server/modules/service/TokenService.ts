@@ -1,3 +1,5 @@
+import { Request } from 'express';
+import { isUndefined } from 'util';
 import DatabaseController from '../controllers/Database-controller/DatabaseController';
 import DatabaseGetter from '../controllers/Database-controller/DatabaseGetter';
 import ApiError from '../exceptions/ApiError';
@@ -27,6 +29,19 @@ class TokenService {
         });
 
         return { accessToken, refreshToken };
+    }
+
+    getTokenFromRequest (req: Request): string | null {
+        const authHead = req.headers.authorization;
+        const authWordSplit = authHead?.split(' ');
+        
+        if (authWordSplit && authWordSplit?.length > 0 ) {
+            if (authWordSplit[1] !== undefined) {
+                return authWordSplit[1]
+            }
+        }
+
+        return null
     }
 
     validateAccessToken(token: string) {
