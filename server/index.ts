@@ -6,8 +6,11 @@ import apiRouter from './modules/route/authRouter';
 import friendsRouter from './modules/route/friendsController';
 import userApiRouter from './modules/route/userApiRouter';
 
+//TODO: Вынести app.use`ы в отдельный файл
 //FIXME: Пофиксить ошибку Session didnt found при логауте
 
+
+//TODO: Разобраться с объявлением этого типа в отдельном файле
 declare global {
     namespace Express {
         interface Request {
