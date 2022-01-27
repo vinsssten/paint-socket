@@ -23,14 +23,17 @@ const StartRegisterCard: FC<Props> = ({ isLoading, registration, serverMessage }
 
     function handleRegister() {
         if (
-            login.length < 5 ||
-            username.length < 4 ||
-            password.length < 6 ||
-            rpassword != rpassword
+            login.length >= 5 &&
+            username.length >= 4 &&
+            password.length >= 6 &&
+            rpassword === rpassword
         ) {
-            setIsVisibleWarningCard(true);
+            console.log(login, username, password, rpassword);
+            // registration(login, username, password);
+            alert('registr')
         } else {
-            registration(login, username, password);
+            console.log(login, username, password, rpassword);
+            setIsVisibleWarningCard(true);
         }
     }
 
