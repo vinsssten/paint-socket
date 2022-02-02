@@ -4,9 +4,9 @@ import Logo from './Logo';
 
 const Header: FC = ({}) => {
     return (
-        <div className={stl.headerContainer}>
+        <header className={stl.headerContainer}>
             <Logo />
-        </div>
+        </header>
     );
 };
 
