@@ -19,7 +19,7 @@
 .dataFieldContainer {
     display: flex;
     flex-direction: column;
-    width: 50%; 
+    width: 50%;
     margin-top: 10px;
     background-color: $bgColor_grayContainer-light;
     border-radius: 5px;
@@ -32,7 +32,7 @@
         border-radius: inherit;
         background-color: $bgColor_darkGrayContainer-light;
         width: 100%;
-        
+
         h3 {
             @include fontSemiBold-light;
             text-shadow: $textShadow-light;

@@ -13,7 +13,7 @@ import { useAppSelector } from '.';
 import { loadTestUser } from './lib/store/actionCreators/testData';
 
 function Router() {
-    const {isAuth, isAuthLoading} = useAppSelector(store => store.auth);
+    const { isAuth, isAuthLoading } = useAppSelector(store => store.auth);
     // const { isAuth } = useAuth();
     // const { isAuthLoading } = useAuthLoading();
     const navigate = useNavigate();

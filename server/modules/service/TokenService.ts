@@ -31,17 +31,17 @@ class TokenService {
         return { accessToken, refreshToken };
     }
 
-    getTokenFromRequest (req: Request): string | null {
+    getTokenFromRequest(req: Request): string | null {
         const authHead = req.headers.authorization;
         const authWordSplit = authHead?.split(' ');
-        
-        if (authWordSplit && authWordSplit?.length > 0 ) {
+
+        if (authWordSplit && authWordSplit?.length > 0) {
             if (authWordSplit[1] !== undefined) {
-                return authWordSplit[1]
+                return authWordSplit[1];
             }
         }
 
-        return null
+        return null;
     }
 
     validateAccessToken(token: string) {

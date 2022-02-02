@@ -30,7 +30,7 @@ const StartRegisterCard: FC<Props> = ({ isLoading, registration, serverMessage }
         ) {
             console.log(login, username, password, rpassword);
             // registration(login, username, password);
-            alert('registr')
+            alert('registr');
         } else {
             console.log(login, username, password, rpassword);
             setIsVisibleWarningCard(true);
