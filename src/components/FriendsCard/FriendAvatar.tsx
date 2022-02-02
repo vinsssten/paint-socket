@@ -1,19 +1,17 @@
 import React, { FC } from 'react'
-import stl from './ProfileCard.scss'
-
 import emptyAvatar from '../../../public/icons/Profile/empty_avatar.png'
+import stl from './FriendsCard.scss'
 
 interface Props {
-    avatar: string | null
+    avatarPath: string | null
 }
 
-const AvatarMain: FC<Props> = () => {
+const FriendAvatar: FC<Props> = ({ avatarPath }) => {
     return (
         <div className={stl.imageContainer}>
-            <img src={emptyAvatar} />
+            {/* <img src={emptyAvatar}/> */}
         </div>
     )
-
 }
 
-export default AvatarMain
+export default FriendAvatar

@@ -1,0 +1,51 @@
+@import '../../index.scss';
+
+.mainContainer {
+    @include glassContainer;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    margin: 10px;
+    width: 100%;
+    background-color: $bgColor_card-light;
+    height: auto;
+    padding: 30px;
+    box-sizing: border-box;
+}
+
+.headingText {
+    @include fontBold-light;
+}
+
+.friendsListContainer {
+    width: 100%;
+}
+
+.friendContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 100%;
+    margin-top: 5px;
+    padding: 10px 20px;
+    border-radius: 7px;
+    background-color: #b4b4b4b6;
+    box-shadow: $boxShadow_subContainer-light;
+    border: 1px solid #b8b8b885;
+
+    h2 {
+        @include fontSemiBold-light;
+    }
+}
+
+.imageContainer {
+    aspect-ratio: 1 / 1;
+    height: 100%;
+    // width: 10px;
+    background-color: red;
+
+    img {
+        // height: 100%;
+    }
+}

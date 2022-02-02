@@ -1,6 +1,7 @@
 import React, { FC, useEffect } from 'react';
 import { useNavigate } from 'react-router';
 import useAuth from '../../lib/hooks/authHooks/useAuth';
+import FriendsCard from '../FriendsCard/FriendsCard';
 import ProfileCard from '../ProfileCard/ProfileCard';
 import stl from './MainPage.scss';
 
@@ -11,6 +12,7 @@ const MainPage: FC<Props> = ({}) => {
         <div className={stl.mainContainer}>
             <div className={stl.cardsContainer}>
                 <ProfileCard />
+                <FriendsCard />
             </div>
         </div>
     );
