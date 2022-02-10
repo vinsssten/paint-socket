@@ -11,6 +11,6 @@ apiRouter.post('/login', authController.login);
 apiRouter.post('/logout', authController.logout);
 apiRouter.post('/refresh', authController.refresh);
 apiRouter.post('/validate', AuthMiddleware, authController.validate);
-apiRouter.get('/test', AuthMiddleware, authController.test);
+apiRouter.get('/test', authController.test);
 
 export default apiRouter;
