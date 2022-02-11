@@ -39,16 +39,16 @@ export default class AuthRouterController {
         }
     }
 
-    // async logout(req: Request, res: Response, next: NextFunction) {
-    //     try {
-    //         const { refreshToken } = req.cookies;
-    //         const logoutMessage = await new AuthController().logout(refreshToken);
-    //         res.clearCookie('refreshToken');
-    //         res.send(logoutMessage);
-    //     } catch (error) {
-    //         next(error);
-    //     }
-    // }
+    async logout(req: Request, res: Response, next: NextFunction) {
+        try {
+            const { refreshToken } = req.cookies;
+            const logoutMessage = await new AuthController().logout(refreshToken);
+            res.clearCookie('refreshToken');
+            res.send(logoutMessage);
+        } catch (error) {
+            next(error);
+        }
+    }
 
     // async validate(req: Request, res: Response, next: NextFunction) {
     //     try {

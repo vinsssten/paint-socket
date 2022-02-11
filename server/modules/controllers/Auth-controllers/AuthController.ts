@@ -69,6 +69,15 @@ class AuthController {
             throw error
         }
     }
+
+    async logout (refreshToken: string) {
+        const pool = await db.newConnect();
+
+        const tokenController = new TokenController();
+        await tokenController.removeFromDB(pool, refreshToken);
+
+        return SuccessMessages.logout();
+    }
 }
 
 export default AuthController;
