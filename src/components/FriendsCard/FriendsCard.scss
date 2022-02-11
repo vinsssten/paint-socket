@@ -6,7 +6,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
-    margin: 10px;
+    margin: 10px 0px;
     width: 100%;
     background-color: $bgColor_card-light;
     height: auto;
@@ -35,17 +35,19 @@
     border: 1px solid #b8b8b885;
 
     h2 {
+        margin-left: 10px;
         @include fontSemiBold-light;
     }
 }
 
 .imageContainer {
-    aspect-ratio: 1 / 1;
-    height: 100%;
-    // width: 10px;
-    background-color: red;
-
+    height: 60px;
+    width: 60px;
+    
     img {
-        // height: 100%;
+        height: inherit;
+        width: inherit;
+        border-radius: 50px;
+        overflow: hidden;
     }
 }
