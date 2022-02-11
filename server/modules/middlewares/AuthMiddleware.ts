@@ -3,9 +3,18 @@ import { NextFunction, Request, Response } from 'express';
 import ApiError from '../exceptions/ApiError';
 import TokenService from '../service/TokenService';
 
+//TODO: Разобраться с объявлением этого типа в отдельном файле
+declare global {
+    namespace Express {
+        interface Request {
+            user: {id: string, login: string};
+        }
+    }
+}
+
 var colors: Color = require('colors');
 
-function AuthMiddleware(err: Error, req: Request, res: Response, next: NextFunction) {
+function AuthMiddleware(req: Request, res: Response, next: NextFunction) {
     try {
         const authHeader = req.headers.authorization;
         if (!authHeader) {
@@ -22,8 +31,7 @@ function AuthMiddleware(err: Error, req: Request, res: Response, next: NextFunct
             return next(ApiError.UnauthorizeError());
         }
 
-        //FIXME: Разобраться почему компилятор ругается на эту строку
-        // req.user = tokenDataPayload;
+        req.user = tokenDataPayload;
         next();
     } catch (error) {
         next(error);

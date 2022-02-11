@@ -6,11 +6,10 @@ const controller = new UserController();
 class UserRouterController {
     async getSelfProfile(req: Request, res: Response, next: NextFunction) {
         try {
-            const access = req.headers.authorization?.split(' ')[1];
-            if (access) {
-                // const profile = await controller.getSelfProfile(access);
-                // res.send(profile);
-            }
+            const id = req.user.id;
+            const selfProfileData = await controller.getSelfProfile(id);
+
+            res.send(selfProfileData)
         } catch (error) {
             next(error);
         }

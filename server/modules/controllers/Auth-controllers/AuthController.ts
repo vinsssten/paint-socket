@@ -21,7 +21,7 @@ const db = new DatabaseGetter();
 class AuthController {
     async login (login: string, password: string) {
         try {
-            const pool = await db.newConnect();
+            const pool = await db.connect();
 
             const rowsByLogin: UsersTable[] = await db.getRowByField(pool,'Users', 'login', login);
             if (rowsByLogin.length !== 1) {
@@ -50,7 +50,7 @@ class AuthController {
 
     async registration ({ login, username, password }: RegistrationBody) {
         try {
-            const pool = await db.newConnect();
+            const pool = await db.connect();
             const isUniqueLogin = await db.isUniqueValue(pool, 'Users', 'login', login);
             if (!isUniqueLogin) {
                 throw ApiError.BadRequest('A user with this login already exists, try a different login')
@@ -71,7 +71,7 @@ class AuthController {
     }
 
     async logout (refreshToken: string) {
-        const pool = await db.newConnect();
+        const pool = await db.connect();
 
         const tokenController = new TokenController();
         await tokenController.removeFromDB(pool, refreshToken);
@@ -86,7 +86,7 @@ class AuthController {
             throw ApiError.BadRequest('Something went wrong in refresh');
         }
 
-        const pool = await db.newConnect();
+        const pool = await db.connect();
         const {accessToken, refreshToken} = TokenService.generateTokens(userPayload.id, userPayload.login);
 
         const tokenController = new TokenController();
