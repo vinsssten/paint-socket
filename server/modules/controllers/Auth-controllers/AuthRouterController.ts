@@ -26,18 +26,18 @@ export default class AuthRouterController {
         }
     }
 
-    // async login(req: Request, res: Response, next: NextFunction) {
-    //     try {
-    //         const { accessToken, refreshToken }: Tokens = await new AuthController().loginMain(req.body);
-    //         res.cookie('refreshToken', refreshToken, {
-    //             maxAge: 1000 * 30 * 24 * 60 * 60,
-    //             httpOnly: true,
-    //         });
-    //         res.send({ accessToken: accessToken });
-    //     } catch (error) {
-    //         next(error);
-    //     }
-    // }
+    async login(req: Request, res: Response, next: NextFunction) {
+        try {
+            const { accessToken, refreshToken }: Tokens = await new AuthController().login(req.body.login, req.body.password);
+            res.cookie('refreshToken', refreshToken, {
+                maxAge: 1000 * 30 * 24 * 60 * 60,
+                httpOnly: true,
+            });
+            res.send({ accessToken: accessToken });
+        } catch (error) {
+            next(error);
+        }
+    }
 
     // async logout(req: Request, res: Response, next: NextFunction) {
     //     try {
@@ -50,30 +50,30 @@ export default class AuthRouterController {
     //     }
     // }
 
-    async validate(req: Request, res: Response, next: NextFunction) {
-        try {
-            console.log('validate request');
-            res.send(req.headers.authorization?.split(' ')[1]);
-        } catch (error) {
-            next(error);
-        }
-    }
+    // async validate(req: Request, res: Response, next: NextFunction) {
+    //     try {
+    //         console.log('validate request');
+    //         res.send(req.headers.authorization?.split(' ')[1]);
+    //     } catch (error) {
+    //         next(error);
+    //     }
+    // }
 
-    async refresh(req: Request, res: Response, next: NextFunction) {
-        try {
-            console.log('refresh req');
-            const { refreshToken } = req.cookies;
-            const newTokens = await new TokenService().refreshToken(refreshToken);
-            res.clearCookie('refreshToken');
-            res.cookie('refreshToken', newTokens.refreshToken, {
-                maxAge: 1000 * 30 * 24 * 60 * 60,
-                httpOnly: true,
-            });
-            res.send({ accessToken: newTokens.accessToken });
-        } catch (error) {
-            next(error);
-        }
-    }
+    // async refresh(req: Request, res: Response, next: NextFunction) {
+    //     try {
+    //         console.log('refresh req');
+    //         const { refreshToken } = req.cookies;
+    //         const newTokens = await new TokenService().refreshToken(refreshToken);
+    //         res.clearCookie('refreshToken');
+    //         res.cookie('refreshToken', newTokens.refreshToken, {
+    //             maxAge: 1000 * 30 * 24 * 60 * 60,
+    //             httpOnly: true,
+    //         });
+    //         res.send({ accessToken: newTokens.accessToken });
+    //     } catch (error) {
+    //         next(error);
+    //     }
+    // }
 
     // async test(req: Request, res: Response, next: NextFunction) {
     //     try {

@@ -5,6 +5,7 @@ import DatabaseGetter from '../Database-controller/DatabaseGetter';
 import UsersTable from '../../../models/UsersTable';
 import DatabaseController from '../Database-controller/DatabaseController';
 import SuccessMessages from '../../service/SuccessMessages';
+import TokenController from '../TokenController';
 
 const bcrypt = require('bcrypt');
 const uuid = require('uuid');
@@ -18,52 +19,34 @@ interface RegistrationBody {
 const db = new DatabaseGetter();
 
 class AuthController {
-    // private login = (user: UsersTable) =>
-    //     new Promise<Tokens>(async (resolve, reject) => {
-    //         try {
-    //             const tokenService = new TokenService();
-    //             const { accessToken, refreshToken } = await tokenService.generateTokens(
-    //                 user.id,
-    //                 user.login,
-    //             );
-    //             if (await tokenService.tokenSaveToDB(user.id, refreshToken)) {
-    //                 resolve({ accessToken, refreshToken });
-    //             }
-    //         } catch (error) {
-    //             reject(error);
-    //         }
-    //     });
+    async login (login: string, password: string) {
+        try {
+            const pool = await db.newConnect();
 
-    // loginMain = ({ login, password }: RegistrationBody) =>
-    //     new Promise<Tokens>(async (resolve, reject) => {
-    //         try {
-    //             const db = await this.connect();
+            const rowsByLogin: UsersTable[] = await db.getRowByField(pool,'Users', 'login', login);
+            if (rowsByLogin.length !== 1) {
+                throw ApiError.IncorrectLoginOrPassword();
+            }
 
-    //             const currentUser = await this.getRowByField('Users', 'login', login);
-    //             if (currentUser.length === 0) {
-    //                 console.log('user with this login is was not found');
-    //                 reject(ApiError.BadRequest('Incorrect login or password'));
-    //             }
+            const curUser: UsersTable = rowsByLogin[0];
+            
+            if (!await bcrypt.compare(password, curUser.password)) {
+                throw ApiError.IncorrectLoginOrPassword();
+            } 
 
-    //             if (await bcrypt.compare(password, currentUser[0].password)) {
-    //                 resolve(await this.login(currentUser[0]));
-    //             } else reject(ApiError.BadRequest('Incorrect login or password'));
+            const {accessToken, refreshToken} = TokenService.generateTokens(curUser.id, curUser.login);
+            const tokenController = new TokenController();
+            await tokenController.saveInDB(pool, curUser.id, refreshToken);
 
-    //             db.close();
-    //         } catch (error) {
-    //             reject(error);
-    //         }
-    //     });
+            console.log(`THE USER ${curUser.login} LOGGED IN`.green);
 
-    // logout = (refreshToken: string) =>
-    //     new Promise(async (resolve, reject) => {
-    //         try {
-    //             const removeToken = await new TokenService().removeToken(refreshToken);
-    //             resolve(removeToken);
-    //         } catch (error) {
-    //             reject(error);
-    //         }
-    //     });
+            pool.end()
+
+            return {accessToken, refreshToken}
+        } catch (error) {
+            throw error
+        }
+    }
 
     async registration ({ login, username, password }: RegistrationBody) {
         try {
@@ -78,6 +61,9 @@ class AuthController {
             const sql = `INSERT INTO public."Users" (id, login, username, password, create_date) VALUES ('${id}', '${login}', '${username}', '${hashedPassword}', NOW())`;
 
             await pool.query(sql)
+            pool.end()
+            console.log(`USER ${login} HAS BEEN SUCCESSFULLY REGISTERED`.green)
+
             return SuccessMessages.registered();
         } catch (error) {
             throw error
