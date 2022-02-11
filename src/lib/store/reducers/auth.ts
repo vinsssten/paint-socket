@@ -22,8 +22,8 @@ const auth: Reducer<AuthState, PayloadAction<AuthState>> = (
             return { ...state, isAuth: action.payload.isAuth };
         case 'SET_LOADING_AUTH':
             return { ...state, isAuthLoading: action.payload.isAuthLoading };
-        case 'SET_TEST_DATA': 
-            return { ...state, isAuth: true, isAuthLoading: false }
+        case 'SET_TEST_DATA':
+            return { ...state, isAuth: true, isAuthLoading: false };
         default:
             return { ...state };
     }

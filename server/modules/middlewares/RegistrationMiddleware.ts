@@ -1,9 +1,9 @@
-import { NextFunction, Request, Response } from "express";
+import { NextFunction, Request, Response } from 'express';
 import ApiError from '../exceptions/ApiError';
 
-function RegistrationMiddleware (req: Request, res: Response, next: NextFunction) {
+function RegistrationMiddleware(req: Request, res: Response, next: NextFunction) {
     const errors: string[] = [];
-    let {login, username, password} = req.body;
+    let { login, username, password } = req.body;
 
     login = login.trim();
     username = username.trim();
@@ -24,7 +24,7 @@ function RegistrationMiddleware (req: Request, res: Response, next: NextFunction
     if (password.includes(' ', 0)) {
         errors.push('The password must not contain spaces');
     }
-    
+
     if (errors.length > 0) {
         next(ApiError.BadRequest('Incorrect data for registration', errors));
     } else {
@@ -35,4 +35,4 @@ function RegistrationMiddleware (req: Request, res: Response, next: NextFunction
     }
 }
 
-export default RegistrationMiddleware
+export default RegistrationMiddleware;

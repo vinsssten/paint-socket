@@ -18,8 +18,8 @@ class ApiError extends Error {
         return new ApiError(message, 400, errors);
     }
 
-    static IncorrectLoginOrPassword () {
-        return new ApiError ('Incorrect login or password', 400)
+    static IncorrectLoginOrPassword() {
+        return new ApiError('Incorrect login or password', 400);
     }
 }
 

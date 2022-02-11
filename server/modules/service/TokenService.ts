@@ -31,20 +31,20 @@ class TokenService {
         return { accessToken, refreshToken };
     }
 
-    static getTokenFromRequest (req: Request): string | null {
+    static getTokenFromRequest(req: Request): string | null {
         const authHead = req.headers.authorization;
         const authWordSplit = authHead?.split(' ');
-        
-        if (authWordSplit && authWordSplit?.length > 0 ) {
+
+        if (authWordSplit && authWordSplit?.length > 0) {
             if (authWordSplit[1] !== undefined) {
-                return authWordSplit[1]
+                return authWordSplit[1];
             }
         }
 
-        return null
+        return null;
     }
 
-    static validateAccessToken(token: string) : TokenPayload | null {
+    static validateAccessToken(token: string): TokenPayload | null {
         try {
             const userData = jwt.verify(token, process.env.JWT_ACCESS_SECRET);
             return userData;

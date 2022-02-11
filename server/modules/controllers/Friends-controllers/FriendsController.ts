@@ -2,13 +2,9 @@ import DatabaseController from '../Database-controller/DatabaseController';
 const dbController = new DatabaseController();
 
 class FriendsController {
-    async getFriendsList () {
-        
-    }
+    async getFriendsList() {}
 
-    async addFriend () {
-        
-    }
+    async addFriend() {}
 }
 
-export default FriendsController
+export default FriendsController;

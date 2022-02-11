@@ -7,7 +7,7 @@ import TokenService from '../service/TokenService';
 declare global {
     namespace Express {
         interface Request {
-            user: {id: string, login: string};
+            user: { id: string; login: string };
         }
     }
 }

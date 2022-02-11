@@ -2,11 +2,11 @@ import { PayloadAction } from '@reduxjs/toolkit';
 import { Reducer } from 'redux';
 
 export interface UserState {
-    login: string | null,
-    username: string | null,
-    avatar: string | null,
-    createDate: string | null,
-    isLoading: boolean
+    login: string | null;
+    username: string | null;
+    avatar: string | null;
+    createDate: string | null;
+    isLoading: boolean;
 }
 
 const initialState: UserState = {
@@ -14,7 +14,7 @@ const initialState: UserState = {
     username: null,
     avatar: null,
     createDate: null,
-    isLoading: true
+    isLoading: true,
 };
 
 const user: Reducer<UserState, PayloadAction<UserState>> = (
@@ -23,8 +23,14 @@ const user: Reducer<UserState, PayloadAction<UserState>> = (
 ) => {
     const payload = action.payload;
     switch (action.type) {
-        case 'SET_ALL_DATA': 
-            return {...state, username: payload.username, avatar: payload.avatar, createDate: payload.createDate, isLoading: false}
+        case 'SET_ALL_DATA':
+            return {
+                ...state,
+                username: payload.username,
+                avatar: payload.avatar,
+                createDate: payload.createDate,
+                isLoading: false,
+            };
         default:
             return { ...state };
     }

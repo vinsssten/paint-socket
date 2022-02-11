@@ -1,15 +1,15 @@
 class SuccessMessages {
-    static registered () {
+    static registered() {
         return {
             message: 'User has been successfully registered',
-        }
+        };
     }
 
-    static logout () {
+    static logout() {
         return {
-            message: 'The user logged out successfully'
-        }
+            message: 'The user logged out successfully',
+        };
     }
 }
 
-export default SuccessMessages
+export default SuccessMessages;

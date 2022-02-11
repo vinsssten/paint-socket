@@ -9,7 +9,7 @@ class UserRouterController {
             const id = req.user.id;
             const selfProfileData = await controller.getSelfProfile(id);
 
-            res.send(selfProfileData)
+            res.send(selfProfileData);
         } catch (error) {
             next(error);
         }

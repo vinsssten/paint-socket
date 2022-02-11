@@ -9,7 +9,7 @@ const rootReducer = combineReducers({
     app: app,
     drawing: drawing,
     auth: auth,
-    user: user
+    user: user,
 });
 
 const store = createStore(rootReducer, composeWithDevTools());

@@ -8,17 +8,24 @@ const color: Color = require('colors');
 class DatabaseController {
     constructor() {}
 
-    async connect (): Promise<Pool> {
+    async connect(): Promise<Pool> {
         try {
-            const pool = new Pool({connectionString: process.env.DATABASE_CONNECTION_STRING});
+            const pool = new Pool({
+                connectionString: process.env.DATABASE_CONNECTION_STRING,
+            });
             await pool.connect();
 
-            return pool
+            return pool;
         } catch (error) {
-            console.log(`SOMETHING WENT WRONG WHEN CONNECTING TO THE DATABASE: ${error}`.bgRed.black);
-            throw Error(`SOMETHING WENT WRONG WHEN CONNECTING TO THE DATABASE: ${error}`.bgRed.black);
+            console.log(
+                `SOMETHING WENT WRONG WHEN CONNECTING TO THE DATABASE: ${error}`.bgRed
+                    .black,
+            );
+            throw Error(
+                `SOMETHING WENT WRONG WHEN CONNECTING TO THE DATABASE: ${error}`.bgRed
+                    .black,
+            );
         }
-        
     }
 }
 

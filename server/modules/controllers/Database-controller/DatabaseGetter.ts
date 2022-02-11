@@ -4,18 +4,22 @@ import UsersTable from '../../../models/UsersTable';
 import DatabaseController from './DatabaseController';
 
 class DatabaseGetter extends DatabaseController {
-    async getRowByField (connection: Pool | Client, tableName: UsersTablesNames, fieldName: string, value: string): Promise<any[]>{
+    async getRowByField(
+        connection: Pool | Client,
+        tableName: UsersTablesNames,
+        fieldName: string,
+        value: string,
+    ): Promise<any[]> {
         try {
             const query = `SELECT * FROM public."${tableName}" WHERE ${fieldName} = '${value}'`;
             const request = await connection.query(query);
 
-            return request.rows
+            return request.rows;
         } catch (error) {
-            console.log('local error', error)
-            throw error
+            console.log('local error', error);
+            throw error;
         }
     }
-
 
     // getUsersTable = () =>
     //     new Promise<UsersTable[]>(async (resolve, reject) => {
@@ -40,16 +44,26 @@ class DatabaseGetter extends DatabaseController {
     //         }
     //     });
 
-    async isUniqueValue (connection: Pool | Client, tableName: UsersTablesNames, fieldName: string, value: string) {
+    async isUniqueValue(
+        connection: Pool | Client,
+        tableName: UsersTablesNames,
+        fieldName: string,
+        value: string,
+    ) {
         try {
-            const rows = await this.getRowByField(connection, tableName, fieldName, value);
+            const rows = await this.getRowByField(
+                connection,
+                tableName,
+                fieldName,
+                value,
+            );
             if (rows.length > 0) {
-                return false
+                return false;
             } else {
-                return true
+                return true;
             }
         } catch (error) {
-            throw error
+            throw error;
         }
     }
 }
