@@ -1,15 +1,13 @@
-import { Pool, QueryResult } from 'pg';
+import { Pool, QueryResult, Client } from 'pg';
 import { UsersTablesNames } from '../../../models/AllUsersTablesRows';
 import UsersTable from '../../../models/UsersTable';
 import DatabaseController from './DatabaseController';
 
 class DatabaseGetter extends DatabaseController {
-    async getRowByField (tableName: UsersTablesNames, fieldName: string, value: string): Promise<any[]>{
+    async getRowByField (connection: Pool | Client, tableName: UsersTablesNames, fieldName: string, value: string): Promise<any[]>{
         try {
-            const pool: Pool = await this.newConnect();
-
             const query = `SELECT * FROM public."${tableName}" WHERE ${fieldName} = '${value}'`;
-            const request = await pool.query(query);
+            const request = await connection.query(query);
 
             return request.rows
         } catch (error) {
@@ -42,19 +40,18 @@ class DatabaseGetter extends DatabaseController {
     //         }
     //     });
 
-    isUniqueValue = (tableName: UsersTablesNames, fieldName: string, value: string) =>
-        new Promise<boolean>(async (resolve, reject) => {
-            try {
-                const checkValue = this.getRowByField(tableName, fieldName, value);
-                if ((await checkValue).length > 0) {
-                    resolve(false);
-                } else {
-                    resolve(true);
-                }
-            } catch (error) {
-                reject(error);
+    async isUniqueValue (connection: Pool | Client, tableName: UsersTablesNames, fieldName: string, value: string) {
+        try {
+            const rows = await this.getRowByField(connection, tableName, fieldName, value);
+            if (rows.length > 0) {
+                return false
+            } else {
+                return true
             }
-        });
+        } catch (error) {
+            throw error
+        }
+    }
 }
 
 export default DatabaseGetter;

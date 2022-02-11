@@ -8,7 +8,7 @@ const color: Color = require('colors');
 class DatabaseController {
     constructor() {}
 
-    async newConnect () {
+    async newConnect (): Promise<Pool> {
         try {
             const pool = new Pool({connectionString: process.env.DATABASE_CONNECTION_STRING});
             await pool.connect();

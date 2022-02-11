@@ -26,29 +26,29 @@ export default class AuthRouterController {
         }
     }
 
-    async login(req: Request, res: Response, next: NextFunction) {
-        try {
-            const { accessToken, refreshToken }: Tokens = await new AuthController().loginMain(req.body);
-            res.cookie('refreshToken', refreshToken, {
-                maxAge: 1000 * 30 * 24 * 60 * 60,
-                httpOnly: true,
-            });
-            res.send({ accessToken: accessToken });
-        } catch (error) {
-            next(error);
-        }
-    }
+    // async login(req: Request, res: Response, next: NextFunction) {
+    //     try {
+    //         const { accessToken, refreshToken }: Tokens = await new AuthController().loginMain(req.body);
+    //         res.cookie('refreshToken', refreshToken, {
+    //             maxAge: 1000 * 30 * 24 * 60 * 60,
+    //             httpOnly: true,
+    //         });
+    //         res.send({ accessToken: accessToken });
+    //     } catch (error) {
+    //         next(error);
+    //     }
+    // }
 
-    async logout(req: Request, res: Response, next: NextFunction) {
-        try {
-            const { refreshToken } = req.cookies;
-            const logoutMessage = await new AuthController().logout(refreshToken);
-            res.clearCookie('refreshToken');
-            res.send(logoutMessage);
-        } catch (error) {
-            next(error);
-        }
-    }
+    // async logout(req: Request, res: Response, next: NextFunction) {
+    //     try {
+    //         const { refreshToken } = req.cookies;
+    //         const logoutMessage = await new AuthController().logout(refreshToken);
+    //         res.clearCookie('refreshToken');
+    //         res.send(logoutMessage);
+    //     } catch (error) {
+    //         next(error);
+    //     }
+    // }
 
     async validate(req: Request, res: Response, next: NextFunction) {
         try {
@@ -75,14 +75,14 @@ export default class AuthRouterController {
         }
     }
 
-    async test(req: Request, res: Response, next: NextFunction) {
-        try {
-            const data = await controller.getRowByField('Users', 'login', 'vinsssten');
+    // async test(req: Request, res: Response, next: NextFunction) {
+    //     try {
+    //         const data = await controller.getRowByField('Users', 'login', 'vinsssten');
 
-            res.send(data);
-        } catch (error) {
-            console.log(error)
-            next(error);
-        }
-    }
+    //         res.send(data);
+    //     } catch (error) {
+    //         console.log(error)
+    //         next(error);
+    //     }
+    // }
 }
