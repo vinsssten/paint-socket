@@ -35,9 +35,10 @@ class TokenController {
             const sql = `DELETE FROM public."Sessions" WHERE refresh_token='${refreshToken}'`
             const response = await connection.query(sql);
             
-            if (response.rowCount === 0) {
-                throw ApiError.BadRequest('Something went wrong in the process of unlogging');
-            }
+            // console.log('row count', response.rowCount)
+            // if (response.rowCount === 0) {
+            //     throw ApiError.BadRequest('Something went wrong in the process of unlogging');
+            // }
 
             return true;
         } catch (error) {
