@@ -1,11 +1,12 @@
 import { Color } from 'colors';
 import { NextFunction, Request, Response } from 'express';
+import MiddlewareParameters from '../../models/MiddlewareParameters';
 import ApiError from '../exceptions/ApiError';
 import TokenService from '../service/TokenService';
 
 var colors: Color = require('colors');
 
-function AuthMiddleware(req: Request, res: Response, next: NextFunction) {
+function AuthMiddleware({req, res, next}: MiddlewareParameters) {
     try {
         const authHeader = req.headers.authorization;
         if (!authHeader) {

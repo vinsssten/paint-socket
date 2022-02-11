@@ -1,6 +1,7 @@
 import { NextFunction, Request, Response } from "express";
+import MiddlewareParameters from "../../models/MiddlewareParameters";
 
-function RegistrationMiddleware (req: Request, res: Response, next: NextFunction) {
+function RegistrationMiddleware ({req, res, next}: MiddlewareParameters) {
 
 }
 
