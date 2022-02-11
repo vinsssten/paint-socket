@@ -1,12 +1,11 @@
 import { Color } from 'colors';
 import { NextFunction, Request, Response } from 'express';
-import MiddlewareParameters from '../../models/MiddlewareParameters';
 import ApiError from '../exceptions/ApiError';
 import TokenService from '../service/TokenService';
 
 var colors: Color = require('colors');
 
-function AuthMiddleware({req, res, next}: MiddlewareParameters) {
+function AuthMiddleware(err: Error, req: Request, res: Response, next: NextFunction) {
     try {
         const authHeader = req.headers.authorization;
         if (!authHeader) {
@@ -23,7 +22,8 @@ function AuthMiddleware({req, res, next}: MiddlewareParameters) {
             return next(ApiError.UnauthorizeError());
         }
 
-        req.user = tokenDataPayload;
+        //FIXME: Разобраться почему компилятор ругается на эту строку
+        // req.user = tokenDataPayload;
         next();
     } catch (error) {
         next(error);
