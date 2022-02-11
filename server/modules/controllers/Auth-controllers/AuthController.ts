@@ -78,6 +78,25 @@ class AuthController {
 
         return SuccessMessages.logout();
     }
+
+    async refresh (refreshTokenOld: string) {
+        const userPayload = TokenService.validateRefreshToken(refreshTokenOld);
+        if (!userPayload) {
+            console.log('user payload', userPayload)
+            throw ApiError.BadRequest('Something went wrong in refresh');
+        }
+
+        const pool = await db.newConnect();
+        const {accessToken, refreshToken} = TokenService.generateTokens(userPayload.id, userPayload.login);
+
+        const tokenController = new TokenController();
+        await tokenController.refreshInDB(pool, userPayload.id, refreshToken)
+
+        console.log(`USER ${userPayload.login} REFRESH HIS TOKEN`.green)
+        
+        pool.end();
+        return {accessToken, refreshToken}
+    }
 }
 
 export default AuthController;

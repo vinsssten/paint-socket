@@ -1,6 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
 import { Client } from 'pg'
 import { Database } from 'sqlite3';
+import ApiError from '../../exceptions/ApiError';
 import TokenService, { Tokens } from '../../service/TokenService';
 import AuthController from './AuthController';
 
@@ -59,30 +60,27 @@ export default class AuthRouterController {
     //     }
     // }
 
-    // async refresh(req: Request, res: Response, next: NextFunction) {
-    //     try {
-    //         console.log('refresh req');
-    //         const { refreshToken } = req.cookies;
-    //         const newTokens = await new TokenService().refreshToken(refreshToken);
-    //         res.clearCookie('refreshToken');
-    //         res.cookie('refreshToken', newTokens.refreshToken, {
-    //             maxAge: 1000 * 30 * 24 * 60 * 60,
-    //             httpOnly: true,
-    //         });
-    //         res.send({ accessToken: newTokens.accessToken });
-    //     } catch (error) {
-    //         next(error);
-    //     }
-    // }
+    async refresh(req: Request, res: Response, next: NextFunction) {
+        try {
+            const newTokens = await controller.refresh(req.cookies.refreshToken);
 
-    // async test(req: Request, res: Response, next: NextFunction) {
-    //     try {
-    //         const data = await controller.getRowByField('Users', 'login', 'vinsssten');
+            res.clearCookie('refreshToken');
+            res.cookie('refreshToken', newTokens.refreshToken, {
+                maxAge: 1000 * 30 * 24 * 60 * 60,
+                httpOnly: true,
+            });
+            res.send({ accessToken: newTokens.accessToken });
+        } catch (error) {
+            next(error);
+        }
+    }
 
-    //         res.send(data);
-    //     } catch (error) {
-    //         console.log(error)
-    //         next(error);
-    //     }
-    // }
+    async test(req: Request, res: Response, next: NextFunction) {
+        try {
+            res.send('Hello world!');
+        } catch (error) {
+            console.log(error)
+            next(error);
+        }
+    }
 }
