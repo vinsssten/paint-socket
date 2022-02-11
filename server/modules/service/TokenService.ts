@@ -19,7 +19,7 @@ export interface TokenPayload {
 }
 
 class TokenService {
-    generateTokens(id: string, login: string): Tokens {
+    static generateTokens(id: string, login: string): Tokens {
         const payload: TokenPayload = { id: id, login: login };
         const accessToken: string = jwt.sign(payload, process.env.JWT_ACCESS_SECRET, {
             expiresIn: '30m',
@@ -31,7 +31,7 @@ class TokenService {
         return { accessToken, refreshToken };
     }
 
-    getTokenFromRequest (req: Request): string | null {
+    static getTokenFromRequest (req: Request): string | null {
         const authHead = req.headers.authorization;
         const authWordSplit = authHead?.split(' ');
         
@@ -44,7 +44,7 @@ class TokenService {
         return null
     }
 
-    validateAccessToken(token: string) {
+    static validateAccessToken(token: string) {
         try {
             const userData = jwt.verify(token, process.env.JWT_ACCESS_SECRET);
             return userData;
@@ -53,7 +53,7 @@ class TokenService {
         }
     }
 
-    validateRefreshToken(token: string) {
+    static validateRefreshToken(token: string) {
         try {
             const userData = jwt.verify(token, process.env.JWT_REFRESH_SECRET);
             return userData;

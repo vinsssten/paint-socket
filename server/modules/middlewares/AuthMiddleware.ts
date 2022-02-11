@@ -17,7 +17,7 @@ function AuthMiddleware(err: Error, req: Request, res: Response, next: NextFunct
             return next(ApiError.UnauthorizeError());
         }
 
-        const tokenDataPayload = new TokenService().validateAccessToken(accessToken);
+        const tokenDataPayload = TokenService.validateAccessToken(accessToken);
         if (!tokenDataPayload) {
             return next(ApiError.UnauthorizeError());
         }

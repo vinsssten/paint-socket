@@ -17,6 +17,10 @@ class ApiError extends Error {
     static BadRequest(message: string, errors?: Error[] | string[]) {
         return new ApiError(message, 400, errors);
     }
+
+    static IncorrectLoginOrPassword () {
+        return new ApiError ('Incorrect login or password', 400)
+    }
 }
 
 export default ApiError;

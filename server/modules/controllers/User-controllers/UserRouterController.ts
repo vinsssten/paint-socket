@@ -8,8 +8,8 @@ class UserRouterController {
         try {
             const access = req.headers.authorization?.split(' ')[1];
             if (access) {
-                const profile = await controller.getSelfProfile(access);
-                res.send(profile);
+                // const profile = await controller.getSelfProfile(access);
+                // res.send(profile);
             }
         } catch (error) {
             next(error);
