@@ -11,7 +11,7 @@ apiRouter.post('/registration', RegistrationMiddleware, authController.registrat
 apiRouter.post('/login', authController.login);
 apiRouter.post('/logout', authController.logout);
 apiRouter.post('/refresh', authController.refresh);
-// apiRouter.post('/validate', AuthMiddleware, authController.validate);
-// apiRouter.get('/test', authController.test);
+apiRouter.post('/validate', authController.validate);
+apiRouter.get('/test', AuthMiddleware, authController.test);
 
 export default apiRouter;

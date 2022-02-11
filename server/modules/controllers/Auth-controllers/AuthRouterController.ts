@@ -51,14 +51,20 @@ export default class AuthRouterController {
         }
     }
 
-    // async validate(req: Request, res: Response, next: NextFunction) {
-    //     try {
-    //         console.log('validate request');
-    //         res.send(req.headers.authorization?.split(' ')[1]);
-    //     } catch (error) {
-    //         next(error);
-    //     }
-    // }
+    async validate(req: Request, res: Response, next: NextFunction) {
+        try {
+            const validatedToken = TokenService.getTokenFromRequest(req);
+            const isValidAccess = await controller.isValidToken(validatedToken);
+
+            if (isValidAccess) {
+                res.send({accessToken: validatedToken})
+            } else {
+                throw ApiError.BadRequest('Access token is not valid')
+            }
+        } catch (error) {
+            next(error);
+        }
+    }
 
     async refresh(req: Request, res: Response, next: NextFunction) {
         try {

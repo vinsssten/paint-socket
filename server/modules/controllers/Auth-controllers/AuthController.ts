@@ -97,6 +97,20 @@ class AuthController {
         pool.end();
         return {accessToken, refreshToken}
     }
+
+    async isValidToken (accessToken: string | null): Promise<string | false> {
+        if (!accessToken) {
+            return false;
+        }
+
+        const userPayload = TokenService.validateAccessToken(accessToken);
+
+        if (!userPayload) {
+            return false
+        }
+
+        return accessToken
+    }
 }
 
 export default AuthController;
