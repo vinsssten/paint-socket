@@ -1,5 +1,6 @@
 import React, { FC } from 'react';
 import useUserProfile from '../../lib/hooks/useUserProfile';
+import FindFriendInput from '../Inputs/FindFriendInput';
 import stl from './FriendsCard.scss';
 import FriendsList from './FriendsList';
 
@@ -10,7 +11,10 @@ const FriendsCard: FC<Props> = ({}) => {
 
     return (
         <div className={stl.mainContainer}>
-            <h1 className={stl.headingText}>Friends</h1>
+            <div className={stl.containerHeader}>
+                <h1 className={stl.headingText}>Friends</h1>
+                <FindFriendInput />
+            </div>
             <FriendsList list={getFriendsList().friendsList} />
         </div>
     );
