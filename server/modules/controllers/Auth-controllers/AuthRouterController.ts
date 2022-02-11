@@ -59,7 +59,7 @@ export default class AuthRouterController {
             if (isValidAccess) {
                 res.send({accessToken: validatedToken})
             } else {
-                throw ApiError.BadRequest('Access token is not valid')
+                throw ApiError.UnauthorizeError();
             }
         } catch (error) {
             next(error);

@@ -83,7 +83,7 @@ class AuthController {
         const userPayload = TokenService.validateRefreshToken(refreshTokenOld);
         if (!userPayload) {
             console.log('user payload', userPayload)
-            throw ApiError.BadRequest('Something went wrong in refresh');
+            throw ApiError.BadRequest('User payload is empty in refresh');
         }
 
         const pool = await db.connect();
