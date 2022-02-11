@@ -4,7 +4,7 @@ interface UsersTable {
     username: string;
     password: string;
     avatar: null | string;
-    createDate: string;
+    create_date: string;
 }
 
 export default UsersTable;

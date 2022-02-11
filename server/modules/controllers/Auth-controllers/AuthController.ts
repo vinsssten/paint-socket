@@ -1,7 +1,11 @@
+import { Pool } from 'pg';
 import ApiError from '../../exceptions/ApiError';
 import TokenService, { Tokens } from '../../service/TokenService';
 import DatabaseGetter from '../Database-controller/DatabaseGetter';
 import UsersTable from '../../../models/UsersTable';
+import DatabaseController from '../Database-controller/DatabaseController';
+import SuccessMessages from '../../service/SuccessMessages';
+import TokenController from '../TokenController';
 
 const bcrypt = require('bcrypt');
 const uuid = require('uuid');
@@ -12,89 +16,101 @@ interface RegistrationBody {
     password: string;
 }
 
-class AuthController extends DatabaseGetter {
-    private login = (user: UsersTable) =>
-        new Promise<Tokens>(async (resolve, reject) => {
-            try {
-                const tokenService = new TokenService();
-                const { accessToken, refreshToken } = await tokenService.generateTokens(
-                    user.id,
-                    user.login,
-                );
-                if (await tokenService.tokenSaveToDB(user.id, refreshToken)) {
-                    resolve({ accessToken, refreshToken });
-                }
-            } catch (error) {
-                reject(error);
+const db = new DatabaseGetter();
+
+class AuthController {
+    async login (login: string, password: string) {
+        try {
+            const pool = await db.connect();
+
+            const rowsByLogin: UsersTable[] = await db.getRowByField(pool,'Users', 'login', login);
+            if (rowsByLogin.length !== 1) {
+                throw ApiError.IncorrectLoginOrPassword();
             }
-        });
 
-    loginMain = ({ login, password }: RegistrationBody) =>
-        new Promise<Tokens>(async (resolve, reject) => {
-            try {
-                const db = await this.connect();
+            const curUser: UsersTable = rowsByLogin[0];
+            
+            if (!await bcrypt.compare(password, curUser.password)) {
+                throw ApiError.IncorrectLoginOrPassword();
+            } 
 
-                const currentUser = await this.getRowByField('Users', 'login', login);
-                if (currentUser.length === 0) {
-                    console.log('user with this login is was not found');
-                    reject(ApiError.BadRequest('Incorrect login or password'));
-                }
+            const {accessToken, refreshToken} = TokenService.generateTokens(curUser.id, curUser.login);
+            const tokenController = new TokenController();
+            await tokenController.saveInDB(pool, curUser.id, refreshToken);
 
-                if (await bcrypt.compare(password, currentUser[0].password)) {
-                    resolve(await this.login(currentUser[0]));
-                } else reject(ApiError.BadRequest('Incorrect login or password'));
+            console.log(`THE USER ${curUser.login} LOGGED IN`.green);
 
-                db.close();
-            } catch (error) {
-                reject(error);
+            pool.end()
+
+            return {accessToken, refreshToken}
+        } catch (error) {
+            throw error
+        }
+    }
+
+    async registration ({ login, username, password }: RegistrationBody) {
+        try {
+            const pool = await db.connect();
+            const isUniqueLogin = await db.isUniqueValue(pool, 'Users', 'login', login);
+            if (!isUniqueLogin) {
+                throw ApiError.BadRequest('A user with this login already exists, try a different login')
             }
-        });
 
-    logout = (refreshToken: string) =>
-        new Promise(async (resolve, reject) => {
-            try {
-                const removeToken = await new TokenService().removeToken(refreshToken);
-                resolve(removeToken);
-            } catch (error) {
-                reject(error);
-            }
-        });
+            const hashedPassword = await bcrypt.hash(password, 3);
+            const id = uuid.v4();
+            const sql = `INSERT INTO public."Users" (id, login, username, password, create_date) VALUES ('${id}', '${login}', '${username}', '${hashedPassword}', NOW())`;
 
-    registration = ({ login, username, password }: RegistrationBody) =>
-        new Promise(async (resolve, reject) => {
-            try {
-                const isUniqueLogin = await this.isUniqueValue('Users', 'login', login);
-                if (!isUniqueLogin) {
-                    reject(
-                        ApiError.BadRequest(
-                            'A user with this login already exists, try a different login',
-                        ),
-                    );
-                    return;
-                }
+            await pool.query(sql)
+            pool.end()
+            console.log(`USER ${login} HAS BEEN SUCCESSFULLY REGISTERED`.green)
 
-                const db = await this.connect();
-                const hashedPassword = await bcrypt.hash(password, 3);
-                const id = uuid.v4();
-                const sql = `INSERT INTO Users (id, login, username, password, createDate) VALUES ('${id}', '${login}', '${username}', '${hashedPassword}', date("now"))`;
-                db.serialize(() => {
-                    db.run(sql, error => {
-                        if (!error) {
-                            resolve({
-                                message: 'The user has been successfully registered',
-                            });
-                        } else {
-                            console.log(error);
-                            reject(new Error(`${error}`));
-                        }
-                    });
-                });
+            return SuccessMessages.registered();
+        } catch (error) {
+            throw error
+        }
+    }
 
-                this.close(db);
-            } catch (error) {
-                reject(error);
-            }
-        });
+    async logout (refreshToken: string) {
+        const pool = await db.connect();
+
+        const tokenController = new TokenController();
+        await tokenController.removeFromDB(pool, refreshToken);
+
+        return SuccessMessages.logout();
+    }
+
+    async refresh (refreshTokenOld: string) {
+        const userPayload = TokenService.validateRefreshToken(refreshTokenOld);
+        if (!userPayload) {
+            console.log('user payload', userPayload)
+            throw ApiError.BadRequest('User payload is empty in refresh');
+        }
+
+        const pool = await db.connect();
+        const {accessToken, refreshToken} = TokenService.generateTokens(userPayload.id, userPayload.login);
+
+        const tokenController = new TokenController();
+        await tokenController.refreshInDB(pool, userPayload.id, refreshToken)
+
+        console.log(`USER ${userPayload.login} REFRESH HIS TOKEN`.green)
+        
+        pool.end();
+        return {accessToken, refreshToken}
+    }
+
+    async isValidToken (accessToken: string | null): Promise<string | false> {
+        if (!accessToken) {
+            return false;
+        }
+
+        const userPayload = TokenService.validateAccessToken(accessToken);
+
+        if (!userPayload) {
+            return false
+        }
+
+        return accessToken
+    }
 }
 
 export default AuthController;

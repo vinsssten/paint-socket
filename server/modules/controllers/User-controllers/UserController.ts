@@ -1,29 +1,23 @@
 import UsersTable from '../../../models/UsersTable';
-import TokenService from '../../service/TokenService';
-import DatabaseController from '../Database-controller/DatabaseController';
 import DatabaseGetter from '../Database-controller/DatabaseGetter';
 
-const database = new DatabaseController();
-const dbgetter = new DatabaseGetter();
+const db = new DatabaseGetter();
 
 class UserController {
-    getSelfProfile = (accessToken: string) =>
-        new Promise(async (resolve, reject) => {
-            try {
-                const { id: userId } = await new TokenService().validateAccessToken(
-                    accessToken,
-                );
-                const curUser = await dbgetter.getRowByField('Users', 'id', userId);
-                resolve({
-                    login: curUser[0].login,
-                    username: curUser[0].username,
-                    avatar: curUser[0].avatar,
-                    createDate: curUser[0].createDate,
-                });
-            } catch (err) {
-                reject(err);
+    async getSelfProfile (id: string) {
+        try {
+            const pool = await db.connect();
+
+            const userData: UsersTable[] = await db.getRowByField(pool, 'Users', 'id', id);
+            if (userData.length === 0) {
+                throw Error ('User profile didnt finded in getSelfProfile');
             }
-        });
+            const curUser = userData[0];
+            return {login: curUser.login, username: curUser.username, avatar: curUser.avatar, createDate: curUser.create_date};
+        } catch (error) {
+            throw error
+        }
+    }
 }
 
 export default UserController;

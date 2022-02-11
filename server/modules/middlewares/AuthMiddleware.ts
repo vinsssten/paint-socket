@@ -3,6 +3,15 @@ import { NextFunction, Request, Response } from 'express';
 import ApiError from '../exceptions/ApiError';
 import TokenService from '../service/TokenService';
 
+//TODO: Разобраться с объявлением этого типа в отдельном файле
+declare global {
+    namespace Express {
+        interface Request {
+            user: {id: string, login: string};
+        }
+    }
+}
+
 var colors: Color = require('colors');
 
 function AuthMiddleware(req: Request, res: Response, next: NextFunction) {
@@ -17,7 +26,7 @@ function AuthMiddleware(req: Request, res: Response, next: NextFunction) {
             return next(ApiError.UnauthorizeError());
         }
 
-        const tokenDataPayload = new TokenService().validateAccessToken(accessToken);
+        const tokenDataPayload = TokenService.validateAccessToken(accessToken);
         if (!tokenDataPayload) {
             return next(ApiError.UnauthorizeError());
         }
