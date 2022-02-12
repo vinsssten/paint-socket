@@ -5,14 +5,18 @@ import stl from './FriendsCard.scss'
 interface Props {
     avatar: string | null,
     username: string,
-    isIncoming: boolean
+    isIncoming: boolean,
+    lastOnline: string
 }
 
-const FriendWrapper: FC<Props> = ({ avatar, username }) => {
+const FriendWrapper: FC<Props> = ({ avatar, username, lastOnline }) => {
     return (
         <div className={stl.friendContainer}>
             <FriendAvatar avatarPath={avatar} />
-            <h2>{username}</h2>
+            <div className={stl.infoContainer}>
+                <h2>{username}</h2>
+                <h3>Last online: {lastOnline}</h3>
+            </div>
         </div>
     )
 }

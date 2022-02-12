@@ -30,11 +30,13 @@ function useUserProfile() {
                     id: '111111',
                     username: 'sseoro',
                     avatar: null,
+                    lastOnline: '19:43 12 February'
                 },
                 {
                     id: '111111',
                     username: 'sseoro',
                     avatar: null,
+                    lastOnline: '19:43 12 February'
                 },
             ],
             invitesList: [

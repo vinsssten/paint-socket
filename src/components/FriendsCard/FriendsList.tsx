@@ -12,7 +12,7 @@ const FriendsList: FC<Props> = ({ list }) => {
     return (
         <div className={stl.friendsListContainer}>
             {list.map((value, index) => (
-                <FriendWrapper avatar={value.avatar} username={value.username} isIncoming={false}/>
+                <FriendWrapper avatar={value.avatar} username={value.username} lastOnline={value.lastOnline} isIncoming={false}/>
             ))}
         </div>
     );
