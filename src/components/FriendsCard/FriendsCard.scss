@@ -37,7 +37,7 @@
     margin-top: 5px;
     padding: 10px 20px;
     border-radius: 7px;
-    background-color: #b4b4b4b6;
+    background-color: $bgColor_grayContainer-light;
     box-shadow: $boxShadow_subContainer-light;
     border: 1px solid #b8b8b885;
 
@@ -49,12 +49,13 @@
 
         h2 {
             @include fontSemiBold-light;
+            text-shadow: $textShadow-light;
         }
 
         h3 {
             margin-top: -5px;
             @include fontRegular-light;
-            color: rgb(255, 255, 255);
+            color: #222222;
         }
     }
 }
@@ -67,6 +68,7 @@
         height: inherit;
         width: inherit;
         border-radius: 50px;
+        border: 1px #afafaf solid;
         overflow: hidden;
     }
 
