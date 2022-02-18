@@ -1,15 +1,15 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { BrowserRouter, Route, Routes, useNavigate } from 'react-router-dom';
-import LoginPage from './components/LoginPage/LoginPage';
-import SingleDrawingPage from './components/LocalDrawingPage/SingleDrawingPage';
-import MainPage from './components/MainPage/MainPage';
-import RegisterPage from './components/LoginPage/RegisterPage/RegisterPage';
+import { useAppSelector } from '.';
 import LoadingSpinner from './components/LoadingSpinner/LoadingSpinner';
+import SingleDrawingPage from './components/LocalDrawingPage/SingleDrawingPage';
+import LoginPage from './components/LoginPage/LoginPage';
+import RegisterPage from './components/LoginPage/RegisterPage/RegisterPage';
+import MainPage from './components/MainPage/MainPage';
 import useAuth from './lib/hooks/authHooks/useAuth';
 import useAuthLoading from './lib/hooks/authHooks/useAuthLoading';
 import { loadTestAuth } from './lib/store/actionCreators/authActionCreators';
-import { useAppSelector } from '.';
 import { loadTestUser } from './lib/store/actionCreators/testData';
 
 function Router() {
@@ -37,7 +37,7 @@ function Router() {
     }, [isAuth, isAuthLoading]);
 
     useEffect(() => {
-        loadTestUser(dispatch);
+        loadTestUser(dispatch);   
     }, []);
 
     return (

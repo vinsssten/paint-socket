@@ -10,3 +10,19 @@
     height: 40px;
     background: $bgColor_mainButton;
 }
+
+.invitesButton {
+    @include fontRegular-dark;
+    @include glassButton_main;
+    padding: 5px;
+    font-size: large;
+    color: white;
+    background-color: $bgColor_mainButton;
+    border-radius: 5px;
+    cursor: pointer;
+    user-select: none;
+
+}
+.invitesButton_active {
+    background-color: #050505be;
+}
