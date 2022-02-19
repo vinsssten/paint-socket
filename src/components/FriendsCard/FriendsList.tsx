@@ -11,11 +11,11 @@ interface Props {
 
 const FriendsList: FC<Props> = ({ list, findValue }) => {
 
-    function renderWithFilter (value: Friend, checkString: string): JSX.Element | undefined {
+    function renderWithFilter (value: Friend, checkString: string, key: number): JSX.Element | undefined {
         if (value.username.includes(checkString)) {
             return <FriendWrapper 
                 {...value}
-                isIncoming={false}
+                key={key}
             />
         } else {
             return undefined
@@ -24,12 +24,12 @@ const FriendsList: FC<Props> = ({ list, findValue }) => {
 
     return (
         <div className={stl.friendsListContainer}>
-            {list.map((value) => { 
+            {list.map((value, index) => { 
                 if (findValue !== '') {
-                    return renderWithFilter(value, findValue)
+                    return renderWithFilter(value, findValue, index)
                 } else return <FriendWrapper 
                     {...value} 
-                    isIncoming={false}
+                    key={index}
                 />
             }
             )}

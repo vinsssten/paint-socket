@@ -11,9 +11,9 @@ interface Props {
 const HeaderFriendsCard: FC<Props> = ({ toggleLists, findDispatcher }) => {
     return (
         <div className={stl.containerHeader}>
-                <h1 className={stl.headingText}>Friends</h1>
-                <FindFriendInput findDispatcher={findDispatcher}/>
-                <InvitesToggleButton onClick={toggleLists}/>
+            <h1 className={stl.headingText}>Friends</h1>
+            <FindFriendInput findDispatcher={findDispatcher}/>
+            <InvitesToggleButton onClick={toggleLists}/>
         </div>
     )
 }

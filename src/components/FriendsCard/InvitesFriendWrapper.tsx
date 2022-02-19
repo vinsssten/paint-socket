@@ -1,23 +1,23 @@
 import React, { FC } from 'react'
 import FriendAvatar from './FriendAvatar'
 import stl from './FriendsCard.scss'
+import { FriendInvite } from '../../lib/models/Response/FriendsResponse';
 
 interface Props {
-    avatar: string | null,
-    username: string,
-    lastOnline: string
+    id: string
+    avatarPath: string | null
+    username: string
 }
 
-const FriendWrapper: FC<Props> = ({ avatar, username, lastOnline }) => {
+const InvitesFriendWrapper: FC<Props> = ({ id, avatarPath, username }) => {
     return (
         <div className={stl.friendContainer}>
-            <FriendAvatar avatarPath={avatar} />
+            <FriendAvatar avatarPath={avatarPath} />
             <div className={stl.infoContainer}>
                 <h2>{username}</h2>
-                <h3>Last online: {lastOnline}</h3>
             </div>
         </div>
     )
 }
 
-export default FriendWrapper
+export default InvitesFriendWrapper

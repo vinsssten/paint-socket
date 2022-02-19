@@ -4,7 +4,7 @@ import FindFriendInput from '../Inputs/FindFriendInput';
 import stl from './FriendsCard.scss';
 import FriendsList from './FriendsList';
 import InvitesToggleButton from '../Buttons/InvitesToggleButton';
-import InvitesWrapper from './InvitesWrapper';
+import InvitesList from './InvitesList';
 import HeaderFriendsCard from './HeaderFriendsCard';
 
 interface Props {}
@@ -21,7 +21,7 @@ const FriendsCard: FC<Props> = ({}) => {
     return (
         <div className={stl.mainContainer}>
             <HeaderFriendsCard findDispatcher={setFindValue} toggleLists={toggleLists}/>
-            <InvitesWrapper isShow={isShowInvites} list={getFriendsList().invitesList} />
+            <InvitesList isShow={isShowInvites} list={getFriendsList().invitesList} />
             <FriendsList findValue={findValue} list={getFriendsList().friendsList} />
         </div>
     );
