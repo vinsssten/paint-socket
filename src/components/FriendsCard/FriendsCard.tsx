@@ -20,8 +20,8 @@ const FriendsCard: FC<Props> = ({}) => {
 
     return (
         <div className={stl.mainContainer}>
-            <HeaderFriendsCard toggleLists={toggleLists}/>
-            <InvitesWrapper isShow={isShowInvites} />
+            <HeaderFriendsCard findDispatcher={setFindValue} toggleLists={toggleLists}/>
+            <InvitesWrapper isShow={isShowInvites} list={getFriendsList().invitesList} />
             <FriendsList findValue={findValue} list={getFriendsList().friendsList} />
         </div>
     );

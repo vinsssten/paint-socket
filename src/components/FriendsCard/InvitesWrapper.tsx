@@ -1,13 +1,17 @@
 import React, { FC } from 'react'
+import { FriendInvite } from '../../lib/models/Response/FriendsResponse';
 
 interface Props {
     isShow: boolean
+    list: FriendInvite[]
 }
 
-const InvitesWrapper: FC<Props> = ({ isShow: isShowInvites }) => {
+const InvitesWrapper: FC<Props> = ({ isShow, list }) => {
     return (
         <div>
-            {isShowInvites ? <h1>Invites</h1> : null}
+            {isShow ?
+            <></>  
+            : null}
         </div>
     )
 }

@@ -5,13 +5,14 @@ import stl from './FriendsCard.scss'
 
 interface Props {
     toggleLists(): void 
+    findDispatcher: React.Dispatch<React.SetStateAction<string>>
 }
 
-const HeaderFriendsCard: FC<Props> = ({ toggleLists }) => {
+const HeaderFriendsCard: FC<Props> = ({ toggleLists, findDispatcher }) => {
     return (
         <div className={stl.containerHeader}>
                 <h1 className={stl.headingText}>Friends</h1>
-                <FindFriendInput />
+                <FindFriendInput findDispatcher={findDispatcher}/>
                 <InvitesToggleButton onClick={toggleLists}/>
         </div>
     )
