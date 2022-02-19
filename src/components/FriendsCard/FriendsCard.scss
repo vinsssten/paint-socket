@@ -1,0 +1,80 @@
+@import '../../index.scss';
+
+.mainContainer {
+    @include glassContainer;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    margin: 10px 0px;
+    width: 100%;
+    background-color: $bgColor_card-light;
+    height: auto;
+    padding: 30px;
+    box-sizing: border-box;
+}
+
+.containerHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 50px;
+    width: 100%;
+}
+
+.headingText {
+    @include fontBold-light;
+}
+
+.friendsListContainer {
+    width: 100%;
+}
+
+.friendContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 100%;
+    margin-top: 5px;
+    padding: 10px 20px;
+    border-radius: 7px;
+    background-color: $bgColor_grayContainer-light;
+    box-shadow: $boxShadow_subContainer-light;
+    border: 1px solid #b8b8b885;
+
+    .infoContainer {
+        display: flex;
+        flex-direction: column;
+        margin-left: 10px;
+
+        h2 {
+            @include fontSemiBold-light;
+            text-shadow: $textShadow-light;
+        }
+
+        h3 {
+            margin-top: -5px;
+            @include fontRegular-light;
+            color: #222222;
+        }
+    }
+}
+
+.invitesContainer {
+    width: 100%;
+    padding: 10px 0;
+    border-bottom: 1px solid gray;
+}
+
+.imageContainer {
+    height: 60px;
+    width: 60px;
+
+    img {
+        height: inherit;
+        width: inherit;
+        border-radius: 50px;
+        border: 1px #afafaf solid;
+        overflow: hidden;
+    }
+}

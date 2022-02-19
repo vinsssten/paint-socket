@@ -1,5 +1,4 @@
 import { Request } from 'express';
-import { isUndefined } from 'util';
 import DatabaseController from '../controllers/Database-controller/DatabaseController';
 import DatabaseGetter from '../controllers/Database-controller/DatabaseGetter';
 import ApiError from '../exceptions/ApiError';

@@ -1,5 +1,4 @@
 import { NextFunction, Request, Response } from 'express';
-import { Client } from 'pg';
 import { Database } from 'sqlite3';
 import ApiError from '../../exceptions/ApiError';
 import TokenService, { Tokens } from '../../service/TokenService';
