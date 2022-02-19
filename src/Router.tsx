@@ -37,7 +37,7 @@ function Router() {
     }, [isAuth, isAuthLoading]);
 
     useEffect(() => {
-        loadTestUser(dispatch);   
+        loadTestUser(dispatch);
     }, []);
 
     return (

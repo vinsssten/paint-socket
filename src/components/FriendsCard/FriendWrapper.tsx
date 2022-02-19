@@ -1,11 +1,11 @@
-import React, { FC } from 'react'
-import FriendAvatar from './FriendAvatar'
-import stl from './FriendsCard.scss'
+import React, { FC } from 'react';
+import FriendAvatar from './FriendAvatar';
+import stl from './FriendsCard.scss';
 
 interface Props {
-    avatar: string | null,
-    username: string,
-    lastOnline: string
+    avatar: string | null;
+    username: string;
+    lastOnline: string;
 }
 
 const FriendWrapper: FC<Props> = ({ avatar, username, lastOnline }) => {
@@ -17,7 +17,7 @@ const FriendWrapper: FC<Props> = ({ avatar, username, lastOnline }) => {
                 <h3>Last online: {lastOnline}</h3>
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default FriendWrapper
+export default FriendWrapper;

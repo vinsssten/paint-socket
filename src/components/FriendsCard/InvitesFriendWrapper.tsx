@@ -1,12 +1,12 @@
-import React, { FC } from 'react'
-import FriendAvatar from './FriendAvatar'
-import stl from './FriendsCard.scss'
+import React, { FC } from 'react';
+import FriendAvatar from './FriendAvatar';
+import stl from './FriendsCard.scss';
 import { FriendInvite } from '../../lib/models/Response/FriendsResponse';
 
 interface Props {
-    id: string
-    avatarPath: string | null
-    username: string
+    id: string;
+    avatarPath: string | null;
+    username: string;
 }
 
 const InvitesFriendWrapper: FC<Props> = ({ id, avatarPath, username }) => {
@@ -17,7 +17,7 @@ const InvitesFriendWrapper: FC<Props> = ({ id, avatarPath, username }) => {
                 <h2>{username}</h2>
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default InvitesFriendWrapper
+export default InvitesFriendWrapper;

@@ -30,19 +30,19 @@ function useUserProfile() {
                     id: '111111',
                     username: 'chaylom',
                     avatar: null,
-                    lastOnline: '19:43 12 February'
+                    lastOnline: '19:43 12 February',
                 },
                 {
                     id: '111111',
                     username: 'vinsssten',
                     avatar: null,
-                    lastOnline: '19:43 12 February'
+                    lastOnline: '19:43 12 February',
                 },
                 {
                     id: '111111',
                     username: 'sseoro',
                     avatar: null,
-                    lastOnline: '19:43 12 February'
+                    lastOnline: '19:43 12 February',
                 },
             ],
             invitesList: [

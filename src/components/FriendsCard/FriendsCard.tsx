@@ -12,15 +12,15 @@ interface Props {}
 const FriendsCard: FC<Props> = ({}) => {
     const { getFriendsList } = useUserProfile();
     const [isShowInvites, setIsShowInvites] = useState<boolean>(false);
-    const [findValue, setFindValue] = useState<string>('')
+    const [findValue, setFindValue] = useState<string>('');
 
-    function toggleLists () {
-        setIsShowInvites(!isShowInvites)
+    function toggleLists() {
+        setIsShowInvites(!isShowInvites);
     }
 
     return (
         <div className={stl.mainContainer}>
-            <HeaderFriendsCard findDispatcher={setFindValue} toggleLists={toggleLists}/>
+            <HeaderFriendsCard findDispatcher={setFindValue} toggleLists={toggleLists} />
             <InvitesList isShow={isShowInvites} list={getFriendsList().invitesList} />
             <FriendsList findValue={findValue} list={getFriendsList().friendsList} />
         </div>
