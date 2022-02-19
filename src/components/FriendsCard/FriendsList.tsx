@@ -6,9 +6,10 @@ import FriendWrapper from './FriendWrapper';
 
 interface Props {
     list: Friend[];
+    findValue: string
 }
 
-const FriendsList: FC<Props> = ({ list }) => {
+const FriendsList: FC<Props> = ({ list, findValue }) => {
     return (
         <div className={stl.friendsListContainer}>
             {list.map((value, index) => (

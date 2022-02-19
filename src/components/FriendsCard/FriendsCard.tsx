@@ -4,12 +4,15 @@ import FindFriendInput from '../Inputs/FindFriendInput';
 import stl from './FriendsCard.scss';
 import FriendsList from './FriendsList';
 import InvitesToggleButton from '../Buttons/InvitesToggleButton';
+import InvitesWrapper from './InvitesWrapper';
+import HeaderFriendsCard from './HeaderFriendsCard';
 
 interface Props {}
 
 const FriendsCard: FC<Props> = ({}) => {
     const { getFriendsList } = useUserProfile();
     const [isShowInvites, setIsShowInvites] = useState<boolean>(false);
+    const [findValue, setFindValue] = useState<string>('')
 
     function toggleLists () {
         setIsShowInvites(!isShowInvites)
@@ -17,13 +20,9 @@ const FriendsCard: FC<Props> = ({}) => {
 
     return (
         <div className={stl.mainContainer}>
-            <div className={stl.containerHeader}>
-                <h1 className={stl.headingText}>Friends</h1>
-                <FindFriendInput />
-                <InvitesToggleButton onClick={toggleLists}/>
-            </div>
-            {isShowInvites ? <h1>Invites</h1> : null}
-            <FriendsList list={getFriendsList().friendsList} />
+            <HeaderFriendsCard toggleLists={toggleLists}/>
+            <InvitesWrapper isShow={isShowInvites} />
+            <FriendsList findValue={findValue} list={getFriendsList().friendsList} />
         </div>
     );
 };
