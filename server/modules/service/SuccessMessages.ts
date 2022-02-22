@@ -10,6 +10,12 @@ class SuccessMessages {
             message: 'The user logged out successfully',
         };
     }
+
+    static friendsMissing () {
+        return {
+            message: 'Friends are missing'
+        }
+    }
 }
 
 export default SuccessMessages;

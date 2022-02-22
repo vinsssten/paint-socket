@@ -7,7 +7,7 @@ export interface Friend {
     id: string;
     username: string;
     avatar: string | null;
-    lastOnline: string;
+    lastOnline: string | null;
 }
 
 export interface FriendInvite {
