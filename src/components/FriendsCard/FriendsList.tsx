@@ -2,33 +2,19 @@ import React, { FC, useEffect, useState } from 'react';
 import stl from './FriendsCard.scss';
 import { Friend } from '../../lib/models/Response/FriendsResponse';
 import FriendAvatar from './FriendAvatar';
-import FriendWrapper from './FriendWrapper';
+import FriendWrapper from './wrappers/FriendWrapper';
 
 interface Props {
     list: Friend[];
-    findValue: string;
 }
 
-const FriendsList: FC<Props> = ({ list, findValue }) => {
-    function renderWithFilter(
-        value: Friend,
-        checkString: string,
-        key: number,
-    ): JSX.Element | undefined {
-        if (value.username.includes(checkString)) {
-            return <FriendWrapper {...value} key={key} />;
-        } else {
-            return undefined;
-        }
-    }
-
+const FriendsList: FC<Props> = ({ list }) => {
     return (
         <div className={stl.friendsListContainer}>
-            {list.map((value, index) => {
-                if (findValue !== '') {
-                    return renderWithFilter(value, findValue, index);
-                } else return <FriendWrapper {...value} key={index} />;
-            })}
+            {list.length === 0 ? <h2>You don't have any friends yet, but you can easily find them by using the search</h2> : null}
+            {list.map((value, index) => 
+                <FriendWrapper {...value} key={index} />
+            )}
         </div>
     );
 };

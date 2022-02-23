@@ -8,15 +8,15 @@ import HeaderFriendsCard from './HeaderFriendsCard';
 import InvitesList from './InvitesList';
 import { FriendsResponse } from '../../lib/models/Response/FriendsResponse';
 import useFriends from '../../lib/hooks/authHooks/useFriends';
+import FindFriendContainer from './FindFriendContainer';
 
 interface Props {
     friends: FriendsResponse;
 }
 
 const FriendsCard: FC<Props> = ({ friends }) => {
-    const { findFriend } = useFriends();
+    const { findResult, findFriend } = useFriends();
     const [isShowInvites, setIsShowInvites] = useState<boolean>(false);
-    const [findValue, setFindValue] = useState<string>('');
 
     function toggleLists() {
         setIsShowInvites(!isShowInvites);
@@ -30,8 +30,15 @@ const FriendsCard: FC<Props> = ({ friends }) => {
     return (
         <div className={stl.mainContainer}>
             <HeaderFriendsCard findDispatcher={findFriendHandle} toggleLists={toggleLists} />
-            <InvitesList isShow={isShowInvites} list={friends.invitesList} />
-            <FriendsList findValue={findValue} list={friends.friendsList} />
+            
+            {findResult ? 
+                <FindFriendContainer findResponse={findResult} />
+                :
+                <>
+                    <FriendsList list={friends.friendsList} />
+                    <InvitesList isShow={isShowInvites} list={friends.invitesList} />
+                </>
+            }       
         </div>
     );
 };

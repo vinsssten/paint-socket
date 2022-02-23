@@ -1,7 +1,6 @@
 import React, { FC } from 'react';
-import FriendAvatar from './FriendAvatar';
-import stl from './FriendsCard.scss';
-import { FriendInvite } from '../../lib/models/Response/FriendsResponse';
+import FriendAvatar from '../FriendAvatar';
+import stl from '../FriendsCard.scss';
 
 interface Props {
     id: string;
