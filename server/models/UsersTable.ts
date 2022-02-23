@@ -8,4 +8,10 @@ interface UsersTable {
     last_online: string | null
 }
 
+export interface FindUsersTable {
+    id: string, 
+    username: string,
+    avatar: string | null
+}
+
 export default UsersTable;

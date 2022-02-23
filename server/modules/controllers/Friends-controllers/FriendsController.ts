@@ -1,56 +1,43 @@
 import { Pool } from 'pg';
 import FriendsTable, { FriendsResponse, FriendStatus } from '../../../models/FriendsTable';
-import UsersTable from '../../../models/UsersTable';
-import SuccessMessages from '../../service/SuccessMessages';
+import UsersTable, { FindUsersTable } from '../../../models/UsersTable';
 import DatabaseController from '../Database-controller/DatabaseController';
 import DatabaseGetter from '../Database-controller/DatabaseGetter';
+import FriendsControllerService from '../../service/FriendsControllerService';
 
 const dbController = new DatabaseController();
 const dbGetter = new DatabaseGetter();
 
 class FriendsController {
-    async getFriendsList(id: string, connection: Pool | undefined = undefined): Promise<SuccessMessages | FriendsResponse> {
+    async getFriendsList(id: string, connection: Pool | undefined = undefined): Promise<FriendsResponse> {
         if (!connection) {
             connection = await dbController.connect();
         }
 
-        let sql = `SELECT * FROM public."Friends" WHERE first_id='${id}' OR second_id='${id}'`;
-        const friendsList = (await connection.query<FriendsTable>(sql)).rows;
+        const friendsList = await FriendsControllerService.getFriendsRows(connection, id);
+        const friendsResponse: FriendsResponse = {friendsList: [], invitesList: []};
         
         if (friendsList.length === 0) {
-            return SuccessMessages.friendsMissing();
+            return friendsResponse;
         }
+        
+        const {listIdFriends, realitionTypeByIdList} = FriendsControllerService.getFriendsListIds(friendsList, id);
 
-        const listIdFriends: string[] = [];
-        const realitionTypeByIdList: Array<{id: string, status: FriendStatus}> = [];
-        friendsList.forEach((item) => {
-            let curId = '';
-            if (item.first_id === id) {
-                listIdFriends.push(item.second_id);
-                curId = item.second_id;
-            } else if (item.second_id === id) {
-                listIdFriends.push(item.first_id);
-                curId = item.first_id;
-            }
-            realitionTypeByIdList.push({id: curId, status: item.status})
-        })
-        const friendsIdsString = listIdFriends.slice().join("','");
-        sql = `SELECT * FROM public."Users" WHERE id in ('${friendsIdsString}')`;
+        const friendsIdsString: string = listIdFriends.slice().join("','");
+        const sql = `SELECT * FROM public."Users" WHERE id in ('${friendsIdsString}')`;
         const friendsProfiles: UsersTable[] = (await connection.query<UsersTable>(sql)).rows;
-        const friendsResponse: FriendsResponse = {friendsList: [], invitesList: []};
 
         realitionTypeByIdList.forEach((item, index) => {
             friendsProfiles.forEach((profile, index) => {
-                console.log(profile)
                 if (profile.id === item.id) {
-                    if (item.status === 'Friends') {
+                    if (item.relationType === 'Friends') {
                         friendsResponse.friendsList.push({
                             id: profile.id, 
                             username: profile.username,
                             avatar: profile.avatar,
                             last_online: profile.last_online
                         })
-                    } else if (item.status === 'Pending') {
+                    } else if (item.relationType === 'Pending') {
                         friendsResponse.invitesList.push({
                             id: profile.id,
                             username: profile.username,
@@ -64,12 +51,17 @@ class FriendsController {
         return friendsResponse
     }
 
-    async findFriends (username: string, userId: string): Promise<UsersTable[]> {
+    async findFriends (username: string, userId: string): Promise<any> {
         const pool = await dbController.connect();
-        const usersList: UsersTable[] = await dbGetter.getRowByField(pool, 'Users', 'username', username);
-        const friendsList = this.getFriendsList(userId, pool);
+        const rows = 'id, username, avatar';
+        let sql = `SELECT (${rows}) as ${rows} FROM public."Users" WHERE username LIKE '%' || '${username}' || '%'`
+        const usersList: FindUsersTable[] = (await pool.query<FindUsersTable>(sql)).rows;
 
-                
+        const friendsList =  await FriendsControllerService.getFriendsRows(pool, userId);
+        const { realitionTypeByIdList: relationType } = FriendsControllerService.getFriendsListIds(friendsList, userId)
+        
+        const taggedFindList = FriendsControllerService.tagFriendsInUsersList(userId, usersList, relationType);
+        return taggedFindList;
     }
 }
 
