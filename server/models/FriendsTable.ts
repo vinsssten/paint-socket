@@ -1,18 +1,18 @@
-export type FriendStatus = 'Friends' | 'Pending' | null
+export type FriendStatus = 'Friends' | 'Pending' | null;
 type FindFriend = FriendInvite;
 
 export default interface FriendsTable {
-    id: string,
-    first_id: string
-    second_id: string
-    status: FriendStatus
+    id: string;
+    first_id: string;
+    second_id: string;
+    status: FriendStatus;
 }
 
 export interface FriendsProfile {
-    id: string,
-    username: string,
-    avatar: string | null,
-    last_online: string | null
+    id: string;
+    username: string;
+    avatar: string | null;
+    last_online: string | null;
 }
 
 export interface FriendsResponse {
@@ -33,11 +33,10 @@ export interface FriendInvite {
     avatar: string | null;
 }
 
-
 export interface FriendFindResponse {
-    friends: Friend[],
-    invites: FriendInvite[],
-    finded: FindFriend[]
+    friends: Friend[];
+    invites: FriendInvite[];
+    finded: FindFriend[];
 }
 
-export type RelationTypeMap = Map<string, FriendStatus>
+export type RelationTypeMap = Map<string, FriendStatus>;

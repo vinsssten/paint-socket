@@ -9,7 +9,7 @@ import InvitesList from './InvitesList';
 import { FriendsResponse } from '../../lib/models/Response/FriendsResponse';
 
 interface Props {
-    friends: FriendsResponse
+    friends: FriendsResponse;
 }
 
 const FriendsCard: FC<Props> = ({ friends }) => {

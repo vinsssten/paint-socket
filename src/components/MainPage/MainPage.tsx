@@ -11,27 +11,26 @@ import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
 interface Props {}
 
 const MainPage: FC<Props> = ({}) => {
-    const [profile, setProfile] = useState<FullSelfProfile | null>(null)
-    const { getFullProfile } =  useUserProfile();
+    const [profile, setProfile] = useState<FullSelfProfile | null>(null);
+    const { getFullProfile } = useUserProfile();
 
     useEffect(() => {
-        getFullProfile()
-            .then((values) => {
-                setProfile(values)
-            })
-    }, [])
+        getFullProfile().then(values => {
+            setProfile(values);
+        });
+    }, []);
 
     return (
         <div className={stl.mainContainer}>
             <div className={stl.cardsContainer}>
-                {profile ? 
+                {profile ? (
                     <>
-                        <ProfileCard profile={profile.profile}/>
+                        <ProfileCard profile={profile.profile} />
                         <FriendsCard friends={profile.friends} />
                     </>
-                    :
+                ) : (
                     <LoadingSpinner />
-                }
+                )}
             </div>
         </div>
     );

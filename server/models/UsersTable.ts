@@ -5,13 +5,13 @@ interface UsersTable {
     password: string;
     avatar: null | string;
     create_date: string;
-    last_online: string | null
+    last_online: string | null;
 }
 
 export interface FindUsersTable {
-    id: string, 
-    username: string,
-    avatar: string | null
+    id: string;
+    username: string;
+    avatar: string | null;
 }
 
 export default UsersTable;

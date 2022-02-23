@@ -1,11 +1,10 @@
-import { FriendsResponse } from "./FriendsResponse";
+import { FriendsResponse } from './FriendsResponse';
 
-
-export type FullSelfProfilePromise = [SelfProfileResponse, FriendsResponse]
+export type FullSelfProfilePromise = [SelfProfileResponse, FriendsResponse];
 
 export interface FullSelfProfile {
-    profile: SelfProfileResponse,
-    friends: FriendsResponse
+    profile: SelfProfileResponse;
+    friends: FriendsResponse;
 }
 
 export interface SelfProfileResponse {

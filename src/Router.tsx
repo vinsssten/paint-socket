@@ -46,11 +46,7 @@ function Router() {
             <Route path="/signin" element={<LoginPage />} />
             <Route path="/signup" element={<RegisterPage />} />
             <Route path="/singledrawing" element={<SingleDrawingPage />} />
-            {isAuth ? 
-                <Route path="/mainpage" element={<MainPage />} />
-                :
-                null
-            }
+            {isAuth ? <Route path="/mainpage" element={<MainPage />} /> : null}
         </Routes>
     );
 }

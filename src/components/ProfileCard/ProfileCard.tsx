@@ -9,7 +9,7 @@ import DataField from './DataField';
 import stl from './ProfileCard.scss';
 
 interface Props {
-    profile: SelfProfileResponse
+    profile: SelfProfileResponse;
 }
 
 const ProfileCard: FC<Props> = ({ profile }) => {
@@ -28,7 +28,10 @@ const ProfileCard: FC<Props> = ({ profile }) => {
                 <div className={stl.container}>
                     <h1 className={stl.headerText}>Your profile, {profile.username}</h1>
                     <AvatarMain avatar={profile.avatar} />
-                    <DataField title="Username" content={profile.username || 'loading...'} />
+                    <DataField
+                        title="Username"
+                        content={profile.username || 'loading...'}
+                    />
                     <DataField
                         title="Date creation"
                         content={profile.createDate || 'loading...'}

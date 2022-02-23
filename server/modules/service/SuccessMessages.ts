@@ -11,10 +11,10 @@ class SuccessMessages {
         };
     }
 
-    static friendsMissing () {
+    static friendsMissing() {
         return {
-            message: 'Friends are missing'
-        }
+            message: 'Friends are missing',
+        };
     }
 }
 

@@ -43,20 +43,20 @@ class TokenService {
         return null;
     }
 
-    static getPayloadFromRequest (req: Request) : TokenPayload | null {
+    static getPayloadFromRequest(req: Request): TokenPayload | null {
         const token = TokenService.getTokenFromRequest(req);
 
         if (!token) {
             return null;
         }
 
-        const payload  = TokenService.validateAccessToken(token);
+        const payload = TokenService.validateAccessToken(token);
 
         if (!payload) {
             return null;
         }
 
-        return payload
+        return payload;
     }
 
     static validateAccessToken(token: string): TokenPayload | null {
