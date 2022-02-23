@@ -1,4 +1,4 @@
-export type FriendStatus = 'Friends' | 'Pending'
+export type FriendStatus = 'Friends' | 'Pending' | null
 type FindFriend = FriendInvite;
 
 export default interface FriendsTable {
@@ -40,7 +40,4 @@ export interface FriendFindResponse {
     finded: FindFriend[]
 }
 
-export interface RelationTypeList {
-    id: string,
-    relationType: FriendStatus | null
-}
+export type RelationTypeMap = Map<string, FriendStatus>

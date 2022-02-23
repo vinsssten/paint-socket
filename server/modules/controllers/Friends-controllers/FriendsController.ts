@@ -21,32 +21,33 @@ class FriendsController {
             return friendsResponse;
         }
         
-        const {listIdFriends, realitionTypeByIdList} = FriendsControllerService.getFriendsListIds(friendsList, id);
+        const {listIdFriends, realitionTypeByIdMap} = FriendsControllerService.getFriendsListIds(friendsList, id);
 
         const friendsIdsString: string = listIdFriends.slice().join("','");
         const sql = `SELECT * FROM public."Users" WHERE id in ('${friendsIdsString}')`;
         const friendsProfiles: UsersTable[] = (await connection.query<UsersTable>(sql)).rows;
 
-        realitionTypeByIdList.forEach((item, index) => {
-            friendsProfiles.forEach((profile, index) => {
-                if (profile.id === item.id) {
-                    if (item.relationType === 'Friends') {
-                        friendsResponse.friendsList.push({
-                            id: profile.id, 
-                            username: profile.username,
-                            avatar: profile.avatar,
-                            last_online: profile.last_online
-                        })
-                    } else if (item.relationType === 'Pending') {
-                        friendsResponse.invitesList.push({
-                            id: profile.id,
-                            username: profile.username,
-                            avatar: profile.avatar
-                        })
-                    }
+        
+        friendsProfiles.forEach((profile, index) => {
+            const curStatus: FriendStatus | undefined = realitionTypeByIdMap.get(profile.id);
+            if (curStatus !== undefined) {
+                if (curStatus === 'Friends') {
+                    friendsResponse.friendsList.push({
+                        id: profile.id,
+                        username: profile.username,
+                        avatar: profile.avatar,
+                        last_online: profile.last_online
+                    })
+                } else if (curStatus === 'Pending') {
+                    friendsResponse.invitesList.push({
+                        id: profile.id,
+                        username: profile.username,
+                        avatar: profile.avatar
+                    })
                 }
-            })
+            }
         })
+        
 
         return friendsResponse
     }
@@ -58,8 +59,8 @@ class FriendsController {
         const usersList: FindUsersTable[] = (await pool.query<FindUsersTable>(sql)).rows;
 
         const friendsList =  await FriendsControllerService.getFriendsRows(pool, userId);
-        const { realitionTypeByIdList: relationType } = FriendsControllerService.getFriendsListIds(friendsList, userId)
-        
+        const { realitionTypeByIdMap: relationType } = FriendsControllerService.getFriendsListIds(friendsList, userId)
+
         const taggedFindList = FriendsControllerService.tagFriendsInUsersList(userId, usersList, relationType);
         return taggedFindList;
     }

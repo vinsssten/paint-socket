@@ -1,10 +1,10 @@
 import { Client, Connection, Pool } from 'pg';
-import FriendsTable, { FriendFindResponse, FriendsResponse, FriendStatus, RelationTypeList } from '../../models/FriendsTable';
+import FriendsTable, { FriendFindResponse, FriendsResponse, RelationTypeMap } from '../../models/FriendsTable';
 import UsersTable, { FindUsersTable } from '../../models/UsersTable';
 
 class FriendsControllerService {
     //Возвращает массив с указанием друг ли пользователь, ждет ли подтверждения заявка, или еще не друг
-    static tagFriendsInUsersList (id: string, usersList: FindUsersTable[], relationType: RelationTypeList[]): FriendFindResponse  {
+    static tagFriendsInUsersList (id: string, usersList: FindUsersTable[], relationType: RelationTypeMap): FriendFindResponse  {
         let friendsList: FriendFindResponse = {friends: [], invites: [], finded: []};
         usersList.forEach((value) => {
             
@@ -19,9 +19,9 @@ class FriendsControllerService {
         return friendsList;
     }
 
-    static getFriendsListIds (friendsList: FriendsTable[], id: string): {listIdFriends: string[], realitionTypeByIdList: Array<RelationTypeList>} {
+    static getFriendsListIds (friendsList: FriendsTable[], id: string): {listIdFriends: string[], realitionTypeByIdMap: RelationTypeMap} {
         const listIdFriends: string[] = [];
-        const realitionTypeByIdList: Array<RelationTypeList> = [];
+        const realitionTypeByIdMap: RelationTypeMap = new Map();
         friendsList.forEach((item) => {
             let curId = '';
             if (item.first_id === id) {
@@ -31,10 +31,10 @@ class FriendsControllerService {
                 listIdFriends.push(item.first_id);
                 curId = item.first_id;
             }
-            realitionTypeByIdList.push({id: curId, relationType: item.status})
+            realitionTypeByIdMap.set(curId, item.status)
         })
 
-        return { listIdFriends, realitionTypeByIdList }
+        return { listIdFriends, realitionTypeByIdMap }
     }
 }
 
