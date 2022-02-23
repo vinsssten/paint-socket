@@ -9,11 +9,13 @@ import {
 } from '../models/Response/SelfProfileResponse';
 import { loadAllUserProfile } from '../store/actionCreators/userActionCreators';
 import FriendsService from '../axios/services/FriendsService';
+import useFriends from './authHooks/useFriends';
 
 function useUserProfile() {
     const { username, avatar, createDate, isLoading } = useAppSelector(
         state => state.user,
     );
+    const { getFriendsList } = useFriends();
 
     const dispatch = useDispatch();
 
@@ -42,15 +44,6 @@ function useUserProfile() {
         }
     }
 
-    async function getFriendsList(): Promise<FriendsResponse> {
-        try {
-            const friendsList = (await FriendsService.getFriendsList()).data;
-            return friendsList;
-        } catch (error) {
-            throw error;
-        }
-    }
-
     return {
         username,
         avatar,
@@ -58,7 +51,6 @@ function useUserProfile() {
         isLoading,
         getFullProfile,
         getUserProfile,
-        getFriendsList,
     };
 }
 

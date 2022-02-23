@@ -5,7 +5,7 @@ import stl from './FriendsCard.scss';
 
 interface Props {
     toggleLists(): void;
-    findDispatcher: React.Dispatch<React.SetStateAction<string>>;
+    findDispatcher(username: string): void;
 }
 
 const HeaderFriendsCard: FC<Props> = ({ toggleLists, findDispatcher }) => {

@@ -5,7 +5,7 @@ import findSVG from '../../../public/icons/Profile/find.svg';
 import { debounce } from 'lodash';
 
 interface Props {
-    findDispatcher: React.Dispatch<React.SetStateAction<string>>;
+    findDispatcher(username: string): void;
 }
 
 const FindFriendInput: FC<Props> = ({ findDispatcher }) => {

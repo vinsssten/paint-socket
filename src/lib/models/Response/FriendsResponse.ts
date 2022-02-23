@@ -15,3 +15,9 @@ export interface FriendInvite {
     username: string;
     avatar: string | null;
 }
+
+export interface FindFriendsResponse {
+    finded: FriendInvite[],
+    friends: Friend[],
+    invites: FriendInvite 
+}
