@@ -36,9 +36,9 @@ function Router() {
         }
     }, [isAuth, isAuthLoading]);
 
-    useEffect(() => {
-        // loadTestUser(dispatch);
-    }, []);
+    // useEffect(() => {
+    //     loadTestUser(dispatch);
+    // }, []);
 
     return (
         <Routes>
@@ -46,7 +46,11 @@ function Router() {
             <Route path="/signin" element={<LoginPage />} />
             <Route path="/signup" element={<RegisterPage />} />
             <Route path="/singledrawing" element={<SingleDrawingPage />} />
-            <Route path="/mainpage" element={<MainPage />} />
+            {isAuth ? 
+                <Route path="/mainpage" element={<MainPage />} />
+                :
+                null
+            }
         </Routes>
     );
 }
