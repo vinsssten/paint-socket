@@ -35,7 +35,7 @@ const FriendsCard: FC<Props> = ({ friends }) => {
                 <FindFriendContainer findResponse={findResult} />
                 :
                 <>
-                    <FriendsList list={friends.friendsList} />
+                    <FriendsList list={friends.friendsList} headingShow={false}/>
                     <InvitesList isShow={isShowInvites} list={friends.invitesList} />
                 </>
             }       

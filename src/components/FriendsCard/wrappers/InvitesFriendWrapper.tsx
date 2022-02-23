@@ -4,14 +4,14 @@ import stl from '../FriendsCard.scss';
 
 interface Props {
     id: string;
-    avatarPath: string | null;
+    avatar: string | null;
     username: string;
 }
 
-const InvitesFriendWrapper: FC<Props> = ({ id, avatarPath, username }) => {
+const InvitesFriendWrapper: FC<Props> = ({ id, avatar, username }) => {
     return (
         <div className={stl.friendContainer}>
-            <FriendAvatar avatarPath={avatarPath} />
+            <FriendAvatar avatarPath={avatar} />
             <div className={stl.infoContainer}>
                 <h2>{username}</h2>
             </div>

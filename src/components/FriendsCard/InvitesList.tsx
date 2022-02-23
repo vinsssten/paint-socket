@@ -2,6 +2,7 @@ import React, { FC } from 'react';
 import stl from './FriendsCard.scss';
 import { FriendInvite } from '../../lib/models/Response/FriendsResponse';
 import InvitesFriendWrapper from './wrappers/InvitesFriendWrapper';
+import SectionFriends from './SectionFriends';
 
 interface Props {
     isShow: boolean;
@@ -11,17 +12,17 @@ interface Props {
 const InvitesList: FC<Props> = ({ isShow, list }) => {
     if (isShow) {
         return (
-            <div className={stl.invitesContainer}>
-                {list?.length === 0 ? <h2>There is no incoming requests</h2> : null}
+            <SectionFriends sectionHeading={'Incoming'}>
+                {list?.length === 0 ? <h3>There is no incoming requests</h3> : null}
                 {list?.map((value, index) => (
                     <InvitesFriendWrapper
                         id={value.id}
-                        avatarPath={value.avatar}
+                        avatar={value.avatar}
                         username={value.username}
                         key={index}
                     />
                 ))}
-            </div>
+            </SectionFriends>
         );
     } else return <></>;
 };

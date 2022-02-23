@@ -17,7 +17,6 @@ class FriendsControllerService {
         let friendsList: FriendFindResponse = { friends: [], invites: [], finded: [] };
         usersList.forEach(value => {
             const status: FriendStatus | undefined = relationType.get(value.id);
-            console.log('curStatus', status);
             if (value.id === id) {
                 return;
             }
