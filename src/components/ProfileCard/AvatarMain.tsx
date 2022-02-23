@@ -7,10 +7,10 @@ interface Props {
     avatar: string | null;
 }
 
-const AvatarMain: FC<Props> = () => {
+const AvatarMain: FC<Props> = ({ avatar }) => {
     return (
         <div className={stl.imageContainer}>
-            <img src={emptyAvatar} />
+            <img src={avatar ?? emptyAvatar} />
         </div>
     );
 };

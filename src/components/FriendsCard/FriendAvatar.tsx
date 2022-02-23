@@ -9,7 +9,7 @@ interface Props {
 const FriendAvatar: FC<Props> = ({ avatarPath }) => {
     return (
         <div className={stl.imageContainer}>
-            <img src={emptyAvatar} />
+            <img src={avatarPath ?? emptyAvatar} />
         </div>
     );
 };
