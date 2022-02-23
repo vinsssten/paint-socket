@@ -1,13 +1,41 @@
 import { Client, Connection, Pool } from 'pg';
 import FriendsTable, { FriendFindResponse, FriendsResponse, RelationTypeMap } from '../../models/FriendsTable';
 import UsersTable, { FindUsersTable } from '../../models/UsersTable';
+import { FriendStatus, Friend } from '../../models/FriendsTable';
 
 class FriendsControllerService {
     //Возвращает массив с указанием друг ли пользователь, ждет ли подтверждения заявка, или еще не друг
-    static tagFriendsInUsersList (id: string, usersList: FindUsersTable[], relationType: RelationTypeMap): FriendFindResponse  {
+    static tagFriendsInUsersList (id: string, usersList: Friend[], relationType: RelationTypeMap): FriendFindResponse  {
         let friendsList: FriendFindResponse = {friends: [], invites: [], finded: []};
+        console.log(usersList, relationType)
         usersList.forEach((value) => {
-            
+            const status: FriendStatus | undefined = relationType.get(value.id);
+            console.log('curStatus', status)
+            if (value.id === id ) {
+                return;
+            }
+            if (status !== undefined) {
+                if (status === 'Friends') {
+                    friendsList.friends.push({
+                        id: value.id,
+                        username: value.username,
+                        avatar: value.avatar,
+                        last_online: value.last_online
+                    })
+                } else if (status === 'Pending') {
+                    friendsList.invites.push({
+                        id: value.id,
+                        username: value.username,
+                        avatar: value.avatar
+                    })
+                } 
+            } else {
+                friendsList.finded.push({
+                    id: value.id,
+                    username: value.username,
+                    avatar: value.avatar
+                })
+            }
         })
 
         return friendsList;

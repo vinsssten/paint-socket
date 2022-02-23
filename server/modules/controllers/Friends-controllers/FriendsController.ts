@@ -1,5 +1,5 @@
 import { Pool } from 'pg';
-import FriendsTable, { FriendsResponse, FriendStatus } from '../../../models/FriendsTable';
+import FriendsTable, { Friend, FriendsResponse, FriendStatus } from '../../../models/FriendsTable';
 import UsersTable, { FindUsersTable } from '../../../models/UsersTable';
 import DatabaseController from '../Database-controller/DatabaseController';
 import DatabaseGetter from '../Database-controller/DatabaseGetter';
@@ -54,12 +54,12 @@ class FriendsController {
 
     async findFriends (username: string, userId: string): Promise<any> {
         const pool = await dbController.connect();
-        const rows = 'id, username, avatar';
-        let sql = `SELECT (${rows}) as ${rows} FROM public."Users" WHERE username LIKE '%' || '${username}' || '%'`
-        const usersList: FindUsersTable[] = (await pool.query<FindUsersTable>(sql)).rows;
+        const rows = 'id, username, avatar, last_online';
+        let sql = `SELECT * FROM public."Users" WHERE username LIKE '%' || '${username}' || '%'`;
+        const usersList: Friend[] = (await pool.query<Friend>(sql)).rows;
 
         const friendsList =  await FriendsControllerService.getFriendsRows(pool, userId);
-        const { realitionTypeByIdMap: relationType } = FriendsControllerService.getFriendsListIds(friendsList, userId)
+        const { realitionTypeByIdMap: relationType } = FriendsControllerService.getFriendsListIds(friendsList, userId);
 
         const taggedFindList = FriendsControllerService.tagFriendsInUsersList(userId, usersList, relationType);
         return taggedFindList;
