@@ -11,14 +11,15 @@ interface Props {
 
 const InvitesFriendWrapper: FC<Props> = ({ id, avatar, username }) => {
     return (
-        <FriendWrapperLayout 
+        <FriendWrapperLayout
             leftContainer={
                 <>
                     <FriendAvatar avatarPath={avatar} />
                     <div className={stl.infoContainer}>
                         <h2>{username}</h2>
                     </div>
-                </>} 
+                </>
+            }
         />
     );
 };

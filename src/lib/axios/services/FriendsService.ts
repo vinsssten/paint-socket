@@ -1,6 +1,9 @@
 import { Axios, AxiosResponse } from 'axios';
 import api from '..';
-import { FriendsResponse, FindFriendsResponse } from '../../models/Response/FriendsResponse';
+import {
+    FriendsResponse,
+    FindFriendsResponse,
+} from '../../models/Response/FriendsResponse';
 
 import { SelfProfileResponse } from '../../models/Response/SelfProfileResponse';
 
@@ -11,8 +14,10 @@ class FriendsService {
         return api.get<FriendsResponse>('/friends/getfriends');
     }
 
-    static async findFriends(username: string): Promise<AxiosResponse<FindFriendsResponse>> {
-        return api.post<FindFriendsResponse>('/friends/findfriend', {username});
+    static async findFriends(
+        username: string,
+    ): Promise<AxiosResponse<FindFriendsResponse>> {
+        return api.post<FindFriendsResponse>('/friends/findfriend', { username });
     }
 }
 

@@ -1,8 +1,8 @@
-import React, { FC } from 'react'
-import stl from './FriendsCard.scss'
+import React, { FC } from 'react';
+import stl from './FriendsCard.scss';
 
 interface Props {
-    sectionHeading?: string
+    sectionHeading?: string;
 }
 
 const SectionFriends: FC<Props> = ({ sectionHeading, children }) => {
@@ -11,7 +11,7 @@ const SectionFriends: FC<Props> = ({ sectionHeading, children }) => {
             <h2>{sectionHeading}</h2>
             {children}
         </div>
-    )
-}
+    );
+};
 
-export default SectionFriends
+export default SectionFriends;

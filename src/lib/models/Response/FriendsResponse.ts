@@ -17,7 +17,7 @@ export interface FriendInvite {
 }
 
 export interface FindFriendsResponse {
-    finded: FriendInvite[],
-    friends: Friend[],
-    invites: FriendInvite[]
+    finded: FriendInvite[];
+    friends: Friend[];
+    invites: FriendInvite[];
 }

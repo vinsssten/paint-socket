@@ -1,16 +1,20 @@
-import { FriendsResponse, FindFriendsResponse } from '../../models/Response/FriendsResponse';
+import {
+    FriendsResponse,
+    FindFriendsResponse,
+} from '../../models/Response/FriendsResponse';
 import FriendsService from '../../axios/services/FriendsService';
 import { useState } from 'react';
 
-function useFriends () {
+function useFriends() {
     const [findResult, setFindResult] = useState<FindFriendsResponse | null>(null);
 
-    async function findFriend (username: string) {
+    async function findFriend(username: string) {
         if (username.length < 2) {
-            setFindResult(null)
+            setFindResult(null);
             return null;
         }
-        const data: FindFriendsResponse = (await FriendsService.findFriends(username)).data;
+        const data: FindFriendsResponse = (await FriendsService.findFriends(username))
+            .data;
         setFindResult(data);
         return data;
     }
@@ -24,7 +28,7 @@ function useFriends () {
         }
     }
 
-    return { findResult, findFriend, getFriendsList }
+    return { findResult, findFriend, getFriendsList };
 }
 
-export default useFriends
+export default useFriends;

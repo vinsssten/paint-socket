@@ -7,16 +7,21 @@ import SectionFriends from './SectionFriends';
 
 interface Props {
     list: Friend[];
-    headingShow: boolean
+    headingShow: boolean;
 }
 
 const FriendsList: FC<Props> = ({ list, headingShow }) => {
     return (
         <SectionFriends sectionHeading={headingShow ? 'Friends' : undefined}>
-            {list.length === 0 ? <h2>You don't have any friends yet, but you can easily find them by using the search</h2> : null}
-            {list.map((value, index) => 
+            {list.length === 0 ? (
+                <h2>
+                    You don't have any friends yet, but you can easily find them by using
+                    the search
+                </h2>
+            ) : null}
+            {list.map((value, index) => (
                 <FriendWrapper {...value} key={index} />
-            )}
+            ))}
         </SectionFriends>
     );
 };

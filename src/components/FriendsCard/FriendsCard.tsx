@@ -19,23 +19,26 @@ const FriendsCard: FC<Props> = ({ friends }) => {
         setIsShowInvites(!isShowInvites);
     }
 
-    async function findFriendHandle (username: string) {
+    async function findFriendHandle(username: string) {
         const response = await findFriend(username);
         console.log(response);
     }
 
     return (
         <div className={stl.mainContainer}>
-            <HeaderFriendsCard findDispatcher={findFriendHandle} toggleLists={toggleLists} />
-            
-            {findResult ? 
+            <HeaderFriendsCard
+                findDispatcher={findFriendHandle}
+                toggleLists={toggleLists}
+            />
+
+            {findResult ? (
                 <FindFriendContainer findResponse={findResult} />
-                :
+            ) : (
                 <>
-                    <FriendsList list={friends.friendsList} headingShow={false}/>
+                    <FriendsList list={friends.friendsList} headingShow={false} />
                     <InvitesList isShow={isShowInvites} list={friends.invitesList} />
                 </>
-            }       
+            )}
         </div>
     );
 };

@@ -29,7 +29,7 @@
 .friendsListContainer {
     width: 100%;
     margin-bottom: 10px;
-     
+
     h2 {
         @include fontBold-light;
         font-size: 26px;
@@ -63,12 +63,12 @@
             flex-direction: column;
             justify-content: center;
             margin-left: 10px;
-    
+
             h2 {
                 @include fontSemiBold-light;
                 text-shadow: $textShadow-light;
             }
-    
+
             h3 {
                 margin-top: -5px;
                 @include fontRegular-light;
@@ -76,7 +76,6 @@
             }
         }
 
-    
         h5 {
             margin-right: -100%;
         }

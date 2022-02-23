@@ -11,7 +11,7 @@ interface Props {
 
 const FriendWrapper: FC<Props> = ({ avatar, username, lastOnline }) => {
     return (
-        <FriendWrapperLayout 
+        <FriendWrapperLayout
             leftContainer={
                 <>
                     <FriendAvatar avatarPath={avatar} />
@@ -19,7 +19,8 @@ const FriendWrapper: FC<Props> = ({ avatar, username, lastOnline }) => {
                         <h2>{username}</h2>
                         <h3>Last online: {lastOnline}</h3>
                     </div>
-                </>}
+                </>
+            }
         />
     );
 };
