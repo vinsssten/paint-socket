@@ -1,14 +1,11 @@
 import React, { FC, useState } from 'react';
-import useUserProfile from '../../lib/hooks/useUserProfile';
-import InvitesToggleButton from '../Buttons/InvitesToggleButton';
-import FindFriendInput from '../Inputs/FindFriendInput';
+import useFriends from '../../lib/hooks/authHooks/useFriends';
+import { FriendsResponse } from '../../lib/models/Response/FriendsResponse';
+import FindFriendContainer from './FindFriendContainer';
 import stl from './FriendsCard.scss';
 import FriendsList from './FriendsList';
 import HeaderFriendsCard from './HeaderFriendsCard';
 import InvitesList from './InvitesList';
-import { FriendsResponse } from '../../lib/models/Response/FriendsResponse';
-import useFriends from '../../lib/hooks/authHooks/useFriends';
-import FindFriendContainer from './FindFriendContainer';
 
 interface Props {
     friends: FriendsResponse;
