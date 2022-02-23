@@ -44,6 +44,7 @@
 .friendContainer {
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
     align-items: center;
     height: 100%;
     margin-top: 5px;
@@ -53,20 +54,31 @@
     box-shadow: $boxShadow_subContainer-light;
     border: 1px solid #b8b8b885;
 
-    .infoContainer {
+    .firstContainer {
         display: flex;
-        flex-direction: column;
-        margin-left: 10px;
+        justify-content: row;
 
-        h2 {
-            @include fontSemiBold-light;
-            text-shadow: $textShadow-light;
+        .infoContainer {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            margin-left: 10px;
+    
+            h2 {
+                @include fontSemiBold-light;
+                text-shadow: $textShadow-light;
+            }
+    
+            h3 {
+                margin-top: -5px;
+                @include fontRegular-light;
+                color: #222222;
+            }
         }
 
-        h3 {
-            margin-top: -5px;
-            @include fontRegular-light;
-            color: #222222;
+    
+        h5 {
+            margin-right: -100%;
         }
     }
 }

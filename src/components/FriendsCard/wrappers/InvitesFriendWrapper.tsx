@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
 import FriendAvatar from '../FriendAvatar';
 import stl from '../FriendsCard.scss';
+import FriendWrapperLayout from './FriendWrapperLayout';
 
 interface Props {
     id: string;
@@ -10,12 +11,15 @@ interface Props {
 
 const InvitesFriendWrapper: FC<Props> = ({ id, avatar, username }) => {
     return (
-        <div className={stl.friendContainer}>
-            <FriendAvatar avatarPath={avatar} />
-            <div className={stl.infoContainer}>
-                <h2>{username}</h2>
-            </div>
-        </div>
+        <FriendWrapperLayout 
+            leftContainer={
+                <>
+                    <FriendAvatar avatarPath={avatar} />
+                    <div className={stl.infoContainer}>
+                        <h2>{username}</h2>
+                    </div>
+                </>} 
+        />
     );
 };
 
