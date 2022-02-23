@@ -13,9 +13,9 @@ import { loadTestAuth } from './lib/store/actionCreators/authActionCreators';
 import { loadTestUser } from './lib/store/actionCreators/testData';
 
 function Router() {
-    const { isAuth, isAuthLoading } = useAppSelector(store => store.auth);
-    // const { isAuth } = useAuth();
-    // const { isAuthLoading } = useAuthLoading();
+    // const { isAuth, isAuthLoading } = useAppSelector(store => store.auth);
+    const { isAuth } = useAuth();
+    const { isAuthLoading } = useAuthLoading();
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
@@ -36,9 +36,9 @@ function Router() {
         }
     }, [isAuth, isAuthLoading]);
 
-    useEffect(() => {
-        loadTestUser(dispatch);
-    }, []);
+    // useEffect(() => {
+    //     loadTestUser(dispatch);
+    // }, []);
 
     return (
         <Routes>
@@ -46,7 +46,11 @@ function Router() {
             <Route path="/signin" element={<LoginPage />} />
             <Route path="/signup" element={<RegisterPage />} />
             <Route path="/singledrawing" element={<SingleDrawingPage />} />
-            <Route path="/mainpage" element={<MainPage />} />
+            {isAuth ? 
+                <Route path="/mainpage" element={<MainPage />} />
+                :
+                null
+            }
         </Routes>
     );
 }

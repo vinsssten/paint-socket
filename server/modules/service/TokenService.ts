@@ -43,6 +43,22 @@ class TokenService {
         return null;
     }
 
+    static getPayloadFromRequest (req: Request) : TokenPayload | null {
+        const token = TokenService.getTokenFromRequest(req);
+
+        if (!token) {
+            return null;
+        }
+
+        const payload  = TokenService.validateAccessToken(token);
+
+        if (!payload) {
+            return null;
+        }
+
+        return payload
+    }
+
     static validateAccessToken(token: string): TokenPayload | null {
         try {
             const userData = jwt.verify(token, process.env.JWT_ACCESS_SECRET);
