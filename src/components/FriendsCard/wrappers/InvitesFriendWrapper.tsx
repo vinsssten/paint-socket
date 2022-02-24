@@ -1,4 +1,5 @@
 import React, { FC } from 'react';
+import AddFindFriendButton from '../../Buttons/AddFindFriendButton';
 import FriendAvatar from '../FriendAvatar';
 import stl from '../FriendsCard.scss';
 import FriendWrapperLayout from './FriendWrapperLayout';
@@ -18,6 +19,11 @@ const InvitesFriendWrapper: FC<Props> = ({ id, avatar, username }) => {
                     <div className={stl.infoContainer}>
                         <h2>{username}</h2>
                     </div>
+                </>
+            }
+            rightContainer={
+                <>
+                    <AddFindFriendButton />
                 </>
             }
         />

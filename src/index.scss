@@ -31,6 +31,13 @@ $backgroundColor_menuHover-light: #c8c8c8a1;
 
 $bgColor_card-light: #ffffffcc;
 $bgColor_mainButton: #383838be;
+$bgColor_secondaryButton: #525252be;
+
+$color_green: #357035cc;
+$color_green-darker: #234923cc;
+
+$color_dark-red: #801111c4;
+$color_dark-red-darker: #500b0bc4;
 
 $bgColor_grayContainer-light: #bfbfbfbe;
 $bgColor_darkGrayContainer-light: #a0a0a0b8;
@@ -70,14 +77,20 @@ $textShadow-dark: 1px 2px 5px #ecececa4;
     border: 1px solid #ffffff2e;
 }
 
+.button {
+    cursor: pointer;
+    user-select: none;
+}
+
 @mixin glassButton_main {
+    @extend .button;
+    background-color: $bgColor_mainButton;
     text-shadow: 0px 0px 4px #dad3d3a4;
     box-shadow: 0 5px 10px 0 #5c5d5f7a;
     backdrop-filter: blur(4px);
     -webkit-backdrop-filter: blur(4px);
     border-radius: 10px;
     border: 1px solid #ffffff2e;
-    cursor: pointer;
     transition: 100ms;
 
     &:hover {
@@ -89,6 +102,20 @@ $textShadow-dark: 1px 2px 5px #ecececa4;
         transform: scale(0.95);
         background: #050505be;
     }
+}
+
+@mixin glassButton_secondary {
+    @extend .button;
+    @include fontRegular-light;
+    color: white;
+    text-shadow: 0px 0px 4px #dad3d3a4;
+    box-shadow: 0 5px 10px 0 #5c5d5f7a;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border-radius: 5px;
+    border: 1px solid #ffffff2e;
+    transition: 50ms;
+
 }
 
 @mixin flexCenter {

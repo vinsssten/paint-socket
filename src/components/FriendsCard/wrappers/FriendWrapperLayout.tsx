@@ -10,7 +10,7 @@ const FriendWrapperLayout: FC<Props> = ({ leftContainer, rightContainer }) => {
     return (
         <div className={stl.friendContainer}>
             <div className={stl.firstContainer}>{leftContainer}</div>
-            <div>{rightContainer}</div>
+            <div className={stl.secondContainer}>{rightContainer}</div>
         </div>
     );
 };

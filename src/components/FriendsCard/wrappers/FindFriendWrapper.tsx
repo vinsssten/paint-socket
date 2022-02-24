@@ -20,7 +20,7 @@ const FindFriendWrapper: FC<Props> = ({ avatar, username }) => {
                     </div>
                 </>
             }
-            rightContainer={<></>}
+            rightContainer={<h1>hello</h1>}
         />
     );
 };
