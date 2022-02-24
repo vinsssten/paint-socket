@@ -1,5 +1,5 @@
 import React, { FC, useState } from 'react';
-import useFriends from '../../lib/hooks/authHooks/useFriends';
+import useFriends from '../../lib/hooks/useFriends';
 import { FriendsResponse } from '../../lib/models/Response/FriendsResponse';
 import FindFriendContainer from './FindFriendContainer';
 import stl from './FriendsCard.scss';

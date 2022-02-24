@@ -9,7 +9,7 @@ import {
 } from '../models/Response/SelfProfileResponse';
 import { loadAllUserProfile } from '../store/actionCreators/userActionCreators';
 import FriendsService from '../axios/services/FriendsService';
-import useFriends from './authHooks/useFriends';
+import useFriends from './useFriends';
 
 function useUserProfile() {
     const { username, avatar, createDate, isLoading } = useAppSelector(

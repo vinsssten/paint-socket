@@ -1,4 +1,5 @@
 import React, { FC } from 'react';
+import AddFindFriendButton from '../../Buttons/AddFindFriendButton';
 import FriendAvatar from '../FriendAvatar';
 import stl from '../FriendsCard.scss';
 import FriendWrapperLayout from './FriendWrapperLayout';
@@ -9,7 +10,7 @@ interface Props {
     avatar: string | null;
 }
 
-const FindFriendWrapper: FC<Props> = ({ avatar, username }) => {
+const FindFriendWrapper: FC<Props> = ({ id, avatar, username }) => {
     return (
         <FriendWrapperLayout
             leftContainer={
@@ -20,7 +21,11 @@ const FindFriendWrapper: FC<Props> = ({ avatar, username }) => {
                     </div>
                 </>
             }
-            rightContainer={<h1>hello</h1>}
+            rightContainer={
+                <>
+                    <AddFindFriendButton id={id}/>
+                </>
+            }
         />
     );
 };

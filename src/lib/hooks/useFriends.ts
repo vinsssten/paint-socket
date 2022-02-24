@@ -1,8 +1,8 @@
 import {
     FriendsResponse,
     FindFriendsResponse,
-} from '../../models/Response/FriendsResponse';
-import FriendsService from '../../axios/services/FriendsService';
+} from '../models/Response/FriendsResponse';
+import FriendsService from '../axios/services/FriendsService';
 import { useState } from 'react';
 
 function useFriends() {
@@ -28,7 +28,20 @@ function useFriends() {
         }
     }
 
-    return { findResult, findFriend, getFriendsList };
+    //Если действие выполнено успешно - возвращает true, иначе - false
+    async function sendInvite(id: string): Promise<boolean> {
+        return true
+    }
+
+    async function acceptInvite () {
+        
+    }
+
+    async function discardInvite () {
+
+    }
+
+    return { findResult, findFriend, getFriendsList, addFriend: sendInvite };
 }
 
 export default useFriends;

@@ -18,7 +18,7 @@ const FriendWrapper: FC<Props> = ({ avatar, username, lastOnline }) => {
                     <FriendAvatar avatarPath={avatar} />
                     <div className={stl.infoContainer}>
                         <h2>{username}</h2>
-                        <h3>Last online: {lastOnline}</h3>
+                        <h3>Last online: {lastOnline ?? 'No information'}</h3>
                     </div>
                 </>
             }
