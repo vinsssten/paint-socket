@@ -21,6 +21,7 @@ class FriendsController {
             connection = await dbController.connect();
         }
 
+        //FIXME: Пофиксить некорректную выдачу списка приглашений в друзья
         const friendsList = await FriendsControllerService.getFriendsRows(connection, id);
         const friendsResponse: FriendsResponse = { friendsList: [], invitesList: [] };
 

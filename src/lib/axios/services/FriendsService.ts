@@ -19,6 +19,18 @@ class FriendsService {
     ): Promise<AxiosResponse<FindFriendsResponse>> {
         return api.post<FindFriendsResponse>('/friends/findfriend', { username });
     }
+
+    static async sendInvite (id: string): Promise<AxiosResponse<any>> {
+        return api.post<any>('/friends/sendinvite', { id })
+    }
+
+    static async acceptInvite (id: string): Promise<AxiosResponse<any>> {
+        return api.post<any>('/friends/sendinvite', { id })
+    }
+
+    static async discardInvite (id: string): Promise<AxiosResponse<any>> {
+        return api.post<any>('/friends/sendinvite', { id })
+    } 
 }
 
 export default FriendsService;

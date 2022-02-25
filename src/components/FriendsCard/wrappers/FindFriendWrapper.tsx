@@ -23,7 +23,7 @@ const FindFriendWrapper: FC<Props> = ({ id, avatar, username }) => {
             }
             rightContainer={
                 <>
-                    <AddFindFriendButton id={id}/>
+                    <AddFindFriendButton id={id} isSendInvite={false}/>
                 </>
             }
         />

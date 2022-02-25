@@ -4,11 +4,12 @@ import stl from './Buttons.scss'
 import useFriends from '../../lib/hooks/useFriends';
 
 interface Props {
-    id: string
+    id: string,
+    isSendInvite: boolean
 }
 
-const AddFindFriendButton: FC<Props> = ({ id }) => {
-    const [isAdd, setIsAdd] = useState<boolean>(true);
+const AddFindFriendButton: FC<Props> = ({ id, isSendInvite: isSendInvite }) => {
+    const [isAdd, setIsAdd] = useState<boolean>(!isSendInvite);
     const [text, setText] = useState<string>('');
     const { addFriend } = useFriends();
 
