@@ -16,8 +16,12 @@ export interface FriendInvite {
     avatar: string | null;
 }
 
+export interface FindedFriend extends FriendInvite {
+    additionalStatus: 'InviteSended' | null
+}
+
 export interface FindFriendsResponse {
-    finded: FriendInvite[];
+    finded: FindedFriend[];
     friends: Friend[];
     invites: FriendInvite[];
 }

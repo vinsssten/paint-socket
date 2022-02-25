@@ -4,6 +4,7 @@ import FriendsList from './FriendsList';
 import InvitesList from './InvitesList';
 import SectionFriends from './SectionFriends';
 import InvitesFriendWrapper from './wrappers/InvitesFriendWrapper';
+import FindFriendWrapper from './wrappers/FindFriendWrapper';
 
 interface Props {
     findResponse: FindFriendsResponse;
@@ -25,7 +26,7 @@ const FindFriendContainer: FC<Props> = ({ findResponse }) => {
                     <h3>No matches were found, or the search query is too small</h3>
                 ) : null}
                 {findResponse.finded.map((value, index) => (
-                    <InvitesFriendWrapper {...value} key={index} />
+                    <FindFriendWrapper {...value} key={index} />
                 ))}
             </SectionFriends>
         </>

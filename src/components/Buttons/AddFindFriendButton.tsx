@@ -5,10 +5,11 @@ import useFriends from '../../lib/hooks/useFriends';
 
 interface Props {
     id: string
+    isSendedInvite: boolean
 }
 
-const AddFindFriendButton: FC<Props> = ({ id }) => {
-    const [isAdd, setIsAdd] = useState<boolean>(true);
+const AddFindFriendButton: FC<Props> = ({ id, isSendedInvite }) => {
+    const [isAdd, setIsAdd] = useState<boolean>(!isSendedInvite);
     const [text, setText] = useState<string>('');
     const { addFriend } = useFriends();
 

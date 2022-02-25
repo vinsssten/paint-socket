@@ -8,9 +8,10 @@ interface Props {
     id: string;
     username: string;
     avatar: string | null;
+    additionalStatus: 'InviteSended' | null
 }
 
-const FindFriendWrapper: FC<Props> = ({ id, avatar, username }) => {
+const FindFriendWrapper: FC<Props> = ({ id, avatar, username, additionalStatus: status }) => {
     return (
         <FriendWrapperLayout
             leftContainer={
@@ -23,7 +24,7 @@ const FindFriendWrapper: FC<Props> = ({ id, avatar, username }) => {
             }
             rightContainer={
                 <>
-                    <AddFindFriendButton id={id}/>
+                    <AddFindFriendButton id={id} isSendedInvite={status === 'InviteSended'}/>
                 </>
             }
         />
