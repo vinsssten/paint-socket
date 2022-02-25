@@ -28,8 +28,8 @@ class FriendsController {
             return friendsResponse;
         }
 
-        const { listIdFriends, realitionTypeByIdMap } =
-            FriendsControllerService.getFriendsListIds(friendsList, id);
+        const { listIdFriends, relationTypeByIdMap } =
+        FriendsControllerService.getFriendsListIds(friendsList, id);
 
         const friendsIdsString: string = listIdFriends.slice().join("','");
         const sql = `SELECT * FROM public."Users" WHERE id in ('${friendsIdsString}')`;
@@ -37,7 +37,7 @@ class FriendsController {
             .rows;
 
         friendsProfiles.forEach((profile, index) => {
-            const curStatus: FriendStatus | undefined = realitionTypeByIdMap.get(
+            const curStatus: FriendStatus | undefined = relationTypeByIdMap.get(
                 profile.id,
             );
             if (curStatus !== undefined) {
@@ -68,8 +68,10 @@ class FriendsController {
         const usersList: Friend[] = (await pool.query<Friend>(sql)).rows;
 
         const friendsList = await FriendsControllerService.getFriendsRows(pool, userId);
-        const { realitionTypeByIdMap: relationType } =
+        const { relationTypeByIdMap: relationType } =
             FriendsControllerService.getFriendsListIds(friendsList, userId);
+
+        console.log(relationType)
 
         const taggedFindList = FriendsControllerService.tagFriendsInUsersList(
             userId,

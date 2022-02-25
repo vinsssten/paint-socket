@@ -1,5 +1,7 @@
-export type FriendStatus = 'Friends' | 'Pending' | null;
-type FindFriend = FriendInvite;
+export type FriendStatus = 'Friends' | 'Pending' | 'InviteSended' | null;
+interface FindFriend extends FriendInvite {
+    additionalStatus: 'InviteSended' | null
+};
 
 export default interface FriendsTable {
     id: string;

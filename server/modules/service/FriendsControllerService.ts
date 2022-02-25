@@ -1,11 +1,5 @@
-import { Client, Connection, Pool } from 'pg';
-import FriendsTable, {
-    FriendFindResponse,
-    FriendsResponse,
-    RelationTypeMap,
-} from '../../models/FriendsTable';
-import UsersTable, { FindUsersTable } from '../../models/UsersTable';
-import { FriendStatus, Friend } from '../../models/FriendsTable';
+import { Client, Pool } from 'pg';
+import FriendsTable, { Friend, FriendFindResponse, FriendStatus, RelationTypeMap } from '../../models/FriendsTable';
 
 class FriendsControllerService {
     //Возвращает массив с указанием друг ли пользователь, ждет ли подтверждения заявка, или еще не друг
@@ -17,6 +11,7 @@ class FriendsControllerService {
         let friendsList: FriendFindResponse = { friends: [], invites: [], finded: [] };
         usersList.forEach(value => {
             const status: FriendStatus | undefined = relationType.get(value.id);
+            console.log(value, 'status:', status)
             if (value.id === id) {
                 return;
             }
@@ -34,12 +29,20 @@ class FriendsControllerService {
                         username: value.username,
                         avatar: value.avatar,
                     });
+                } else if (status === 'InviteSended') {
+                    friendsList.finded.push({
+                        id: value.id,
+                        username: value.username,
+                        avatar: value.avatar,
+                        additionalStatus: 'InviteSended'
+                    })
                 }
             } else {
                 friendsList.finded.push({
                     id: value.id,
                     username: value.username,
                     avatar: value.avatar,
+                    additionalStatus: null
                 });
             }
         });
@@ -51,7 +54,8 @@ class FriendsControllerService {
         connection: Pool | Client,
         id: string,
     ): Promise<FriendsTable[]> {
-        let sql = `SELECT * FROM public."Friends" WHERE first_id='${id}' OR second_id='${id}'`;
+        let sql = `SELECT * FROM public."Friends" 
+        WHERE first_id='${id}' OR second_id='${id}'`
         const friendsList = (await connection.query<FriendsTable>(sql)).rows;
         return friendsList;
     }
@@ -59,22 +63,31 @@ class FriendsControllerService {
     static getFriendsListIds(
         friendsList: FriendsTable[],
         id: string,
-    ): { listIdFriends: string[]; realitionTypeByIdMap: RelationTypeMap } {
+    ): { listIdFriends: string[]; relationTypeByIdMap: RelationTypeMap } {
         const listIdFriends: string[] = [];
-        const realitionTypeByIdMap: RelationTypeMap = new Map();
+        const relationTypeByIdMap: RelationTypeMap = new Map();
         friendsList.forEach(item => {
             let curId = '';
-            if (item.first_id === id) {
-                listIdFriends.push(item.second_id);
+            if (item.first_id === id && item.status === 'Pending') {
                 curId = item.second_id;
-            } else if (item.second_id === id) {
-                listIdFriends.push(item.first_id);
+                listIdFriends.push(curId);
+                relationTypeByIdMap.set(curId, 'InviteSended');
+            } else if (item.first_id === id && item.status === 'Friends') {
+                curId  = item.second_id;
+                listIdFriends.push(curId);
+                relationTypeByIdMap.set(curId, 'Friends');
+            } else if (item.second_id === id && item.status === 'Friends') {
                 curId = item.first_id;
+                listIdFriends.push(curId);
+                relationTypeByIdMap.set(curId, 'Friends');
+            } else if (item.second_id === id && item.status === 'Pending') {
+                curId = item.first_id;
+                listIdFriends.push(curId);
+                relationTypeByIdMap.set(curId, 'Pending');
             }
-            realitionTypeByIdMap.set(curId, item.status);
         });
 
-        return { listIdFriends, realitionTypeByIdMap };
+        return { listIdFriends, relationTypeByIdMap };
     }
 }
 
