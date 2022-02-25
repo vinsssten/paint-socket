@@ -29,20 +29,19 @@ function useFriends() {
     }
 
     //Если действие выполнено успешно - возвращает true, иначе - false
-    async function sendInvite(id: string): Promise<boolean> {
-        const response = await FriendsService.sendInvite(id);
-        return true 
+    async function addFriend(id: string): Promise<boolean> {
+        return true
     }
 
-    async function acceptInvite (id: string): Promise<void> {
-        const response = await FriendsService.acceptInvite(id);
+    // async function acceptInvite (id: string) {
+    //     return true
+    // }
+
+    async function discardInvite (id: string) {
+        return true
     }
 
-    async function discardInvite (id: string): Promise<void> {
-        const response = await FriendsService.discardInvite(id);
-    }
-
-    return { findResult, findFriend, getFriendsList, addFriend: sendInvite };
+    return { findResult, findFriend, getFriendsList, addFriend, discardInvite };
 }
 
 export default useFriends;

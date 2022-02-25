@@ -4,23 +4,30 @@ import stl from './Buttons.scss'
 import useFriends from '../../lib/hooks/useFriends';
 
 interface Props {
-    id: string,
-    isSendInvite: boolean
+    id: string
+    isSendedInvite: boolean
 }
 
-const AddFindFriendButton: FC<Props> = ({ id, isSendInvite: isSendInvite }) => {
-    const [isAdd, setIsAdd] = useState<boolean>(!isSendInvite);
+const AddFindFriendButton: FC<Props> = ({ id, isSendedInvite }) => {
+    const [isAdd, setIsAdd] = useState<boolean>(!isSendedInvite);
     const [text, setText] = useState<string>('');
-    const { addFriend } = useFriends();
+    const { addFriend, discardInvite } = useFriends();
 
     useEffect(() => {
-        setText(isAdd ? 'Add friend' : 'Remove friend');
+        if (isAdd) {
+            setText('Add friend');
+        } else {
+            setText('Discard invite');
+        }
     }, [isAdd])
 
     async function handleClick () {
-        const response = await addFriend(id);
-        if (response) {
-            setIsAdd(!isAdd);
+        if (isAdd) {
+            const response = await addFriend(id);
+            setIsAdd(!isAdd)
+        } else {
+            const response = await discardInvite(id);
+            setIsAdd(!isAdd)
         }
     }
 
